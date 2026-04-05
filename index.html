@@ -1,0 +1,904 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Kaizen AI Solutions — AI Consulting for SMBs</title>
+<meta name="description" content="We audit your business, find where AI saves time and money, and deliver proven systems. 30+ locations. 5+ industries. Real ROI.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Space+Grotesk:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<script src="https://cdn.tailwindcss.com"></script>
+<script>
+tailwind.config = {
+  theme: {
+    extend: {
+      fontFamily: {
+        display: ['Space Grotesk', 'sans-serif'],
+        serif: ['Instrument Serif', 'serif'],
+      },
+      colors: {
+        kaizen: '#E91E8C',
+        kaizenDeep: '#B8156E',
+        kaizenLight: '#FF4DAF',
+      }
+    }
+  }
+}
+</script>
+<style>
+:root {
+  --bg: #050508;
+  --surface: #0c0c12;
+  --card: #0f0f16;
+  --border: rgba(255,255,255,0.07);
+  --kaizen: #E91E8C;
+}
+body {
+  font-family: 'Space Grotesk', sans-serif;
+  background: var(--bg);
+  color: #e5e5e5;
+  overflow-x: hidden;
+}
+::selection { background: #E91E8C; color: white; }
+::-webkit-scrollbar { width: 4px; }
+::-webkit-scrollbar-track { background: var(--bg); }
+::-webkit-scrollbar-thumb { background: #222; border-radius: 4px; }
+::-webkit-scrollbar-thumb:hover { background: #E91E8C; }
+
+/* ===== GLOBAL SECTION STYLES ===== */
+.section-alt { background: transparent; }
+.section-glow {
+  position: absolute; width: 700px; height: 700px;
+  border-radius: 50%; filter: blur(120px); pointer-events: none; opacity: 0.07;
+}
+.section-glow.pink { background: #E91E8C; }
+.section-glow.purple { background: #7C3AED; }
+.section-glow.blue { background: #3B82F6; }
+
+/* ===== CARDS ===== */
+.card {
+  background: linear-gradient(135deg, rgba(255,255,255,0.04) 0%, rgba(255,255,255,0.01) 100%);
+  border: 1px solid var(--border);
+  border-radius: 20px;
+  transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+  position: relative;
+  overflow: hidden;
+}
+.card::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(400px circle at var(--mx, 50%) var(--my, 50%), rgba(233,30,140,0.06), transparent 40%);
+  opacity: 0;
+  transition: opacity 0.5s;
+  pointer-events: none;
+}
+.card:hover {
+  border-color: rgba(233,30,140,0.2);
+  transform: translateY(-3px);
+  box-shadow: 0 20px 60px rgba(0,0,0,0.4), 0 0 30px rgba(233,30,140,0.05);
+}
+.card:hover::before { opacity: 1; }
+
+/* ===== REVEAL ANIMATIONS ===== */
+.reveal {
+  opacity: 0;
+  transform: translateY(28px);
+  transition: all 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.reveal.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+.reveal-delay-1 { transition-delay: 0.1s; }
+.reveal-delay-2 { transition-delay: 0.2s; }
+.reveal-delay-3 { transition-delay: 0.3s; }
+.reveal-delay-4 { transition-delay: 0.4s; }
+.reveal-delay-5 { transition-delay: 0.5s; }
+.reveal-delay-6 { transition-delay: 0.6s; }
+
+/* ===== BADGE ===== */
+.badge {
+  display: inline-flex; align-items: center; gap: 8px;
+  padding: 8px 18px; border-radius: 999px;
+  background: rgba(233,30,140,0.06);
+  border: 1px solid rgba(233,30,140,0.15);
+  font-size: 11px; font-weight: 600;
+  letter-spacing: 0.18em; text-transform: uppercase;
+  color: #E91E8C;
+}
+.badge .pulse {
+  width: 6px; height: 6px; border-radius: 50%; background: #E91E8C;
+  box-shadow: 0 0 8px #E91E8C;
+  animation: badgePulse 2s ease-in-out infinite;
+}
+@keyframes badgePulse {
+  0%, 100% { opacity: 1; box-shadow: 0 0 4px #E91E8C; }
+  50% { opacity: 0.6; box-shadow: 0 0 12px #E91E8C; }
+}
+
+/* ===== MONO LABEL ===== */
+.mono-label {
+  font-size: 11px; text-transform: uppercase;
+  letter-spacing: 0.2em; font-weight: 600;
+  color: rgba(255,255,255,0.3);
+}
+
+/* ===== GLOW TEXT ===== */
+.glow-text { text-shadow: 0 0 40px rgba(233,30,140,0.4), 0 0 80px rgba(233,30,140,0.15); }
+
+/* ===== SECTION DIVIDER ===== */
+.divider {
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(233,30,140,0.15), rgba(255,255,255,0.05), rgba(233,30,140,0.15), transparent);
+}
+
+/* ===== HERO BG ===== */
+.hero-bg {
+  position: absolute; inset: 0; overflow: hidden;
+}
+.hero-orb {
+  position: absolute; border-radius: 50%; filter: blur(100px); pointer-events: none;
+}
+.hero-grid {
+  position: absolute; inset: 0;
+  background-size: 60px 60px;
+  background-image:
+    linear-gradient(to right, rgba(233,30,140,0.03) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(233,30,140,0.03) 1px, transparent 1px);
+  mask-image: radial-gradient(circle at 50% 40%, black 20%, transparent 70%);
+}
+
+/* ===== COMPARE BARS ===== */
+.compare-bar {
+  width: 0%;
+  transition: width 1.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* ===== STEPS ===== */
+.step-line {
+  transform: scaleY(0); transform-origin: top;
+  transition: transform 1.8s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.steps-go .step-line { transform: scaleY(1); }
+.step-card {
+  opacity: 0; transform: translateY(24px);
+  transition: all 0.7s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.step-card.show { opacity: 1; transform: translateY(0); }
+.step-num {
+  width: 48px; height: 48px; border-radius: 50%;
+  background: var(--card); border: 2px solid var(--border);
+  display: flex; align-items: center; justify-content: center;
+  font-weight: 600; font-size: 14px; color: rgba(255,255,255,0.25);
+  transition: all 0.6s ease;
+}
+.step-card.show .step-num {
+  border-color: #E91E8C; color: #E91E8C;
+  box-shadow: 0 0 25px rgba(233,30,140,0.2);
+}
+
+/* ===== FILM GRAIN ===== */
+@keyframes grain {
+  0%, 100% { transform: translate(0,0); }
+  10% { transform: translate(-5%,-10%); }
+  30% { transform: translate(7%,-25%); }
+  50% { transform: translate(-15%,10%); }
+  70% { transform: translate(0%,15%); }
+  90% { transform: translate(-10%,10%); }
+}
+.grain::after {
+  content: "";
+  background-image: url("https://upload.wikimedia.org/wikipedia/commons/7/76/Noise.png");
+  height: 300%; width: 300%;
+  position: fixed; top: -100%; left: -100%;
+  opacity: 0.025; animation: grain 8s steps(10) infinite;
+  pointer-events: none; z-index: 9998;
+}
+
+/* ===== MODAL ===== */
+.modal-overlay {
+  display: none; position: fixed; inset: 0; z-index: 9999;
+  background: rgba(0,0,0,0.85); backdrop-filter: blur(10px);
+  align-items: center; justify-content: center; padding: 24px;
+}
+.modal-overlay.open { display: flex; }
+.modal-box {
+  background: linear-gradient(135deg, #111118 0%, #0a0a10 100%);
+  border: 1px solid rgba(255,255,255,0.1);
+  border-radius: 24px; padding: 40px; max-width: 560px; width: 100%;
+  max-height: 80vh; overflow-y: auto; position: relative;
+  animation: modalUp 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+  box-shadow: 0 40px 100px rgba(0,0,0,0.6), 0 0 40px rgba(233,30,140,0.05);
+}
+@keyframes modalUp {
+  from { opacity: 0; transform: scale(0.96) translateY(12px); }
+  to { opacity: 1; transform: scale(1) translateY(0); }
+}
+.modal-close {
+  position: absolute; top: 16px; right: 20px;
+  background: none; border: none; color: rgba(255,255,255,0.3);
+  font-size: 28px; cursor: pointer; transition: color 0.2s;
+  width: 36px; height: 36px; display: flex; align-items: center; justify-content: center;
+  border-radius: 50%;
+}
+.modal-close:hover { color: white; background: rgba(255,255,255,0.05); }
+.modal-visual {
+  background: rgba(255,255,255,0.02); border: 1px solid rgba(255,255,255,0.05);
+  border-radius: 16px; padding: 28px; margin-bottom: 28px;
+  position: relative; min-height: 140px;
+}
+
+/* Modal animation CSS (workflow, voice, chat, apps, aeo, education) */
+.wf-container { display: flex; flex-direction: column; align-items: center; gap: 12px; }
+.wf-label { font-size: 10px; text-transform: uppercase; letter-spacing: 0.15em; font-weight: 500; }
+.wf-label.before { color: rgba(255,255,255,0.3); }
+.wf-label.after { color: #E91E8C; }
+.wf-row { display: flex; align-items: center; gap: 4px; flex-wrap: wrap; justify-content: center; }
+.wf-node { width: 36px; height: 36px; border-radius: 8px; border: 1px solid rgba(255,255,255,0.1); display: flex; align-items: center; justify-content: center; font-size: 14px; background: rgba(255,255,255,0.03); }
+.wf-node.ai { background: rgba(233,30,140,0.1); border-color: rgba(233,30,140,0.25); }
+.wf-arrow { color: rgba(255,255,255,0.15); font-size: 10px; }
+.wf-arrow.ai { color: rgba(233,30,140,0.4); }
+.wf-before { opacity: 1; animation: wfShrink 0.8s ease 1.5s forwards; }
+@keyframes wfShrink { to { opacity: 0.3; transform: scale(0.85); } }
+.wf-after { opacity: 0; transform: scale(0.9); animation: wfGrow 0.6s ease 2s forwards; }
+.wf-divider { width: 100%; height: 1px; background: rgba(255,255,255,0.06); opacity: 0; animation: wfGrow 0.4s ease 1.8s forwards; }
+@keyframes wfGrow { to { opacity: 1; transform: scale(1); } }
+
+.voice-demo { position: relative; width: 260px; height: 160px; margin: 0 auto; }
+.voice-hub { position: absolute; left: 50%; top: 50%; transform: translate(-50%,-50%); width: 56px; height: 56px; border-radius: 50%; background: rgba(233,30,140,0.12); border: 1.5px solid rgba(233,30,140,0.3); display: flex; align-items: center; justify-content: center; font-size: 22px; z-index: 3; box-shadow: 0 0 30px rgba(233,30,140,0.15); }
+.voice-hub-pulse { position: absolute; inset: -4px; border-radius: 50%; border: 1px solid rgba(233,30,140,0.2); animation: vhPulse 2s ease-in-out infinite; }
+@keyframes vhPulse { 0%,100% { transform: scale(1); opacity: 0.4; } 50% { transform: scale(1.15); opacity: 0; } }
+.voice-caller { position: absolute; display: flex; flex-direction: column; align-items: center; gap: 3px; opacity: 0; z-index: 2; }
+.voice-caller:nth-child(2) { top: 6px; left: 20px; animation: vcIn 0.5s ease 0.4s forwards; }
+.voice-caller:nth-child(3) { top: 6px; right: 20px; animation: vcIn 0.5s ease 0.8s forwards; }
+.voice-caller:nth-child(4) { bottom: 6px; left: 40px; animation: vcIn 0.5s ease 1.2s forwards; }
+.voice-caller:nth-child(5) { bottom: 6px; right: 40px; animation: vcIn 0.5s ease 1.6s forwards; }
+@keyframes vcIn { from { opacity: 0; transform: scale(0.7); } to { opacity: 1; transform: scale(1); } }
+.voice-caller-icon { width: 34px; height: 34px; border-radius: 50%; background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1); display: flex; align-items: center; justify-content: center; font-size: 14px; }
+.voice-caller-tag { font-size: 8px; color: rgba(255,255,255,0.3); letter-spacing: 0.05em; }
+.voice-line { position: absolute; z-index: 1; background: rgba(233,30,140,0.15); height: 1px; transform-origin: left center; opacity: 0; }
+.voice-line:nth-child(6) { top: 32px; left: 52px; width: 68px; transform: rotate(28deg); animation: vlIn 0.3s ease 0.6s forwards; }
+.voice-line:nth-child(7) { top: 32px; right: 52px; width: 68px; transform: rotate(-28deg); transform-origin: right center; animation: vlIn 0.3s ease 1s forwards; }
+.voice-line:nth-child(8) { bottom: 32px; left: 62px; width: 58px; transform: rotate(-20deg); animation: vlIn 0.3s ease 1.4s forwards; }
+.voice-line:nth-child(9) { bottom: 32px; right: 62px; width: 58px; transform: rotate(20deg); transform-origin: right center; animation: vlIn 0.3s ease 1.8s forwards; }
+@keyframes vlIn { to { opacity: 1; } }
+.voice-status { position: absolute; bottom: -36px; left: 0; right: 0; text-align: center; font-size: 10px; color: #34D399; letter-spacing: 0.15em; text-transform: uppercase; font-weight: 500; opacity: 0; animation: vsIn 0.4s ease 2s forwards; }
+@keyframes vsIn { to { opacity: 1; } }
+
+.chat-demo { display: flex; flex-direction: column; gap: 8px; max-width: 320px; margin: 0 auto; }
+.chat-msg { padding: 10px 14px; border-radius: 14px; font-size: 12px; opacity: 0; transform: translateY(8px); animation: chatIn 0.4s ease forwards; line-height: 1.4; }
+.chat-msg.from { background: rgba(255,255,255,0.06); color: rgba(255,255,255,0.6); align-self: flex-start; border-bottom-left-radius: 4px; animation-delay: 0.3s; }
+.chat-msg.to { background: rgba(233,30,140,0.15); color: rgba(233,30,140,0.8); align-self: flex-end; border-bottom-right-radius: 4px; animation-delay: 0.8s; }
+.chat-msg.to2 { animation-delay: 1.3s; }
+@keyframes chatIn { to { opacity: 1; transform: translateY(0); } }
+
+.app-demo { display: flex; justify-content: center; gap: 12px; }
+.app-browser { width: 220px; border-radius: 10px; overflow: hidden; border: 1px solid rgba(255,255,255,0.08); opacity: 0; }
+.app-browser.left { animation: appIn 0.6s ease 0.2s forwards; }
+.app-browser.right { animation: appIn 0.6s ease 0.4s forwards; }
+@keyframes appIn { to { opacity: 1; } }
+.app-bar { background: rgba(255,255,255,0.04); padding: 6px 10px; display: flex; align-items: center; gap: 5px; border-bottom: 1px solid rgba(255,255,255,0.06); }
+.app-bar-label { font-size: 8px; color: rgba(255,255,255,0.2); margin-left: auto; letter-spacing: 0.1em; text-transform: uppercase; }
+.app-dot { width: 5px; height: 5px; border-radius: 50%; }
+.app-dot:nth-child(1) { background: #ff5f57; }
+.app-dot:nth-child(2) { background: #febc2e; }
+.app-dot:nth-child(3) { background: #28c840; }
+.app-body { padding: 12px; }
+.app-block { height: 7px; border-radius: 3px; margin-bottom: 6px; opacity: 0; animation: appBlockIn 0.3s ease forwards; }
+.app-browser.left .app-block:nth-child(1) { width: 50%; background: rgba(233,30,140,0.3); animation-delay: 0.5s; }
+.app-browser.left .app-block:nth-child(2) { width: 85%; background: rgba(255,255,255,0.06); animation-delay: 0.7s; }
+.app-browser.left .app-block:nth-child(3) { width: 70%; background: rgba(255,255,255,0.06); animation-delay: 0.9s; }
+.app-browser.left .app-block:nth-child(4) { width: 35%; background: rgba(233,30,140,0.2); animation-delay: 1.1s; height: 18px; border-radius: 5px; margin-top: 8px; }
+.app-browser.right .app-block:nth-child(1) { width: 100%; background: rgba(255,255,255,0.04); animation-delay: 0.6s; height: 28px; border-radius: 5px; }
+.app-browser.right .app-block:nth-child(2) { width: 45%; background: rgba(233,30,140,0.15); animation-delay: 0.8s; display: inline-block; margin-right: 4%; }
+.app-browser.right .app-block:nth-child(3) { width: 45%; background: rgba(52,211,153,0.15); animation-delay: 1s; display: inline-block; }
+.app-browser.right .app-block:nth-child(4) { width: 100%; background: rgba(255,255,255,0.04); animation-delay: 1.2s; height: 20px; border-radius: 5px; margin-top: 4px; }
+@keyframes appBlockIn { to { opacity: 1; } }
+
+.aeo-demo { display: flex; flex-direction: column; gap: 6px; max-width: 300px; margin: 0 auto; }
+.aeo-search { display: flex; align-items: center; gap: 8px; padding: 8px 12px; border-radius: 20px; border: 1px solid rgba(255,255,255,0.1); background: rgba(255,255,255,0.03); margin-bottom: 8px; opacity: 0; animation: chatIn 0.4s ease forwards; }
+.aeo-search-text { font-size: 11px; color: rgba(255,255,255,0.4); }
+.aeo-search-icon { font-size: 14px; opacity: 0.3; }
+.aeo-result { display: flex; align-items: center; gap: 10px; padding: 10px 12px; border-radius: 8px; background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.05); opacity: 0; animation: chatIn 0.4s ease forwards; }
+.aeo-result:nth-child(2) { animation-delay: 0.5s; border-color: rgba(233,30,140,0.2); background: rgba(233,30,140,0.05); }
+.aeo-result:nth-child(3) { animation-delay: 0.8s; }
+.aeo-result:nth-child(4) { animation-delay: 1.1s; }
+.aeo-rank { font-size: 10px; color: rgba(255,255,255,0.2); font-weight: 600; width: 16px; }
+.aeo-result:nth-child(2) .aeo-rank { color: #E91E8C; }
+.aeo-name { font-size: 11px; color: rgba(255,255,255,0.5); }
+.aeo-result:nth-child(2) .aeo-name { color: rgba(255,255,255,0.8); font-weight: 500; }
+.aeo-badge { font-size: 9px; color: #E91E8C; background: rgba(233,30,140,0.1); padding: 2px 6px; border-radius: 4px; margin-left: auto; }
+
+.edu-demo { display: flex; justify-content: center; gap: 16px; flex-wrap: wrap; }
+.edu-tool { width: 64px; height: 64px; border-radius: 16px; background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.08); display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 4px; opacity: 0; transform: scale(0.8) translateY(8px); animation: eduIn 0.5s ease forwards; }
+.edu-tool:nth-child(1) { animation-delay: 0.2s; }
+.edu-tool:nth-child(2) { animation-delay: 0.4s; }
+.edu-tool:nth-child(3) { animation-delay: 0.6s; }
+.edu-tool:nth-child(4) { animation-delay: 0.8s; }
+.edu-tool span:first-child { font-size: 22px; }
+.edu-tool span:last-child { font-size: 8px; color: rgba(255,255,255,0.3); font-weight: 500; }
+@keyframes eduIn { to { opacity: 1; transform: scale(1) translateY(0); } }
+
+/* ===== CTA BUTTON ===== */
+.cta-btn {
+  display: inline-block; padding: 16px 36px; border-radius: 14px;
+  background: linear-gradient(135deg, #E91E8C 0%, #B8156E 100%);
+  color: white; font-weight: 600; font-size: 16px;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 20px rgba(233,30,140,0.3), 0 0 0 1px rgba(233,30,140,0.1);
+}
+.cta-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 30px rgba(233,30,140,0.4), 0 0 60px rgba(233,30,140,0.15);
+}
+.cta-btn-ghost {
+  display: inline-block; padding: 16px 36px; border-radius: 14px;
+  border: 1px solid rgba(255,255,255,0.12); color: rgba(255,255,255,0.7);
+  font-weight: 500; font-size: 16px; transition: all 0.3s ease;
+}
+/* Calculator inputs */
+input[type="number"] { -moz-appearance: textfield; }
+input[type="number"]::-webkit-outer-spin-button,
+input[type="number"]::-webkit-inner-spin-button { -webkit-appearance: none; margin: 0; }
+
+.cta-btn-ghost:hover {
+  background: rgba(255,255,255,0.04); border-color: rgba(255,255,255,0.2);
+  transform: translateY(-2px);
+}
+</style>
+</head>
+
+<body class="grain">
+
+<!-- ===== NAV ===== -->
+<nav class="fixed top-0 w-full z-50 bg-[#050508]/70 backdrop-blur-xl border-b border-white/[0.04]">
+  <div class="max-w-[1200px] mx-auto px-6 h-16 flex items-center justify-between">
+    <a href="#" class="flex items-center gap-3">
+      <img src="kaizen-logo-white.png" alt="Kaizen AI" class="h-8">
+      <span class="font-display font-semibold text-base tracking-wide text-white">KAIZEN AI SOLUTIONS</span>
+    </a>
+    <div class="hidden md:flex items-center gap-8 text-sm text-white/40">
+      <a href="#capabilities" class="hover:text-white/80 transition">Capabilities</a>
+      <a href="#industries" class="hover:text-white/80 transition">Industries</a>
+      <a href="#how-it-works" class="hover:text-white/80 transition">How It Works</a>
+      <a href="#about" class="hover:text-white/80 transition">About</a>
+      <a href="#faq" class="hover:text-white/80 transition">FAQ</a>
+    </div>
+    <a href="https://cal.com/harvey-woodford/discovery-call" class="cta-btn !py-2.5 !px-5 !text-sm !rounded-xl">Book a Call</a>
+  </div>
+</nav>
+
+<!-- ===== HERO ===== -->
+<section class="relative min-h-screen flex items-center justify-center pt-16 overflow-hidden">
+  <div class="hero-bg">
+    <div class="hero-grid"></div>
+    <div class="hero-orb" style="width:800px;height:800px;background:radial-gradient(circle,rgba(233,30,140,0.08),transparent 60%);top:-20%;left:50%;transform:translateX(-50%);"></div>
+    <div class="hero-orb" style="width:500px;height:500px;background:radial-gradient(circle,rgba(124,58,237,0.06),transparent 60%);bottom:10%;right:-10%;"></div>
+  </div>
+  <div class="relative z-10 max-w-[900px] mx-auto px-6 text-center">
+    <div class="badge mx-auto mb-10 reveal"><span class="pulse"></span>Accepting new clients</div>
+    <h1 class="text-4xl sm:text-5xl md:text-[4.5rem] font-bold tracking-tight leading-[0.95] mb-7 reveal reveal-delay-1">
+      Your business is leaking<br>
+      <span class="font-serif italic font-normal text-kaizen glow-text">time & money.</span><br>
+      We find where and <span class="font-serif italic font-normal text-white/50">fix it.</span>
+    </h1>
+    <p class="text-lg md:text-xl text-white/45 max-w-[580px] mx-auto mb-10 leading-relaxed font-light reveal reveal-delay-2">
+      We audit your operations, identify where AI genuinely saves you time and money, and our delivery network builds the systems to make it happen.
+    </p>
+    <div class="flex flex-col sm:flex-row gap-4 justify-center reveal reveal-delay-3">
+      <a href="https://cal.com/harvey-woodford/discovery-call" class="cta-btn">Book a Free Call</a>
+      <a href="#capabilities" class="cta-btn-ghost">See What We Do</a>
+    </div>
+  </div>
+  <div class="divider absolute bottom-0 left-0 right-0"></div>
+</section>
+
+<!-- ===== CAPABILITIES ===== -->
+<section id="capabilities" class="relative py-28 section-alt">
+  <div class="section-glow pink" style="top:-200px;left:50%;transform:translateX(-50%);"></div>
+  <div class="max-w-[1200px] mx-auto px-6 relative z-10">
+    <div class="text-center mb-16">
+      <div class="mono-label text-kaizen mb-4 reveal">What We Deliver</div>
+      <h2 class="text-3xl md:text-5xl font-bold tracking-tight mb-5 reveal reveal-delay-1">
+        End-to-end AI <span class="font-serif italic font-normal text-white/50">capability.</span>
+      </h2>
+      <p class="text-white/40 max-w-[550px] mx-auto mb-2 reveal reveal-delay-2">From strategy to delivery — we audit your business and our growing network of specialist partners builds the right solutions.</p>
+      <p class="text-white/25 text-sm reveal reveal-delay-2">Click any capability to learn more.</p>
+    </div>
+
+    <!-- Kaizen node -->
+    <div class="flex flex-col items-center mb-10 reveal">
+      <div class="px-6 py-3 rounded-2xl bg-kaizen/8 border border-kaizen/20 text-kaizen font-semibold text-sm tracking-wider uppercase shadow-[0_0_30px_rgba(233,30,140,0.08)]">Kaizen AI</div>
+      <div class="w-px h-8 bg-gradient-to-b from-kaizen/30 to-white/5"></div>
+    </div>
+
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
+      <div class="card p-7 cursor-pointer reveal reveal-delay-1" onclick="openModal('modal-workflow')">
+        <div class="mono-label text-kaizen mb-3">01</div>
+        <h3 class="text-lg font-semibold mb-2">Workflow Automation</h3>
+        <p class="text-white/35 text-sm leading-relaxed">Eliminate manual processes, data entry, and admin tasks.</p>
+        <div class="text-kaizen/50 text-xs mt-4 font-medium">Learn more →</div>
+      </div>
+      <div class="card p-7 cursor-pointer reveal reveal-delay-2" onclick="openModal('modal-voice')">
+        <div class="mono-label text-kaizen mb-3">02</div>
+        <h3 class="text-lg font-semibold mb-2">Voice Agents</h3>
+        <p class="text-white/35 text-sm leading-relaxed">AI receptionists that answer every call 24/7 and book appointments.</p>
+        <div class="text-kaizen/50 text-xs mt-4 font-medium">Learn more →</div>
+      </div>
+      <div class="card p-7 cursor-pointer reveal reveal-delay-3" onclick="openModal('modal-chat')">
+        <div class="mono-label text-kaizen mb-3">03</div>
+        <h3 class="text-lg font-semibold mb-2">Text & Chat AI</h3>
+        <p class="text-white/35 text-sm leading-relaxed">Instant follow-ups, smart reminders, and lead capture across every channel.</p>
+        <div class="text-kaizen/50 text-xs mt-4 font-medium">Learn more →</div>
+      </div>
+      <div class="card p-7 cursor-pointer reveal reveal-delay-4" onclick="openModal('modal-apps')">
+        <div class="mono-label text-kaizen mb-3">04</div>
+        <h3 class="text-lg font-semibold mb-2">Apps & Websites</h3>
+        <p class="text-white/35 text-sm leading-relaxed">Custom tools, client portals, chatbots, and web apps built for your business.</p>
+        <div class="text-kaizen/50 text-xs mt-4 font-medium">Learn more →</div>
+      </div>
+      <div class="card p-7 cursor-pointer reveal reveal-delay-5" onclick="openModal('modal-aeo')">
+        <div class="mono-label text-kaizen mb-3">05</div>
+        <h3 class="text-lg font-semibold mb-2">AEO & Visibility</h3>
+        <p class="text-white/35 text-sm leading-relaxed">Get found by AI search engines and build inbound lead generation.</p>
+        <div class="text-kaizen/50 text-xs mt-4 font-medium">Learn more →</div>
+      </div>
+      <div class="card p-7 cursor-pointer reveal reveal-delay-6" onclick="openModal('modal-education')">
+        <div class="mono-label text-kaizen mb-3">06</div>
+        <h3 class="text-lg font-semibold mb-2">AI Education</h3>
+        <p class="text-white/35 text-sm leading-relaxed">Workshops to get more from the AI tools you already pay for.</p>
+        <div class="text-kaizen/50 text-xs mt-4 font-medium">Learn more →</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Modals (same content as before) -->
+  <div id="modal-workflow" class="modal-overlay"><div class="modal-box"><button class="modal-close" onclick="closeModal('modal-workflow')">×</button><div class="modal-visual"><div class="wf-container"><div class="wf-label before">Before — manual · ~1 hour</div><div class="wf-before wf-row"><div class="wf-node">📧</div><div class="wf-arrow">→</div><div class="wf-node">📋</div><div class="wf-arrow">→</div><div class="wf-node">👤</div><div class="wf-arrow">→</div><div class="wf-node">📝</div><div class="wf-arrow">→</div><div class="wf-node">📊</div><div class="wf-arrow">→</div><div class="wf-node">✉️</div><div class="wf-arrow">→</div><div class="wf-node">✅</div></div><div class="wf-divider"></div><div class="wf-label after">After — AI optimised · ~5 minutes</div><div class="wf-after wf-row"><div class="wf-node">📧</div><div class="wf-arrow ai">→</div><div class="wf-node ai">🤖</div><div class="wf-arrow ai">→</div><div class="wf-node">📊</div><div class="wf-arrow ai">→</div><div class="wf-node">✅</div></div></div></div><div class="mono-label text-kaizen mb-4">01 — Workflow Automation</div><h3 class="text-2xl font-bold mb-4">Automate the work your team shouldn't be doing.</h3><div class="space-y-3 text-white/50 text-sm leading-relaxed"><p>Most businesses have staff spending hours on tasks that could run automatically — data entry, email follow-ups, invoice processing, report generation, file management.</p><p><strong class="text-white/80">What we build:</strong></p><ul class="space-y-2 ml-4"><li>• Automated data pipelines between your existing tools</li><li>• Email and document processing workflows</li><li>• CRM updates and task creation triggered by events</li><li>• Reporting dashboards that populate themselves</li><li>• Internal notification systems so nothing falls through the cracks</li></ul><p><strong class="text-white/80">The result:</strong> Your team focuses on high-value work. The repetitive stuff runs in the background.</p></div></div></div>
+
+  <div id="modal-voice" class="modal-overlay"><div class="modal-box"><button class="modal-close" onclick="closeModal('modal-voice')">×</button><div class="modal-visual" style="min-height:190px;"><div class="voice-demo"><div class="voice-hub"><div class="voice-hub-pulse"></div>📞</div><div class="voice-caller"><div class="voice-caller-icon">👤</div><div class="voice-caller-tag">Caller 1</div></div><div class="voice-caller"><div class="voice-caller-icon">👤</div><div class="voice-caller-tag">Caller 2</div></div><div class="voice-caller"><div class="voice-caller-icon">👤</div><div class="voice-caller-tag">Caller 3</div></div><div class="voice-caller"><div class="voice-caller-icon">👤</div><div class="voice-caller-tag">Caller 4</div></div><div class="voice-line"></div><div class="voice-line"></div><div class="voice-line"></div><div class="voice-line"></div><div class="voice-status">All calls handled — 24/7</div></div></div><div class="mono-label text-kaizen mb-4">02 — Voice Agents</div><h3 class="text-2xl font-bold mb-4">Never miss a call again.</h3><div class="space-y-3 text-white/50 text-sm leading-relaxed"><p>AI voice agents that sound like a real receptionist. They pick up every call — 24/7, weekends, holidays — qualify the caller, and take action.</p><p><strong class="text-white/80">What they do:</strong></p><ul class="space-y-2 ml-4"><li>• Answer instantly — no voicemail, no hold music</li><li>• Ask the right questions to qualify leads</li><li>• Book appointments directly into your calendar</li><li>• Send confirmation messages to the caller</li><li>• Update your CRM with the conversation details</li></ul><p><strong class="text-white/80">The result:</strong> Every lead is captured, every caller gets a professional experience, and your calendar fills up while you focus on delivery.</p></div></div></div>
+
+  <div id="modal-chat" class="modal-overlay"><div class="modal-box"><button class="modal-close" onclick="closeModal('modal-chat')">×</button><div class="modal-visual"><div class="chat-demo"><div class="chat-msg from">Hi, do you have availability this week?</div><div class="chat-msg to">Hi! Yes we do. Would Thursday at 2pm work? I can book you in right now.</div><div class="chat-msg from chat-msg to2">That's perfect, yes please!</div></div></div><div class="mono-label text-kaizen mb-4">03 — Text & Chat AI</div><h3 class="text-2xl font-bold mb-4">Respond instantly on every channel.</h3><div class="space-y-3 text-white/50 text-sm leading-relaxed"><p>Your customers message on WhatsApp, Instagram, Facebook, SMS, and your website. If you take hours to reply, they go elsewhere. Chat AI fixes that.</p><p><strong class="text-white/80">What it covers:</strong></p><ul class="space-y-2 ml-4"><li>• Instant replies on WhatsApp, Instagram DMs, Facebook Messenger, and SMS</li><li>• Smart follow-up sequences — reminders, confirmations, re-engagement</li><li>• Lead qualification before you even join the conversation</li><li>• Booking links sent automatically</li><li>• Automated review collection after service</li></ul><p><strong class="text-white/80">The result:</strong> Leads get a response in seconds, not hours. You join conversations already informed.</p></div></div></div>
+
+  <div id="modal-apps" class="modal-overlay"><div class="modal-box"><button class="modal-close" onclick="closeModal('modal-apps')">×</button><div class="modal-visual"><div class="app-demo"><div class="app-browser left"><div class="app-bar"><div class="app-dot"></div><div class="app-dot"></div><div class="app-dot"></div><div class="app-bar-label">Website</div></div><div class="app-body"><div class="app-block"></div><div class="app-block"></div><div class="app-block"></div><div class="app-block"></div></div></div><div class="app-browser right"><div class="app-bar"><div class="app-dot"></div><div class="app-dot"></div><div class="app-dot"></div><div class="app-bar-label">Dashboard</div></div><div class="app-body"><div class="app-block"></div><div class="app-block"></div><div class="app-block"></div><div class="app-block"></div></div></div></div></div><div class="mono-label text-kaizen mb-4">04 — Apps & Websites</div><h3 class="text-2xl font-bold mb-4">Custom-built tools for your business.</h3><div class="space-y-3 text-white/50 text-sm leading-relaxed"><p>Sometimes the right solution doesn't exist off the shelf. We build custom tools, portals, and web applications tailored to how your business actually works.</p><p><strong class="text-white/80">What we build:</strong></p><ul class="space-y-2 ml-4"><li>• Website chatbots for 24/7 lead capture</li><li>• Client-facing portals and dashboards</li><li>• Internal tools that connect your systems</li><li>• Landing pages optimised for conversion</li><li>• Custom web apps for specific business processes</li></ul><p><strong class="text-white/80">The result:</strong> Technology built around your workflow, not the other way around.</p></div></div></div>
+
+  <div id="modal-aeo" class="modal-overlay"><div class="modal-box"><button class="modal-close" onclick="closeModal('modal-aeo')">×</button><div class="modal-visual"><div class="aeo-demo"><div class="aeo-search"><div class="aeo-search-icon">🔍</div><div class="aeo-search-text">"best plumber near me"</div></div><div class="aeo-result"><div class="aeo-rank">1</div><div class="aeo-name">Your Business</div><div class="aeo-badge">AI optimised</div></div><div class="aeo-result"><div class="aeo-rank">2</div><div class="aeo-name">Competitor A</div></div><div class="aeo-result"><div class="aeo-rank">3</div><div class="aeo-name">Competitor B</div></div></div></div><div class="mono-label text-kaizen mb-4">05 — AEO & Visibility</div><h3 class="text-2xl font-bold mb-4">Get found by AI search engines.</h3><div class="space-y-3 text-white/50 text-sm leading-relaxed"><p>People are no longer just Googling — they're asking ChatGPT, Claude, and Google AI to recommend businesses. If your online presence is weak, AI won't recommend you.</p><p><strong class="text-white/80">What we do:</strong></p><ul class="space-y-2 ml-4"><li>• Audit your current AI Engine Optimisation (AEO) visibility score</li><li>• Build content strategies that AI search engines pick up</li><li>• Optimise your Google Business Profile and review presence</li><li>• Automated content engines that keep you visible with minimal effort</li><li>• LinkedIn and social media visibility strategies</li></ul><p><strong class="text-white/80">The result:</strong> When someone asks AI to recommend a business like yours, you show up.</p></div></div></div>
+
+  <div id="modal-education" class="modal-overlay"><div class="modal-box"><button class="modal-close" onclick="closeModal('modal-education')">×</button><div class="modal-visual"><div class="edu-demo"><div class="edu-tool"><span>🤖</span><span>ChatGPT</span></div><div class="edu-tool"><span>🧠</span><span>Claude</span></div><div class="edu-tool"><span>✨</span><span>Copilot</span></div><div class="edu-tool"><span>🔧</span><span>Your tools</span></div></div></div><div class="mono-label text-kaizen mb-4">06 — AI Education</div><h3 class="text-2xl font-bold mb-4">Get more from the tools you already pay for.</h3><div class="space-y-3 text-white/50 text-sm leading-relaxed"><p>Most businesses are paying for AI tools like ChatGPT, Claude, or Microsoft Copilot — but their teams are barely scratching the surface. Our workshops close that gap.</p><p><strong class="text-white/80">What we deliver:</strong></p><ul class="space-y-2 ml-4"><li>• Hands-on workshops tailored to your team's actual roles and workflows</li><li>• Practical training on using AI for emails, reports, research, data analysis, and communication</li><li>• Best practices for prompt writing so your team gets quality outputs consistently</li><li>• Role-specific use cases — what AI looks like for sales vs operations vs admin</li><li>• Clear guidance on what AI can and can't do — so nobody wastes time on the wrong things</li></ul><p><strong class="text-white/80">The result:</strong> Your team becomes measurably more efficient with tools they're already paying for.</p></div></div></div>
+
+  <div class="divider absolute bottom-0 left-0 right-0"></div>
+</section>
+
+<!-- ===== INDUSTRIES ===== -->
+<section id="industries" class="relative py-28">
+  <div class="section-glow purple" style="top:20%;right:-200px;"></div>
+  <div class="max-w-[1200px] mx-auto px-6 relative z-10">
+    <div class="text-center mb-16">
+      <div class="mono-label text-kaizen mb-4 reveal">Industries</div>
+      <h2 class="text-3xl md:text-5xl font-bold tracking-tight mb-5 reveal reveal-delay-1">
+        Where our partners have <span class="font-serif italic font-normal text-white/50">delivered.</span>
+      </h2>
+      <p class="text-white/40 max-w-[580px] mx-auto mb-2 reveal reveal-delay-2">Our delivery network has built and deployed AI systems across these industries. As we grow our partnerships, our capability grows with them.</p>
+      <p class="text-white/25 text-sm reveal reveal-delay-2">Each capability area is handled by a specialist partner — not one team stretched thin. Breadth without compromising depth.</p>
+    </div>
+
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
+      <div class="card p-7 reveal reveal-delay-1">
+        <div class="text-3xl mb-4">🏋️</div>
+        <h3 class="text-lg font-semibold mb-2">Gyms & Fitness</h3>
+        <p class="text-white/35 text-sm leading-relaxed mb-4">AI receptionists, automated member retention, review collection, CRM systems, and multi-channel lead capture.</p>
+        <div class="text-kaizen font-semibold text-sm">Delivered across 30+ locations</div>
+      </div>
+      <div class="card p-7 reveal reveal-delay-2">
+        <div class="text-3xl mb-4">🏠</div>
+        <h3 class="text-lg font-semibold mb-2">Property & Lettings</h3>
+        <p class="text-white/35 text-sm leading-relaxed mb-4">Automated tenant enquiries, viewing scheduling, lease renewal prompts, and maintenance workflows.</p>
+        <div class="text-kaizen font-semibold text-sm">Live for UK property portfolios</div>
+      </div>
+      <div class="card p-7 reveal reveal-delay-3">
+        <div class="text-3xl mb-4">🏥</div>
+        <h3 class="text-lg font-semibold mb-2">Clinics & Aesthetics</h3>
+        <p class="text-white/35 text-sm leading-relaxed mb-4">Patient booking automation, recurring treatment reminders, review systems, and full CRM pipeline visibility.</p>
+        <div class="text-kaizen font-semibold text-sm">Implemented for UK practices</div>
+      </div>
+      <div class="card p-7 reveal reveal-delay-4">
+        <div class="text-3xl mb-4">☀️</div>
+        <h3 class="text-lg font-semibold mb-2">Solar & Renewables</h3>
+        <p class="text-white/35 text-sm leading-relaxed mb-4">Lead qualification, site survey booking, quoting automation, referral programmes, and annual maintenance reminders.</p>
+        <div class="text-kaizen font-semibold text-sm">30 hrs/week saved for clients</div>
+      </div>
+      <div class="card p-7 reveal reveal-delay-5">
+        <div class="text-3xl mb-4">💼</div>
+        <h3 class="text-lg font-semibold mb-2">Financial Services</h3>
+        <p class="text-white/35 text-sm leading-relaxed mb-4">CRM activation, workflow automation, AI content engines, chatbot lead capture, and visibility strategies.</p>
+        <div class="text-kaizen font-semibold text-sm">Full AI opportunity assessment delivered</div>
+      </div>
+      <div class="card p-7 flex flex-col items-center justify-center text-center reveal reveal-delay-6">
+        <div class="text-3xl mb-4">+</div>
+        <h3 class="text-lg font-semibold mb-2">Your Industry</h3>
+        <p class="text-white/35 text-sm leading-relaxed">If your business has processes, customers, or leads — we'll find where AI fits.</p>
+      </div>
+    </div>
+
+    <!-- Stats bar -->
+    <div class="grid grid-cols-2 md:grid-cols-4 gap-5 mt-14">
+      <div class="card p-6 text-center reveal reveal-delay-1">
+        <div class="text-3xl md:text-4xl font-bold text-kaizen mb-1"><span class="count-up" data-target="50">0</span>+</div>
+        <div class="text-white/30 text-sm">Projects delivered</div>
+      </div>
+      <div class="card p-6 text-center reveal reveal-delay-2">
+        <div class="text-3xl md:text-4xl font-bold text-white mb-1"><span class="count-up" data-target="30">0</span>+</div>
+        <div class="text-white/30 text-sm">Business locations</div>
+      </div>
+      <div class="card p-6 text-center reveal reveal-delay-3">
+        <div class="text-3xl md:text-4xl font-bold text-kaizen mb-1"><span class="count-up" data-target="5">0</span></div>
+        <div class="text-white/30 text-sm">Countries</div>
+      </div>
+      <div class="card p-6 text-center reveal reveal-delay-4">
+        <div class="text-3xl md:text-4xl font-bold text-white mb-1"><span class="count-up" data-target="20">0</span>x</div>
+        <div class="text-white/30 text-sm">Highest client ROI</div>
+      </div>
+    </div>
+  </div>
+  <div class="divider absolute bottom-0 left-0 right-0"></div>
+</section>
+
+<!-- ===== ROI CALCULATOR ===== -->
+<section class="relative py-28">
+  <div class="section-glow blue" style="top:30%;left:-200px;"></div>
+  <div class="max-w-[700px] mx-auto px-6 relative z-10">
+    <div class="text-center mb-14">
+      <div class="mono-label text-kaizen mb-4 reveal">Calculator</div>
+      <h2 class="text-3xl md:text-5xl font-bold tracking-tight mb-5 reveal reveal-delay-1">
+        What's that task <span class="font-serif italic font-normal text-kaizen glow-text">really</span> costing you?
+      </h2>
+      <p class="text-white/40 max-w-[480px] mx-auto reveal reveal-delay-2">Enter the hours your team spends on a repeatable task and what that time costs you.</p>
+    </div>
+
+    <div class="card p-8 md:p-10 reveal reveal-delay-2">
+      <!-- Inputs -->
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
+        <div>
+          <label class="mono-label text-white/30 block mb-3">Hours spent per week</label>
+          <div class="relative">
+            <input type="number" id="calc-hours" value="10" min="1" max="100" class="w-full bg-white/[0.04] border border-white/[0.08] rounded-xl px-5 py-4 text-2xl font-bold text-white focus:outline-none focus:border-kaizen/30 transition-colors" oninput="updateCalc()">
+            <span class="absolute right-5 top-1/2 -translate-y-1/2 text-white/20 text-sm">hrs/week</span>
+          </div>
+        </div>
+        <div>
+          <label class="mono-label text-white/30 block mb-3">Hourly cost of staff</label>
+          <div class="relative">
+            <span class="absolute left-5 top-1/2 -translate-y-1/2 text-white/30 text-2xl font-bold">£</span>
+            <input type="number" id="calc-rate" value="15" min="1" max="500" class="w-full bg-white/[0.04] border border-white/[0.08] rounded-xl pl-12 pr-5 py-4 text-2xl font-bold text-white focus:outline-none focus:border-kaizen/30 transition-colors" oninput="updateCalc()">
+            <span class="absolute right-5 top-1/2 -translate-y-1/2 text-white/20 text-sm">/hour</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Divider -->
+      <div class="h-px bg-white/[0.06] mb-8"></div>
+
+      <!-- Results -->
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-6 text-center">
+        <div>
+          <div class="text-white/25 text-sm mb-2">Weekly cost</div>
+          <div class="text-2xl md:text-3xl font-bold text-white">£<span id="calc-weekly">150</span></div>
+        </div>
+        <div>
+          <div class="text-white/25 text-sm mb-2">Monthly cost</div>
+          <div class="text-2xl md:text-3xl font-bold text-white">£<span id="calc-monthly">650</span></div>
+        </div>
+        <div>
+          <div class="text-white/25 text-sm mb-2">Annual cost</div>
+          <div class="text-2xl md:text-3xl font-bold text-kaizen glow-text">£<span id="calc-annual">7,800</span></div>
+        </div>
+      </div>
+
+      <p class="text-center text-white/20 text-xs mt-8 leading-relaxed">That's what one repeatable task costs your business every year. Now imagine automating it.</p>
+    </div>
+  </div>
+  <div class="divider absolute bottom-0 left-0 right-0"></div>
+</section>
+
+<!-- ===== HOW IT WORKS ===== -->
+<section id="how-it-works" class="relative py-28">
+  <div class="section-glow pink" style="bottom:-200px;right:20%;"></div>
+  <div class="max-w-[1200px] mx-auto px-6 relative z-10">
+    <div class="text-center mb-16">
+      <div class="mono-label text-kaizen mb-4 reveal">Process</div>
+      <h2 class="text-3xl md:text-5xl font-bold tracking-tight reveal reveal-delay-1">
+        Three steps to <span class="font-serif italic font-normal text-white/50">clarity.</span>
+      </h2>
+    </div>
+
+    <div class="relative max-w-[800px] mx-auto" id="steps-container">
+      <div class="hidden md:block absolute left-[24px] top-0 bottom-0 w-px">
+        <div class="step-line h-full w-full bg-gradient-to-b from-kaizen/0 via-kaizen/30 to-kaizen/0"></div>
+      </div>
+
+      <div class="step-card flex items-start gap-8 mb-14" data-step="1">
+        <div class="hidden md:flex flex-shrink-0 relative z-10"><div class="step-num">01</div></div>
+        <div class="card p-8 flex-1">
+          <div class="mono-label text-kaizen mb-4 md:hidden">Step 01</div>
+          <h3 class="text-xl font-semibold mb-3">Discovery</h3>
+          <p class="text-white/35 text-sm leading-relaxed">A free call to understand your business, your pain points, and where you're wasting time. No commitment, no hard sell.</p>
+          <div class="flex items-center gap-2 mt-4">
+            <div class="w-1.5 h-1.5 rounded-full bg-green-400 animate-pulse"></div>
+            <span class="text-green-400/60 text-xs font-medium">15 minutes</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="step-card flex items-start gap-8 mb-14" data-step="2">
+        <div class="hidden md:flex flex-shrink-0 relative z-10"><div class="step-num">02</div></div>
+        <div class="card p-8 flex-1">
+          <div class="mono-label text-kaizen mb-4 md:hidden">Step 02</div>
+          <h3 class="text-xl font-semibold mb-3">AI Opportunity Assessment</h3>
+          <p class="text-white/35 text-sm leading-relaxed">We speak to your team, map your operations, and deliver a full roadmap — opportunity matrix, ROI breakdown, prioritised actions, and implementation costs.</p>
+          <div class="flex flex-wrap gap-2 mt-4">
+            <span class="px-3 py-1 rounded-full bg-kaizen/10 border border-kaizen/20 text-kaizen/70 text-xs">Opportunity Matrix</span>
+            <span class="px-3 py-1 rounded-full bg-kaizen/10 border border-kaizen/20 text-kaizen/70 text-xs">ROI Breakdown</span>
+            <span class="px-3 py-1 rounded-full bg-kaizen/10 border border-kaizen/20 text-kaizen/70 text-xs">Roadmap</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="step-card flex items-start gap-8" data-step="3">
+        <div class="hidden md:flex flex-shrink-0 relative z-10"><div class="step-num">03</div></div>
+        <div class="card p-8 flex-1">
+          <div class="mono-label text-kaizen mb-4 md:hidden">Step 03</div>
+          <h3 class="text-xl font-semibold mb-3">Delivery</h3>
+          <p class="text-white/35 text-sm leading-relaxed">Our specialist network builds and deploys your AI systems. You see results within days, not months. We stay by your side throughout.</p>
+          <div class="flex items-center gap-2 mt-4">
+            <div class="w-1.5 h-1.5 rounded-full bg-kaizen animate-pulse"></div>
+            <span class="text-kaizen/60 text-xs font-medium">Specialist partners for each capability</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="divider absolute bottom-0 left-0 right-0"></div>
+</section>
+
+<!-- ===== WHY AUDIT FIRST ===== -->
+<section class="relative py-28">
+  <div class="section-glow pink" style="top:40%;right:-200px;"></div>
+  <div class="max-w-[1200px] mx-auto px-6 relative z-10">
+    <div class="text-center mb-16">
+      <div class="mono-label text-kaizen mb-4 reveal">Why Audit First</div>
+      <h2 class="text-3xl md:text-5xl font-bold tracking-tight mb-5 reveal reveal-delay-1">
+        Most businesses build the <span class="font-serif italic font-normal text-white/50">wrong thing</span> first.
+      </h2>
+      <p class="text-white/40 max-w-[580px] mx-auto reveal reveal-delay-2">The first flashy AI tool that looks good is rarely the one that moves the needle. The assessment finds where you're bleeding the hardest, then builds a roadmap in priority order.</p>
+    </div>
+
+    <!-- Animated flow: Scatter → Assess → Prioritise → Deliver -->
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-10">
+      <!-- Without audit -->
+      <div class="card p-8 reveal">
+        <div class="mono-label text-white/20 mb-6">Without an assessment</div>
+        <div class="flex justify-center gap-3 mb-6">
+          <div class="w-12 h-12 rounded-xl bg-white/[0.04] border border-white/[0.06] flex items-center justify-center text-lg opacity-40">🤖</div>
+          <div class="w-12 h-12 rounded-xl bg-white/[0.04] border border-white/[0.06] flex items-center justify-center text-lg opacity-30">💬</div>
+          <div class="w-12 h-12 rounded-xl bg-white/[0.04] border border-white/[0.06] flex items-center justify-center text-lg opacity-50">📊</div>
+          <div class="w-12 h-12 rounded-xl bg-white/[0.04] border border-white/[0.06] flex items-center justify-center text-lg opacity-20">⚙️</div>
+          <div class="w-12 h-12 rounded-xl bg-white/[0.04] border border-white/[0.06] flex items-center justify-center text-lg opacity-60">📞</div>
+        </div>
+        <ul class="space-y-3 text-sm text-white/35">
+          <li class="flex items-start gap-3"><span class="text-red-400/60 mt-0.5">✗</span>Pick a tool because it looked good in a demo</li>
+          <li class="flex items-start gap-3"><span class="text-red-400/60 mt-0.5">✗</span>Spend money before understanding where the real gaps are</li>
+          <li class="flex items-start gap-3"><span class="text-red-400/60 mt-0.5">✗</span>No idea what to prioritise or what ROI looks like</li>
+          <li class="flex items-start gap-3"><span class="text-red-400/60 mt-0.5">✗</span>End up with tools nobody uses</li>
+        </ul>
+      </div>
+
+      <!-- With audit -->
+      <div class="card p-8 reveal reveal-delay-1" style="border-color: rgba(233,30,140,0.12);">
+        <div class="mono-label text-kaizen mb-6">With an assessment</div>
+        <div class="flex justify-center gap-2 mb-6">
+          <div class="flex flex-col items-center gap-1">
+            <div class="w-12 h-12 rounded-xl bg-kaizen/10 border border-kaizen/20 flex items-center justify-center text-lg" style="box-shadow:0 0 15px rgba(233,30,140,0.1);">📞</div>
+            <div class="text-[8px] text-kaizen/40 font-medium">Priority 1</div>
+          </div>
+          <div class="text-white/10 self-center">→</div>
+          <div class="flex flex-col items-center gap-1">
+            <div class="w-12 h-12 rounded-xl bg-kaizen/8 border border-kaizen/15 flex items-center justify-center text-lg">⚙️</div>
+            <div class="text-[8px] text-kaizen/30 font-medium">Priority 2</div>
+          </div>
+          <div class="text-white/10 self-center">→</div>
+          <div class="flex flex-col items-center gap-1">
+            <div class="w-12 h-12 rounded-xl bg-kaizen/5 border border-kaizen/10 flex items-center justify-center text-lg">📊</div>
+            <div class="text-[8px] text-kaizen/25 font-medium">Priority 3</div>
+          </div>
+          <div class="text-white/10 self-center">→</div>
+          <div class="flex flex-col items-center gap-1">
+            <div class="w-12 h-12 rounded-xl bg-white/[0.03] border border-white/[0.06] flex items-center justify-center text-lg opacity-50">💬</div>
+            <div class="text-[8px] text-white/15 font-medium">Later</div>
+          </div>
+        </div>
+        <ul class="space-y-3 text-sm text-white/55">
+          <li class="flex items-start gap-3"><span class="text-kaizen mt-0.5">✓</span>We map every gap across your entire operation</li>
+          <li class="flex items-start gap-3"><span class="text-kaizen mt-0.5">✓</span>Prioritise by impact — fix the biggest leaks first</li>
+          <li class="flex items-start gap-3"><span class="text-kaizen mt-0.5">✓</span>Every recommendation costed with clear ROI projections</li>
+          <li class="flex items-start gap-3"><span class="text-kaizen mt-0.5">✓</span>Phased roadmap — quick wins first, bigger builds when you're ready</li>
+        </ul>
+      </div>
+    </div>
+
+  </div>
+  <div class="divider absolute bottom-0 left-0 right-0"></div>
+</section>
+
+<!-- ===== ABOUT ===== -->
+<section id="about" class="relative py-28">
+  <div class="max-w-[1200px] mx-auto px-6 relative z-10">
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-16 items-center">
+      <div class="reveal">
+        <div class="mono-label text-kaizen mb-4">About</div>
+        <h2 class="text-3xl md:text-5xl font-bold tracking-tight mb-6">
+          Your AI <span class="font-serif italic font-normal text-white/50">advisor,</span><br>not a vendor.
+        </h2>
+        <div class="space-y-4 text-white/40 leading-relaxed text-[15px]">
+          <p>I'm Harvey Woodford, founder of Kaizen AI Solutions. I work with small and medium businesses to cut through the AI noise and find what actually moves the needle.</p>
+          <p>I don't sell you tools you don't need. I audit your operations, identify the real opportunities, and connect you with my specialist delivery network to build proven systems that deliver ROI.</p>
+          <p>Every recommendation is genuine — whether that's a free tool you can set up yourself, a custom build, or a strategic play for later. That's what makes this consulting, not sales.</p>
+        </div>
+        <div class="flex gap-3 mt-8">
+          <a href="https://www.instagram.com/harveywoodfordai/" target="_blank" class="px-5 py-2.5 rounded-xl border border-white/8 text-white/35 text-sm hover:border-kaizen/20 hover:text-kaizen transition-all">Instagram</a>
+          <a href="https://www.facebook.com/profile.php?id=61575378635815" target="_blank" class="px-5 py-2.5 rounded-xl border border-white/8 text-white/35 text-sm hover:border-kaizen/20 hover:text-kaizen transition-all">Facebook</a>
+        </div>
+      </div>
+      <div class="flex justify-center reveal reveal-delay-2">
+        <div class="w-72 h-96 rounded-3xl overflow-hidden border border-white/[0.08] shadow-[0_30px_80px_rgba(0,0,0,0.5)] relative">
+          <img src="harvey.png" alt="Harvey Woodford" class="w-full h-full object-cover object-top">
+          <div class="absolute bottom-0 left-0 right-0 p-5 bg-gradient-to-t from-black/80 via-black/40 to-transparent">
+            <div class="text-white/80 text-sm font-semibold">Harvey Woodford</div>
+            <div class="text-white/40 text-xs">Founder, Kaizen AI Solutions</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="divider absolute bottom-0 left-0 right-0"></div>
+</section>
+
+<!-- ===== FAQ ===== -->
+<section id="faq" class="relative py-28 section-alt">
+  <div class="max-w-[700px] mx-auto px-6 relative z-10">
+    <div class="text-center mb-16">
+      <div class="mono-label text-kaizen mb-4 reveal">FAQ</div>
+      <h2 class="text-3xl md:text-4xl font-bold tracking-tight reveal reveal-delay-1">
+        Common <span class="font-serif italic font-normal text-white/50">questions.</span>
+      </h2>
+    </div>
+
+    <div class="space-y-4">
+      <details class="group card reveal"><summary class="p-6 cursor-pointer flex justify-between items-center text-white font-medium text-[15px]">Why start with an audit instead of just building?<span class="text-white/20 group-open:rotate-45 transition-transform text-xl ml-4 flex-shrink-0">+</span></summary><div class="px-6 pb-6 text-white/35 text-sm leading-relaxed">AI without strategy creates waste. The audit ensures every pound you spend goes toward solutions that actually save you time and generate return. We've seen businesses waste thousands building the wrong thing first.</div></details>
+      <details class="group card reveal reveal-delay-1"><summary class="p-6 cursor-pointer flex justify-between items-center text-white font-medium text-[15px]">Is my business too small for this?<span class="text-white/20 group-open:rotate-45 transition-transform text-xl ml-4 flex-shrink-0">+</span></summary><div class="px-6 pb-6 text-white/35 text-sm leading-relaxed">No. Some of our biggest impact has been with solo operators and teams under 10 people. In fact, smaller businesses often see faster ROI because the time savings are felt immediately. If you have customers, leads, or appointments — AI can help.</div></details>
+      <details class="group card reveal reveal-delay-2"><summary class="p-6 cursor-pointer flex justify-between items-center text-white font-medium text-[15px]">Do I have to commit to building anything?<span class="text-white/20 group-open:rotate-45 transition-transform text-xl ml-4 flex-shrink-0">+</span></summary><div class="px-6 pb-6 text-white/35 text-sm leading-relaxed">No. The audit gives you a clear roadmap with costs and ROI projections. You decide what to action and when. Some clients adopt free tools we recommend and see immediate value before investing in custom systems.</div></details>
+      <details class="group card reveal reveal-delay-3"><summary class="p-6 cursor-pointer flex justify-between items-center text-white font-medium text-[15px]">Will AI replace my team?<span class="text-white/20 group-open:rotate-45 transition-transform text-xl ml-4 flex-shrink-0">+</span></summary><div class="px-6 pb-6 text-white/35 text-sm leading-relaxed">AI handles the repetitive work your team shouldn't be doing — answering phones, chasing leads, sending reminders. It frees your people to focus on what they're actually good at. It's about making your team more effective, not smaller.</div></details>
+      <details class="group card reveal reveal-delay-4"><summary class="p-6 cursor-pointer flex justify-between items-center text-white font-medium text-[15px]">How quickly can systems go live?<span class="text-white/20 group-open:rotate-45 transition-transform text-xl ml-4 flex-shrink-0">+</span></summary><div class="px-6 pb-6 text-white/35 text-sm leading-relaxed">Our delivery partners can have core systems configured and live within 48 hours of sign-off. Full CRM + AI receptionist deployments typically go live within a week.</div></details>
+    </div>
+  </div>
+  <div class="divider absolute bottom-0 left-0 right-0"></div>
+</section>
+
+<!-- ===== FINAL CTA ===== -->
+<section class="relative py-36">
+  <div class="section-glow pink" style="top:50%;left:50%;transform:translate(-50%,-50%);"></div>
+  <div class="max-w-[700px] mx-auto px-6 text-center relative z-10">
+    <h2 class="text-3xl md:text-5xl font-bold tracking-tight mb-6 reveal">
+      Stop leaking <span class="font-serif italic font-normal text-kaizen glow-text">revenue.</span>
+    </h2>
+    <p class="text-white/35 text-lg mb-10 reveal reveal-delay-1">Book a free 15-minute call. No pitch, no commitment — just a conversation about where AI could actually help your business.</p>
+    <a href="https://cal.com/harvey-woodford/discovery-call" class="cta-btn !text-lg !px-12 !py-5 reveal reveal-delay-2">Book Your Free Call</a>
+  </div>
+</section>
+
+<!-- ===== FOOTER ===== -->
+<footer class="border-t border-white/[0.04] py-12" style="background: var(--surface);">
+  <div class="max-w-[1200px] mx-auto px-6 flex flex-col md:flex-row justify-between items-center gap-6">
+    <div class="flex items-center gap-2.5">
+      <img src="kaizen-logo-white.png" alt="Kaizen AI" class="h-6 opacity-25">
+      <span class="font-display font-semibold text-sm tracking-wide text-white/20">KAIZEN AI SOLUTIONS</span>
+    </div>
+    <div class="flex gap-8 text-sm text-white/20">
+      <a href="#capabilities" class="hover:text-white/40 transition">Capabilities</a>
+      <a href="#industries" class="hover:text-white/40 transition">Industries</a>
+      <a href="#how-it-works" class="hover:text-white/40 transition">Process</a>
+      <a href="#faq" class="hover:text-white/40 transition">FAQ</a>
+      <a href="https://cal.com/harvey-woodford/discovery-call" class="hover:text-white/40 transition">Contact</a>
+    </div>
+    <div class="text-xs text-white/10">&copy; 2026 Kaizen AI Solutions Ltd</div>
+  </div>
+</footer>
+
+<!-- ===== SCRIPTS ===== -->
+<script>
+// Scroll reveal
+const revealObs = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      entry.target.classList.add('visible');
+      revealObs.unobserve(entry.target);
+    }
+  });
+}, { threshold: 0.08, rootMargin: '0px 0px -30px 0px' });
+document.querySelectorAll('.reveal').forEach(el => revealObs.observe(el));
+
+// Card mouse tracking
+document.querySelectorAll('.card').forEach(card => {
+  card.addEventListener('mousemove', (e) => {
+    const r = card.getBoundingClientRect();
+    card.style.setProperty('--mx', `${e.clientX - r.left}px`);
+    card.style.setProperty('--my', `${e.clientY - r.top}px`);
+  });
+});
+
+// Modal
+function openModal(id) { document.getElementById(id).classList.add('open'); document.body.style.overflow = 'hidden'; }
+function closeModal(id) { document.getElementById(id).classList.remove('open'); document.body.style.overflow = ''; }
+document.querySelectorAll('.modal-overlay').forEach(m => {
+  m.addEventListener('click', e => { if (e.target === m) { m.classList.remove('open'); document.body.style.overflow = ''; } });
+});
+document.addEventListener('keydown', e => { if (e.key === 'Escape') document.querySelectorAll('.modal-overlay.open').forEach(m => { m.classList.remove('open'); document.body.style.overflow = ''; }); });
+
+// Count-up
+const countObs = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      const el = entry.target, target = +el.dataset.target, dur = 1500, start = performance.now();
+      const tick = now => { const p = Math.min((now - start) / dur, 1); el.textContent = Math.floor((1 - Math.pow(1 - p, 3)) * target); if (p < 1) requestAnimationFrame(tick); else el.textContent = target; };
+      requestAnimationFrame(tick);
+      countObs.unobserve(el);
+    }
+  });
+}, { threshold: 0.5 });
+document.querySelectorAll('.count-up').forEach(el => countObs.observe(el));
+
+// Vertical compare bars
+const barObs = new IntersectionObserver((entries) => {
+  entries.forEach(entry => { if (entry.isIntersecting) { entry.target.style.height = entry.target.dataset.height; barObs.unobserve(entry.target); } });
+}, { threshold: 0.3 });
+document.querySelectorAll('.compare-bar-v').forEach(b => barObs.observe(b));
+
+// Steps animation
+const stepsEl = document.getElementById('steps-container');
+const stepsObs = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      entry.target.classList.add('steps-go');
+      document.querySelectorAll('.step-card').forEach((s, i) => {
+        setTimeout(() => s.classList.add('show'), 300 + i * 400);
+      });
+      stepsObs.unobserve(entry.target);
+    }
+  });
+}, { threshold: 0.15 });
+if (stepsEl) stepsObs.observe(stepsEl);
+
+// ROI Calculator
+function updateCalc() {
+  const hours = parseFloat(document.getElementById('calc-hours').value) || 0;
+  const rate = parseFloat(document.getElementById('calc-rate').value) || 0;
+  const weekly = hours * rate;
+  const monthly = Math.round(weekly * 52 / 12);
+  const annual = weekly * 52;
+  document.getElementById('calc-weekly').textContent = weekly.toLocaleString();
+  document.getElementById('calc-monthly').textContent = monthly.toLocaleString();
+  document.getElementById('calc-annual').textContent = annual.toLocaleString();
+}
+updateCalc();
+
+// Smooth scroll
+document.querySelectorAll('a[href^="#"]').forEach(a => {
+  a.addEventListener('click', function(e) {
+    e.preventDefault();
+    const t = document.querySelector(this.getAttribute('href'));
+    if (t) t.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  });
+});
+</script>
+</body>
+</html>
