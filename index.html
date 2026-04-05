@@ -140,11 +140,17 @@ tailwind.config = {
   --border: rgba(255,255,255,0.07);
   --kaizen: #E91E8C;
 }
+html {
+  overflow-x: hidden;
+  width: 100%;
+}
 body {
   font-family: 'Space Grotesk', sans-serif;
   background: var(--bg);
   color: #e5e5e5;
   overflow-x: hidden;
+  width: 100%;
+  position: relative;
 }
 ::selection { background: #E91E8C; color: white; }
 ::-webkit-scrollbar { width: 4px; }
@@ -155,8 +161,12 @@ body {
 /* ===== GLOBAL SECTION STYLES ===== */
 .section-alt { background: transparent; }
 .section-glow {
-  position: absolute; width: 700px; height: 700px;
+  position: absolute; width: 500px; height: 500px;
   border-radius: 50%; filter: blur(120px); pointer-events: none; opacity: 0.07;
+  max-width: 80vw;
+}
+@media (max-width: 768px) {
+  .section-glow { width: 300px; height: 300px; opacity: 0.05; }
 }
 .section-glow.pink { background: #E91E8C; }
 .section-glow.purple { background: #7C3AED; }
@@ -245,7 +255,7 @@ body {
   position: absolute; inset: 0; overflow: hidden;
 }
 .hero-orb {
-  position: absolute; border-radius: 50%; filter: blur(100px); pointer-events: none;
+  position: absolute; border-radius: 50%; filter: blur(100px); pointer-events: none; max-width: 100vw;
 }
 .hero-grid {
   position: absolute; inset: 0;
@@ -313,8 +323,9 @@ body {
 .modal-box {
   background: linear-gradient(135deg, #111118 0%, #0a0a10 100%);
   border: 1px solid rgba(255,255,255,0.1);
-  border-radius: 24px; padding: 40px; max-width: 560px; width: 100%;
-  max-height: 80vh; overflow-y: auto; position: relative;
+  border-radius: 20px; padding: 24px; max-width: 560px; width: 100%;
+  max-height: 85vh; overflow-y: auto; position: relative;
+  margin: 16px;
   animation: modalUp 0.35s cubic-bezier(0.16, 1, 0.3, 1);
   box-shadow: 0 40px 100px rgba(0,0,0,0.6), 0 0 40px rgba(233,30,140,0.05);
 }
@@ -380,8 +391,9 @@ body {
 .chat-msg.to2 { animation-delay: 1.3s; }
 @keyframes chatIn { to { opacity: 1; transform: translateY(0); } }
 
-.app-demo { display: flex; justify-content: center; gap: 12px; }
-.app-browser { width: 220px; border-radius: 10px; overflow: hidden; border: 1px solid rgba(255,255,255,0.08); opacity: 0; }
+.app-demo { display: flex; justify-content: center; gap: 12px; flex-wrap: wrap; }
+.app-browser { width: 180px; border-radius: 10px; overflow: hidden; border: 1px solid rgba(255,255,255,0.08); opacity: 0; }
+@media (min-width: 500px) { .app-browser { width: 220px; } }
 .app-browser.left { animation: appIn 0.6s ease 0.2s forwards; }
 .app-browser.right { animation: appIn 0.6s ease 0.4s forwards; }
 @keyframes appIn { to { opacity: 1; } }
@@ -444,6 +456,45 @@ body {
   border: 1px solid rgba(255,255,255,0.12); color: rgba(255,255,255,0.7);
   font-weight: 500; font-size: 16px; transition: all 0.3s ease;
 }
+/* ===== MOBILE FIXES ===== */
+@media (max-width: 640px) {
+  /* Prevent any horizontal scroll */
+  section { overflow-x: hidden; }
+
+  /* Sections padding */
+  section { padding-top: 4rem; padding-bottom: 4rem; }
+
+  /* Hero text */
+  .hero-bg { overflow: hidden; }
+
+  /* Modal visual animations - scale down */
+  .modal-visual { padding: 16px; min-height: auto !important; }
+  .voice-demo { width: 220px; height: 130px; }
+  .voice-hub { width: 44px; height: 44px; font-size: 18px; }
+  .voice-caller-icon { width: 28px; height: 28px; font-size: 12px; }
+  .wf-node { width: 28px; height: 28px; font-size: 11px; border-radius: 6px; }
+  .wf-arrow { font-size: 8px; }
+  .wf-row { gap: 2px; }
+
+  /* Steps - show without dot animation on mobile */
+  .step-card { opacity: 1 !important; transform: none !important; }
+  .step-num { border-color: #E91E8C !important; color: #E91E8C !important; }
+
+  /* Calculator inputs */
+  #calc-hours, #calc-rate { font-size: 1.25rem; }
+
+  /* CTA buttons */
+  .cta-btn { padding: 14px 28px; font-size: 15px; }
+  .cta-btn-ghost { padding: 14px 28px; font-size: 15px; }
+
+  /* Footer */
+  footer { text-align: center; }
+
+  /* Why audit cards - stack icons */
+  .wf-before .wf-node:nth-child(n+9),
+  .wf-before .wf-arrow:nth-child(n+10) { display: none; }
+}
+
 /* Calculator inputs */
 input[type="number"] { -moz-appearance: textfield; }
 input[type="number"]::-webkit-outer-spin-button,
@@ -461,9 +512,9 @@ input[type="number"]::-webkit-inner-spin-button { -webkit-appearance: none; marg
 <!-- ===== NAV ===== -->
 <nav class="fixed top-0 w-full z-50 bg-[#050508]/70 backdrop-blur-xl border-b border-white/[0.04]">
   <div class="max-w-[1200px] mx-auto px-6 h-16 flex items-center justify-between">
-    <a href="#" class="flex items-center gap-3">
-      <img src="kaizen-logo-white.png" alt="Kaizen AI" class="h-8">
-      <span class="font-display font-semibold text-base tracking-wide text-white">KAIZEN AI SOLUTIONS</span>
+    <a href="#" class="flex items-center gap-2 flex-shrink-0">
+      <img src="kaizen-logo-white.png" alt="Kaizen AI" class="h-7 sm:h-8">
+      <span class="font-display font-semibold text-xs sm:text-sm tracking-wide text-white">KAIZEN AI</span>
     </a>
     <div class="hidden md:flex items-center gap-8 text-sm text-white/40">
       <a href="#capabilities" class="hover:text-white/80 transition">Capabilities</a>
@@ -472,7 +523,7 @@ input[type="number"]::-webkit-inner-spin-button { -webkit-appearance: none; marg
       <a href="#about" class="hover:text-white/80 transition">About</a>
       <a href="#faq" class="hover:text-white/80 transition">FAQ</a>
     </div>
-    <a href="https://cal.com/harvey-woodford/discovery-call" class="cta-btn !py-2.5 !px-5 !text-sm !rounded-xl">Book a Call</a>
+    <a href="https://cal.com/harvey-woodford/discovery-call" class="cta-btn !py-2 !px-4 !text-xs sm:!text-sm sm:!px-5 sm:!py-2.5 !rounded-xl flex-shrink-0">Book a Call</a>
   </div>
 </nav>
 
@@ -909,7 +960,7 @@ input[type="number"]::-webkit-inner-spin-button { -webkit-appearance: none; marg
       <img src="kaizen-logo-white.png" alt="Kaizen AI" class="h-6 opacity-25">
       <span class="font-display font-semibold text-sm tracking-wide text-white/20">KAIZEN AI SOLUTIONS</span>
     </div>
-    <div class="flex gap-8 text-sm text-white/20">
+    <div class="flex flex-wrap justify-center gap-x-6 gap-y-2 text-sm text-white/20">
       <a href="#capabilities" class="hover:text-white/40 transition">Capabilities</a>
       <a href="#industries" class="hover:text-white/40 transition">Industries</a>
       <a href="#how-it-works" class="hover:text-white/40 transition">Process</a>
