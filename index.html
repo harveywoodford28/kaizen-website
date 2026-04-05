@@ -216,16 +216,16 @@ body {
 
 /* ===== BADGE ===== */
 .badge {
-  display: inline-flex; align-items: center; gap: 8px;
-  padding: 6px 14px; border-radius: 999px;
+  display: inline-flex; align-items: center; gap: 6px;
+  padding: 4px 10px; border-radius: 999px;
   background: rgba(233,30,140,0.06);
   border: 1px solid rgba(233,30,140,0.15);
-  font-size: 10px; font-weight: 600;
-  letter-spacing: 0.15em; text-transform: uppercase;
+  font-size: 8px; font-weight: 600;
+  letter-spacing: 0.12em; text-transform: uppercase;
   color: #E91E8C;
 }
 @media (min-width: 768px) {
-  .badge { padding: 8px 18px; font-size: 11px; letter-spacing: 0.18em; }
+  .badge { padding: 8px 18px; font-size: 11px; letter-spacing: 0.18em; gap: 8px; }
 }
 .badge .pulse {
   width: 6px; height: 6px; border-radius: 50%; background: #E91E8C;
@@ -542,10 +542,11 @@ input[type="number"]::-webkit-inner-spin-button { -webkit-appearance: none; marg
   </div>
   <div class="relative z-10 max-w-[900px] mx-auto px-6 text-center">
     <div class="badge mx-auto mb-10 reveal"><span class="pulse"></span>Accepting new clients</div>
-    <h1 class="text-4xl sm:text-5xl md:text-[4.5rem] font-bold tracking-tight leading-[0.95] mb-7 reveal reveal-delay-1">
-      Your business is leaking<br>
-      <span class="font-serif italic font-normal text-kaizen glow-text">time & money.</span><br>
-      We find where and <span class="font-serif italic font-normal text-white/50">fix it.</span>
+    <h1 class="text-3xl sm:text-5xl md:text-[4.5rem] font-bold tracking-tight leading-[1.05] sm:leading-[0.95] mb-7 reveal reveal-delay-1">
+      <span class="block">Your business is</span>
+      <span class="block">leaking <span class="font-serif italic font-normal text-kaizen glow-text">time & money.</span></span>
+      <span class="block mt-2 sm:mt-0">We find where</span>
+      <span class="block">and <span class="font-serif italic font-normal text-white/50">fix it.</span></span>
     </h1>
     <p class="text-lg md:text-xl text-white/45 max-w-[580px] mx-auto mb-10 leading-relaxed font-light reveal reveal-delay-2">
       We audit your operations, identify where AI genuinely saves you time and money, and our delivery network builds the systems to make it happen.
