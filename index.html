@@ -217,12 +217,15 @@ body {
 /* ===== BADGE ===== */
 .badge {
   display: inline-flex; align-items: center; gap: 8px;
-  padding: 8px 18px; border-radius: 999px;
+  padding: 6px 14px; border-radius: 999px;
   background: rgba(233,30,140,0.06);
   border: 1px solid rgba(233,30,140,0.15);
-  font-size: 11px; font-weight: 600;
-  letter-spacing: 0.18em; text-transform: uppercase;
+  font-size: 10px; font-weight: 600;
+  letter-spacing: 0.15em; text-transform: uppercase;
   color: #E91E8C;
+}
+@media (min-width: 768px) {
+  .badge { padding: 8px 18px; font-size: 11px; letter-spacing: 0.18em; }
 }
 .badge .pulse {
   width: 6px; height: 6px; border-radius: 50%; background: #E91E8C;
@@ -334,13 +337,14 @@ body {
   to { opacity: 1; transform: scale(1) translateY(0); }
 }
 .modal-close {
-  position: absolute; top: 16px; right: 20px;
-  background: none; border: none; color: rgba(255,255,255,0.3);
-  font-size: 28px; cursor: pointer; transition: color 0.2s;
-  width: 36px; height: 36px; display: flex; align-items: center; justify-content: center;
-  border-radius: 50%;
+  position: sticky; top: 0; float: right;
+  background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.1);
+  color: rgba(255,255,255,0.5);
+  font-size: 24px; cursor: pointer; transition: all 0.2s;
+  width: 40px; height: 40px; display: flex; align-items: center; justify-content: center;
+  border-radius: 50%; z-index: 10; margin-bottom: -20px;
 }
-.modal-close:hover { color: white; background: rgba(255,255,255,0.05); }
+.modal-close:hover { color: white; background: rgba(255,255,255,0.1); }
 .modal-visual {
   background: rgba(255,255,255,0.02); border: 1px solid rgba(255,255,255,0.05);
   border-radius: 16px; padding: 28px; margin-bottom: 28px;
@@ -376,10 +380,10 @@ body {
 .voice-caller-icon { width: 34px; height: 34px; border-radius: 50%; background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1); display: flex; align-items: center; justify-content: center; font-size: 14px; }
 .voice-caller-tag { font-size: 8px; color: rgba(255,255,255,0.3); letter-spacing: 0.05em; }
 .voice-line { position: absolute; z-index: 1; background: rgba(233,30,140,0.15); height: 1px; transform-origin: left center; opacity: 0; }
-.voice-line:nth-child(6) { top: 32px; left: 52px; width: 68px; transform: rotate(28deg); animation: vlIn 0.3s ease 0.6s forwards; }
-.voice-line:nth-child(7) { top: 32px; right: 52px; width: 68px; transform: rotate(-28deg); transform-origin: right center; animation: vlIn 0.3s ease 1s forwards; }
-.voice-line:nth-child(8) { bottom: 32px; left: 62px; width: 58px; transform: rotate(-20deg); animation: vlIn 0.3s ease 1.4s forwards; }
-.voice-line:nth-child(9) { bottom: 32px; right: 62px; width: 58px; transform: rotate(20deg); transform-origin: right center; animation: vlIn 0.3s ease 1.8s forwards; }
+.voice-line:nth-child(6) { top: 30px; left: 50px; width: 42px; transform: rotate(28deg); animation: vlIn 0.3s ease 0.6s forwards; }
+.voice-line:nth-child(7) { top: 30px; right: 50px; width: 42px; transform: rotate(-28deg); transform-origin: right center; animation: vlIn 0.3s ease 1s forwards; }
+.voice-line:nth-child(8) { bottom: 30px; left: 60px; width: 35px; transform: rotate(-20deg); animation: vlIn 0.3s ease 1.4s forwards; }
+.voice-line:nth-child(9) { bottom: 30px; right: 60px; width: 35px; transform: rotate(20deg); transform-origin: right center; animation: vlIn 0.3s ease 1.8s forwards; }
 @keyframes vlIn { to { opacity: 1; } }
 .voice-status { position: absolute; bottom: -36px; left: 0; right: 0; text-align: center; font-size: 10px; color: #34D399; letter-spacing: 0.15em; text-transform: uppercase; font-weight: 500; opacity: 0; animation: vsIn 0.4s ease 2s forwards; }
 @keyframes vsIn { to { opacity: 1; } }
@@ -476,9 +480,11 @@ body {
   .wf-arrow { font-size: 8px; }
   .wf-row { gap: 2px; }
 
-  /* Steps - show without dot animation on mobile */
+  /* Steps - show without dot animation on mobile, fix scroll */
   .step-card { opacity: 1 !important; transform: none !important; }
   .step-num { border-color: #E91E8C !important; color: #E91E8C !important; }
+  #steps-container { overflow: visible !important; }
+  .step-line { display: none !important; }
 
   /* Calculator inputs */
   #calc-hours, #calc-rate { font-size: 1.25rem; }
@@ -778,7 +784,10 @@ input[type="number"]::-webkit-inner-spin-button { -webkit-appearance: none; marg
         <div class="hidden md:flex flex-shrink-0 relative z-10"><div class="step-num">01</div></div>
         <div class="card p-8 flex-1">
           <div class="mono-label text-kaizen mb-4 md:hidden">Step 01</div>
-          <h3 class="text-xl font-semibold mb-3">Discovery</h3>
+          <div class="flex items-center gap-3 mb-3">
+            <div class="w-10 h-10 rounded-xl bg-kaizen/8 border border-kaizen/15 flex items-center justify-center text-lg">📞</div>
+            <h3 class="text-xl font-semibold">Discovery</h3>
+          </div>
           <p class="text-white/35 text-sm leading-relaxed">A free call to understand your business, your pain points, and where you're wasting time. No commitment, no hard sell.</p>
           <div class="flex items-center gap-2 mt-4">
             <div class="w-1.5 h-1.5 rounded-full bg-green-400 animate-pulse"></div>
@@ -791,7 +800,10 @@ input[type="number"]::-webkit-inner-spin-button { -webkit-appearance: none; marg
         <div class="hidden md:flex flex-shrink-0 relative z-10"><div class="step-num">02</div></div>
         <div class="card p-8 flex-1">
           <div class="mono-label text-kaizen mb-4 md:hidden">Step 02</div>
-          <h3 class="text-xl font-semibold mb-3">AI Opportunity Assessment</h3>
+          <div class="flex items-center gap-3 mb-3">
+            <div class="w-10 h-10 rounded-xl bg-kaizen/8 border border-kaizen/15 flex items-center justify-center text-lg">🔍</div>
+            <h3 class="text-xl font-semibold">AI Opportunity Assessment</h3>
+          </div>
           <p class="text-white/35 text-sm leading-relaxed">We speak to your team, map your operations, and deliver a full roadmap — opportunity matrix, ROI breakdown, prioritised actions, and implementation costs.</p>
           <div class="flex flex-wrap gap-2 mt-4">
             <span class="px-3 py-1 rounded-full bg-kaizen/10 border border-kaizen/20 text-kaizen/70 text-xs">Opportunity Matrix</span>
@@ -805,7 +817,10 @@ input[type="number"]::-webkit-inner-spin-button { -webkit-appearance: none; marg
         <div class="hidden md:flex flex-shrink-0 relative z-10"><div class="step-num">03</div></div>
         <div class="card p-8 flex-1">
           <div class="mono-label text-kaizen mb-4 md:hidden">Step 03</div>
-          <h3 class="text-xl font-semibold mb-3">Delivery</h3>
+          <div class="flex items-center gap-3 mb-3">
+            <div class="w-10 h-10 rounded-xl bg-kaizen/8 border border-kaizen/15 flex items-center justify-center text-lg">🚀</div>
+            <h3 class="text-xl font-semibold">Delivery</h3>
+          </div>
           <p class="text-white/35 text-sm leading-relaxed">Our specialist network builds and deploys your AI systems. You see results within days, not months. We stay by your side throughout.</p>
           <div class="flex items-center gap-2 mt-4">
             <div class="w-1.5 h-1.5 rounded-full bg-kaizen animate-pulse"></div>
