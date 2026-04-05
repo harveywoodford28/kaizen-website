@@ -462,8 +462,8 @@ body {
 }
 /* ===== MOBILE FIXES ===== */
 @media (max-width: 640px) {
-  /* Prevent any horizontal scroll */
-  section { overflow-x: hidden; }
+  /* Prevent any horizontal scroll — except steps */
+  section:not(#how-it-works) { overflow-x: hidden; }
 
   /* Sections padding */
   section { padding-top: 4rem; padding-bottom: 4rem; }
@@ -483,8 +483,11 @@ body {
   /* Steps - show without dot animation on mobile, fix scroll */
   .step-card { opacity: 1 !important; transform: none !important; }
   .step-num { border-color: #E91E8C !important; color: #E91E8C !important; }
-  #steps-container { overflow: visible !important; }
+  #steps-container { overflow: visible !important; -webkit-overflow-scrolling: auto !important; }
+  #steps-container * { overflow: visible !important; }
   .step-line { display: none !important; }
+  #how-it-works { overflow: visible !important; }
+  #how-it-works * { -webkit-overflow-scrolling: auto !important; }
 
   /* Calculator inputs */
   #calc-hours, #calc-rate { font-size: 1.25rem; }
@@ -766,7 +769,7 @@ input[type="number"]::-webkit-inner-spin-button { -webkit-appearance: none; marg
 </section>
 
 <!-- ===== HOW IT WORKS ===== -->
-<section id="how-it-works" class="relative py-28">
+<section id="how-it-works" class="relative py-28" style="overflow:visible;-webkit-overflow-scrolling:auto;"
   <div class="section-glow pink" style="bottom:-200px;right:20%;"></div>
   <div class="max-w-[1200px] mx-auto px-6 relative z-10">
     <div class="text-center mb-16">
