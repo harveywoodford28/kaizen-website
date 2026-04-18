@@ -946,9 +946,9 @@ input[type="number"]::-webkit-inner-spin-button { -webkit-appearance: none; marg
     background: rgba(255,255,255,0.3);
     transform: translateX(-50%);
   }
-  .clock-tick:nth-child(2) { transform: translateX(-50%) rotate(90deg); transform-origin: 50% 54px; }
-  .clock-tick:nth-child(3) { transform: translateX(-50%) rotate(180deg); transform-origin: 50% 54px; }
-  .clock-tick:nth-child(4) { transform: translateX(-50%) rotate(270deg); transform-origin: 50% 54px; }
+  .clock-tick.tick-3  { transform: translateX(-50%) rotate(90deg);  transform-origin: 50% 54px; }
+  .clock-tick.tick-6  { transform: translateX(-50%) rotate(180deg); transform-origin: 50% 54px; }
+  .clock-tick.tick-9  { transform: translateX(-50%) rotate(270deg); transform-origin: 50% 54px; }
   .msg-stack {
     position: absolute;
     right: -72px;
@@ -1652,6 +1652,126 @@ input[type="number"]::-webkit-inner-spin-button { -webkit-appearance: none; marg
     0%, 30%, 100% { filter: drop-shadow(0 0 6px rgba(94,224,163,0.25)); }
     15% { filter: drop-shadow(0 0 16px rgba(94,224,163,1)); }
   }
+
+  /* Scene 7 rebuild: broken parts + lines joining them */
+  .icon-wire {
+    width: 340px;
+    display: flex;
+    align-items: center;
+    gap: 0;
+  }
+  .wire-node {
+    width: 64px;
+    height: 64px;
+    border: 2px solid rgb(233,30,140);
+    background: rgba(233,30,140,0.14);
+    border-radius: 14px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: 'Instrument Serif', serif;
+    font-style: italic;
+    color: white;
+    font-size: 24px;
+    flex-shrink: 0;
+    animation: wireNodePulse 2.6s ease-in-out infinite;
+    box-shadow: 0 0 20px rgba(233,30,140,0.25);
+  }
+  .wire-node.wn-2 { animation-delay: 0.3s; }
+  .wire-node.wn-3 { animation-delay: 0.6s; }
+  @keyframes wireNodePulse {
+    0%, 100% { box-shadow: 0 0 14px rgba(233,30,140,0.25); }
+    50% { box-shadow: 0 0 28px rgba(233,30,140,0.7); }
+  }
+  .wire-line {
+    flex: 1;
+    height: 2px;
+    background: rgba(255,255,255,0.08);
+    position: relative;
+    margin: 0 4px;
+  }
+  .wire-line::after {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; bottom: 0;
+    width: 0%;
+    background: linear-gradient(90deg, rgba(233,30,140,0.5), rgb(233,30,140));
+    box-shadow: 0 0 10px rgba(233,30,140,0.7);
+    animation: wireFill 4s ease-in-out infinite;
+  }
+  .wire-line.wl-2::after { animation-delay: 0.6s; }
+  @keyframes wireFill {
+    0%, 15% { width: 0%; opacity: 0.4; }
+    50%, 85% { width: 100%; opacity: 1; }
+    95%, 100% { width: 100%; opacity: 0.2; }
+  }
+
+  /* Scene 10 rebuild: Grace oversight view */
+  .icon-oversight {
+    width: 300px;
+    display: flex;
+    gap: 18px;
+    align-items: center;
+  }
+  .os-thread {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    padding: 14px 16px;
+    background: rgba(94,224,163,0.05);
+    border: 1px solid rgba(94,224,163,0.3);
+    border-radius: 10px;
+  }
+  .os-msg-bar {
+    height: 8px;
+    border-radius: 2px;
+    background: rgba(94,224,163,0.35);
+  }
+  .os-msg-bar.os-msg-short { width: 70%; }
+  .os-msg-bar.os-msg-long { width: 100%; }
+  .os-msg-bar.os-msg-grace {
+    background: rgb(233,30,140);
+    box-shadow: 0 0 12px rgba(233,30,140,0.7);
+    animation: osStepIn 2.4s ease-in-out infinite;
+    width: 88%;
+  }
+  @keyframes osStepIn {
+    0%, 100% { opacity: 1; box-shadow: 0 0 8px rgba(233,30,140,0.5); }
+    50% { opacity: 0.75; box-shadow: 0 0 18px rgba(233,30,140,0.9); }
+  }
+  .os-grace-wrap {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+    flex-shrink: 0;
+  }
+  .os-grace {
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    border: 2px solid rgb(233,30,140);
+    background: rgba(233,30,140,0.22);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: 'Instrument Serif', serif;
+    font-style: italic;
+    color: white;
+    font-size: 22px;
+    box-shadow: 0 0 22px rgba(233,30,140,0.5);
+    animation: nodePulse 2.2s ease-in-out infinite;
+  }
+  .os-grace-lbl {
+    font-family: 'JetBrains Mono', ui-monospace, monospace;
+    font-size: 9px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: rgba(255,210,230,0.85);
+    font-weight: 600;
+    white-space: nowrap;
+  }
 </style>
 <section id="case-study" class="relative py-28 section-alt">
   <div class="section-glow pink" style="top:-180px;left:20%;"></div>
@@ -1688,12 +1808,12 @@ input[type="number"]::-webkit-inner-spin-button { -webkit-appearance: none; marg
       <div class="story-scene story-scene-2">
         <div class="story-visual">
           <div class="icon-clock">
+            <div class="clock-tick tick-12"></div>
+            <div class="clock-tick tick-3"></div>
+            <div class="clock-tick tick-6"></div>
+            <div class="clock-tick tick-9"></div>
             <div class="clock-hand"></div>
             <div class="clock-centre"></div>
-            <div class="clock-tick"></div>
-            <div class="clock-tick"></div>
-            <div class="clock-tick"></div>
-            <div class="clock-tick"></div>
           </div>
         </div>
         <div class="story-text">She&rsquo;s mid-tattoo. Can&rsquo;t reply.</div>
@@ -1721,7 +1841,7 @@ input[type="number"]::-webkit-inner-spin-button { -webkit-appearance: none; marg
             <div class="chaos-q">?</div>
           </div>
         </div>
-        <div class="story-text">Client info, everywhere.</div>
+        <div class="story-text">Client information is scattered.</div>
       </div>
 
       <!-- Act 2: The engagement -->
@@ -1752,19 +1872,12 @@ input[type="number"]::-webkit-inner-spin-button { -webkit-appearance: none; marg
 
       <div class="story-scene story-scene-7">
         <div class="story-visual">
-          <div class="icon-plan">
-            <div class="plan-card">
-              <div class="plan-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 5h16v10H10l-4 4v-4H4z"/><circle cx="9" cy="10" r="0.6" fill="currentColor"/><circle cx="12" cy="10" r="0.6" fill="currentColor"/><circle cx="15" cy="10" r="0.6" fill="currentColor"/></svg></div>
-              <div class="plan-num">01</div>
-            </div>
-            <div class="plan-card">
-              <div class="plan-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3a5 5 0 00-5 5v3l-1.5 2.5h13L17 11V8a5 5 0 00-5-5z"/><path d="M10 19a2 2 0 004 0"/></svg></div>
-              <div class="plan-num">02</div>
-            </div>
-            <div class="plan-card">
-              <div class="plan-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20s-7-4.5-7-10.5A4 4 0 0112 6a4 4 0 017 3.5C19 15.5 12 20 12 20z"/></svg></div>
-              <div class="plan-num">03</div>
-            </div>
+          <div class="icon-wire">
+            <div class="wire-node wn-1">01</div>
+            <div class="wire-line wl-1"></div>
+            <div class="wire-node wn-2">02</div>
+            <div class="wire-line wl-2"></div>
+            <div class="wire-node wn-3">03</div>
           </div>
         </div>
         <div class="story-text">Mapped out the system she needed.</div>
@@ -1807,26 +1920,21 @@ input[type="number"]::-webkit-inner-spin-button { -webkit-appearance: none; marg
 
       <div class="story-scene story-scene-10">
         <div class="story-visual">
-          <div class="icon-journey">
-            <div class="journey-step">
-              <div class="journey-env"><svg viewBox="0 0 26 18"><rect x="1.5" y="2" width="23" height="14" rx="2" fill="rgba(94,224,163,0.2)" stroke="rgb(94,224,163)" stroke-width="1.5"/><path d="M2 4 L13 12 L24 4" fill="none" stroke="rgb(94,224,163)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
-              <div class="journey-lbl">Book</div>
+          <div class="icon-oversight">
+            <div class="os-thread">
+              <div class="os-msg-bar os-msg-long"></div>
+              <div class="os-msg-bar os-msg-short"></div>
+              <div class="os-msg-bar os-msg-grace"></div>
+              <div class="os-msg-bar os-msg-long"></div>
+              <div class="os-msg-bar os-msg-short"></div>
             </div>
-            <div class="journey-step">
-              <div class="journey-env"><svg viewBox="0 0 26 18"><rect x="1.5" y="2" width="23" height="14" rx="2" fill="rgba(94,224,163,0.2)" stroke="rgb(94,224,163)" stroke-width="1.5"/><path d="M2 4 L13 12 L24 4" fill="none" stroke="rgb(94,224,163)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
-              <div class="journey-lbl">Prep</div>
-            </div>
-            <div class="journey-step">
-              <div class="journey-env"><svg viewBox="0 0 26 18"><rect x="1.5" y="2" width="23" height="14" rx="2" fill="rgba(94,224,163,0.2)" stroke="rgb(94,224,163)" stroke-width="1.5"/><path d="M2 4 L13 12 L24 4" fill="none" stroke="rgb(94,224,163)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
-              <div class="journey-lbl">Confirm</div>
-            </div>
-            <div class="journey-step">
-              <div class="journey-env"><svg viewBox="0 0 26 18"><rect x="1.5" y="2" width="23" height="14" rx="2" fill="rgba(94,224,163,0.2)" stroke="rgb(94,224,163)" stroke-width="1.5"/><path d="M2 4 L13 12 L24 4" fill="none" stroke="rgb(94,224,163)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
-              <div class="journey-lbl">Aftercare</div>
+            <div class="os-grace-wrap">
+              <div class="os-grace">G</div>
+              <div class="os-grace-lbl">Step in</div>
             </div>
           </div>
         </div>
-        <div class="story-text">Personalised, start to finish.</div>
+        <div class="story-text">Grace can watch. And step in anytime.</div>
       </div>
 
       <div class="story-scene story-scene-11">
@@ -1839,7 +1947,7 @@ input[type="number"]::-webkit-inner-spin-button { -webkit-appearance: none; marg
             <div class="gt-auto">Everything else &middot; automated</div>
           </div>
         </div>
-        <div class="story-text">Grace just quotes. And picks the date.</div>
+        <div class="story-text">Faster bookings. Same personal touch.</div>
       </div>
     </div>
 
