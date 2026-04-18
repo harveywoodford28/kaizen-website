@@ -1980,8 +1980,8 @@ input[type="number"]::-webkit-inner-spin-button { -webkit-appearance: none; marg
 
   /* Scene 6 rebuild: diagnosis checklist */
   .icon-diag-list {
-    width: 260px;
-    padding: 14px 18px;
+    width: 250px;
+    padding: 10px 16px;
     background: rgba(233,30,140,0.06);
     border: 1px solid rgba(233,30,140,0.45);
     border-radius: 12px;
@@ -1990,18 +1990,18 @@ input[type="number"]::-webkit-inner-spin-button { -webkit-appearance: none; marg
   .dl-head {
     display: flex;
     align-items: center;
-    gap: 10px;
-    margin-bottom: 10px;
+    gap: 8px;
+    margin-bottom: 6px;
   }
   .dl-head-icon {
-    width: 22px;
-    height: 22px;
+    width: 18px;
+    height: 18px;
     color: rgb(233,30,140);
   }
   .dl-head-title {
     font-family: 'JetBrains Mono', ui-monospace, monospace;
-    font-size: 10px;
-    letter-spacing: 0.25em;
+    font-size: 9px;
+    letter-spacing: 0.22em;
     text-transform: uppercase;
     color: rgba(255,210,230,0.8);
     font-weight: 600;
@@ -2009,10 +2009,10 @@ input[type="number"]::-webkit-inner-spin-button { -webkit-appearance: none; marg
   .dl-item {
     display: flex;
     align-items: center;
-    gap: 10px;
-    padding: 5px 0;
+    gap: 8px;
+    padding: 2px 0;
     font-family: 'Space Grotesk', sans-serif;
-    font-size: 12.5px;
+    font-size: 11.5px;
     color: rgba(255,230,240,0.95);
     opacity: 0;
     animation: dlAppear 3s ease-out forwards;
@@ -2026,8 +2026,8 @@ input[type="number"]::-webkit-inner-spin-button { -webkit-appearance: none; marg
     to { opacity: 1; transform: translateX(0); }
   }
   .dl-check {
-    width: 16px;
-    height: 16px;
+    width: 14px;
+    height: 14px;
     border: 1.5px solid rgb(233,30,140);
     background: rgba(233,30,140,0.25);
     border-radius: 50%;
@@ -2035,7 +2035,7 @@ input[type="number"]::-webkit-inner-spin-button { -webkit-appearance: none; marg
     align-items: center;
     justify-content: center;
     color: white;
-    font-size: 9px;
+    font-size: 8px;
     font-weight: 700;
     flex-shrink: 0;
   }
@@ -2144,10 +2144,10 @@ input[type="number"]::-webkit-inner-spin-button { -webkit-appearance: none; marg
     border: 2px solid #08080e;
   }
 
-  /* Scene 11 rebuild: Brief for Grace — required info gathered */
+  /* Scene 11 rebuild: Brief for Grace — required info gathered (compact) */
   .grace-brief {
-    width: 280px;
-    padding: 16px 20px;
+    width: 260px;
+    padding: 10px 14px;
     background: rgba(94,224,163,0.05);
     border: 1px solid rgba(94,224,163,0.4);
     border-radius: 12px;
@@ -2156,12 +2156,12 @@ input[type="number"]::-webkit-inner-spin-button { -webkit-appearance: none; marg
   .brief-header {
     display: flex;
     align-items: center;
-    gap: 10px;
-    margin-bottom: 12px;
+    gap: 8px;
+    margin-bottom: 8px;
   }
   .brief-avatar {
-    width: 28px;
-    height: 28px;
+    width: 22px;
+    height: 22px;
     border-radius: 50%;
     background: rgb(233,30,140);
     display: flex;
@@ -2170,30 +2170,36 @@ input[type="number"]::-webkit-inner-spin-button { -webkit-appearance: none; marg
     font-family: 'Instrument Serif', serif;
     font-style: italic;
     color: white;
-    font-size: 16px;
+    font-size: 13px;
     flex-shrink: 0;
-    box-shadow: 0 0 12px rgba(233,30,140,0.6);
+    box-shadow: 0 0 10px rgba(233,30,140,0.6);
   }
   .brief-title {
     font-family: 'Instrument Serif', serif;
     font-style: italic;
-    font-size: 16px;
+    font-size: 14px;
     color: white;
     letter-spacing: -0.01em;
+  }
+  .brief-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 3px 14px;
   }
   .brief-row {
     display: flex;
     align-items: center;
-    gap: 10px;
-    padding: 5px 0;
+    gap: 7px;
+    padding: 1px 0;
     font-family: 'Space Grotesk', sans-serif;
-    font-size: 12px;
+    font-size: 11px;
     color: rgba(210,245,225,0.95);
     font-weight: 500;
+    white-space: nowrap;
   }
   .brief-check {
-    width: 16px;
-    height: 16px;
+    width: 13px;
+    height: 13px;
     border: 1.5px solid rgb(94,224,163);
     background: rgba(94,224,163,0.2);
     border-radius: 50%;
@@ -2201,7 +2207,7 @@ input[type="number"]::-webkit-inner-spin-button { -webkit-appearance: none; marg
     align-items: center;
     justify-content: center;
     color: rgb(94,224,163);
-    font-size: 9px;
+    font-size: 8px;
     font-weight: 700;
     flex-shrink: 0;
   }
@@ -2209,7 +2215,15 @@ input[type="number"]::-webkit-inner-spin-button { -webkit-appearance: none; marg
   .brief-divider {
     height: 1px;
     background: rgba(255,255,255,0.08);
-    margin: 10px 0 8px;
+    margin: 8px 0 6px;
+  }
+  .brief-stat {
+    display: flex;
+    align-items: baseline;
+    gap: 8px;
+    flex-wrap: wrap;
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 10.5px;
   }
   .brief-stat-label {
     font-family: 'JetBrains Mono', ui-monospace, monospace;
@@ -2217,15 +2231,7 @@ input[type="number"]::-webkit-inner-spin-button { -webkit-appearance: none; marg
     letter-spacing: 0.2em;
     text-transform: uppercase;
     color: rgba(255,255,255,0.5);
-    margin-bottom: 4px;
-  }
-  .brief-stat-delta {
-    display: flex;
-    align-items: baseline;
-    gap: 6px;
-    flex-wrap: wrap;
-    font-family: 'Space Grotesk', sans-serif;
-    font-size: 12px;
+    font-weight: 600;
   }
   .brief-was {
     color: rgba(255,170,170,0.85);
@@ -2431,7 +2437,7 @@ input[type="number"]::-webkit-inner-spin-button { -webkit-appearance: none; marg
             </div>
           </div>
         </div>
-        <div class="story-text">Grace can watch. And step in anytime.</div>
+        <div class="story-text">Grace can step in at any point.</div>
       </div>
 
       <div class="story-scene story-scene-11">
@@ -2441,14 +2447,16 @@ input[type="number"]::-webkit-inner-spin-button { -webkit-appearance: none; marg
               <div class="brief-avatar">G</div>
               <div class="brief-title">Brief for Grace</div>
             </div>
-            <div class="brief-row"><span class="brief-check"></span>Style &amp; placement</div>
-            <div class="brief-row"><span class="brief-check"></span>Size &amp; detail</div>
-            <div class="brief-row"><span class="brief-check"></span>Budget confirmed</div>
-            <div class="brief-row"><span class="brief-check"></span>Date they&rsquo;re free</div>
+            <div class="brief-grid">
+              <div class="brief-row"><span class="brief-check"></span>Style</div>
+              <div class="brief-row"><span class="brief-check"></span>Size</div>
+              <div class="brief-row"><span class="brief-check"></span>Budget</div>
+              <div class="brief-row"><span class="brief-check"></span>Date free</div>
+            </div>
             <div class="brief-divider"></div>
-            <div class="brief-stat-label">Time to reply</div>
-            <div class="brief-stat-delta">
-              <span class="brief-was">1 hr &ndash; 3 days</span>
+            <div class="brief-stat">
+              <span class="brief-stat-label">Reply</span>
+              <span class="brief-was">1h&ndash;3d</span>
               <span class="brief-arr">&rarr;</span>
               <span class="brief-now">Instant &middot; 24/7</span>
             </div>
