@@ -583,26 +583,6 @@ input[type="number"]::-webkit-inner-spin-button { -webkit-appearance: none; marg
   <div class="divider absolute bottom-0 left-0 right-0"></div>
 </section>
 
-<!-- ===== TRUST STRIP (GRACE QUOTE) ===== -->
-<section class="relative py-16 border-t border-white/5">
-  <div class="max-w-[1000px] mx-auto px-6">
-    <div class="grid grid-cols-1 md:grid-cols-[1fr_auto] gap-10 items-center">
-      <div class="reveal">
-        <div class="mono-label text-kaizen mb-3">Client story &middot; Grace W.</div>
-        <p class="text-lg md:text-2xl font-serif italic font-normal text-white/85 leading-snug mb-4">
-          &ldquo;I feel comfortable using AI in my business now &mdash; I still have control to jump into conversations when I need to. It&rsquo;s just a helping hand to make requests quicker.&rdquo;
-        </p>
-        <div class="text-white/40 text-sm">Grace W. &mdash; 1-person studio, Hampshire</div>
-      </div>
-      <div class="flex flex-col items-start md:items-end reveal reveal-delay-1">
-        <div class="mono-label text-white/40 mb-2">Reply speed</div>
-        <div class="text-sm text-white/40 line-through mb-1">1 hour &ndash; 3 days</div>
-        <div class="text-2xl md:text-3xl font-bold text-kaizen">Instant &middot; 24/7</div>
-      </div>
-    </div>
-  </div>
-</section>
-
 <!-- ===== CAPABILITIES ===== -->
 <section id="capabilities" class="relative py-28 section-alt">
   <div class="section-glow pink" style="top:-200px;left:50%;transform:translateX(-50%);"></div>
@@ -752,6 +732,107 @@ input[type="number"]::-webkit-inner-spin-button { -webkit-appearance: none; marg
   <div class="divider absolute bottom-0 left-0 right-0"></div>
 </section>
 
+<!-- ===== GRACE CASE STUDY ===== -->
+<style>
+  .compress-bar {
+    height: 56px;
+    border-radius: 10px;
+    position: relative;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    animation: compressMorph 5s cubic-bezier(0.7, 0, 0.3, 1) infinite;
+  }
+  @keyframes compressMorph {
+    0%, 35% {
+      width: 100%;
+      background: linear-gradient(90deg, rgba(255,107,107,0.28), rgba(255,107,107,0.08));
+      border: 1px solid rgba(255,107,107,0.4);
+      box-shadow: inset 0 0 12px rgba(255,107,107,0.1);
+    }
+    50% {
+      width: 58%;
+      background: linear-gradient(90deg, rgba(255,180,107,0.3), rgba(200,200,160,0.12));
+      border: 1px solid rgba(255,180,107,0.5);
+    }
+    65%, 100% {
+      width: 24%;
+      background: linear-gradient(90deg, rgba(94,224,163,0.4), rgba(94,224,163,0.12));
+      border: 1px solid rgba(94,224,163,0.65);
+      box-shadow: 0 0 28px rgba(94,224,163,0.28);
+    }
+  }
+  .compress-label {
+    position: absolute;
+    left: 20px;
+    top: 50%;
+    transform: translateY(-50%);
+    font-family: 'JetBrains Mono', ui-monospace, monospace;
+    font-size: 13px;
+    font-weight: 600;
+    white-space: nowrap;
+    letter-spacing: 0.04em;
+  }
+  .compress-label-before {
+    color: rgba(255,230,230,0.95);
+    animation: labelBefore 5s cubic-bezier(0.7, 0, 0.3, 1) infinite;
+  }
+  .compress-label-after {
+    color: rgb(94,224,163);
+    animation: labelAfter 5s cubic-bezier(0.7, 0, 0.3, 1) infinite;
+    text-shadow: 0 0 16px rgba(94,224,163,0.5);
+  }
+  @keyframes labelBefore {
+    0%, 40% { opacity: 1; }
+    52%, 100% { opacity: 0; }
+  }
+  @keyframes labelAfter {
+    0%, 52% { opacity: 0; }
+    68%, 100% { opacity: 1; }
+  }
+</style>
+<section id="case-study" class="relative py-28 section-alt">
+  <div class="section-glow pink" style="top:-180px;left:20%;"></div>
+  <div class="max-w-[1000px] mx-auto px-6 relative z-10">
+    <div class="text-center mb-12">
+      <div class="mono-label text-kaizen mb-4 reveal">Client story</div>
+      <h2 class="text-3xl md:text-5xl font-bold tracking-tight reveal reveal-delay-1">
+        A system that earns her <span class="font-serif italic font-normal text-kaizen">weekend back.</span>
+      </h2>
+    </div>
+
+    <div class="max-w-[820px] mx-auto text-center mb-16 reveal reveal-delay-2">
+      <p class="text-xl md:text-3xl font-serif italic font-normal text-white/85 leading-snug mb-6">
+        &ldquo;I feel comfortable using AI in my business now, and I still have control. It&rsquo;s a helping hand to make things quicker.&rdquo;
+      </p>
+      <div class="mono-label text-white/50">Disgrace Inc &middot; Popular tattoo artist, Hampshire</div>
+    </div>
+
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+      <div class="card p-7 reveal reveal-delay-1">
+        <div class="mono-label text-white/50 mb-6">Reply speed</div>
+        <div class="compress-bar">
+          <span class="compress-label compress-label-before">1 hour &ndash; 3 days</span>
+          <span class="compress-label compress-label-after">Instant &middot; 24/7</span>
+        </div>
+      </div>
+
+      <div class="card p-7 reveal reveal-delay-2">
+        <div class="mono-label text-white/50 mb-6">Info needed to book</div>
+        <div class="compress-bar">
+          <span class="compress-label compress-label-before">1 &ndash; 2 days</span>
+          <span class="compress-label compress-label-after">Under 3 minutes</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="text-center mt-14 reveal reveal-delay-3">
+      <a href="https://cal.com/harvey-woodford/discovery-call" class="cta-btn-ghost">Book your discovery call</a>
+    </div>
+  </div>
+  <div class="divider absolute bottom-0 left-0 right-0"></div>
+</section>
+
 <!-- ===== ROI CALCULATOR ===== -->
 <section class="relative py-28">
   <div class="section-glow blue" style="top:30%;left:-200px;"></div>
@@ -804,57 +885,6 @@ input[type="number"]::-webkit-inner-spin-button { -webkit-appearance: none; marg
       </div>
 
       <p class="text-center text-white/20 text-xs mt-8 leading-relaxed">That's what one repeatable task costs your business every year. Now imagine automating it.</p>
-    </div>
-  </div>
-  <div class="divider absolute bottom-0 left-0 right-0"></div>
-</section>
-
-<!-- ===== CASE STUDY (GRACE) ===== -->
-<section id="case-study" class="relative py-28 section-alt">
-  <div class="section-glow pink" style="top:-180px;left:20%;"></div>
-  <div class="max-w-[1100px] mx-auto px-6 relative z-10">
-    <div class="text-center mb-14">
-      <div class="mono-label text-kaizen mb-4 reveal">Client story</div>
-      <h2 class="text-3xl md:text-5xl font-bold tracking-tight mb-5 reveal reveal-delay-1">
-        In Grace&rsquo;s <span class="font-serif italic font-normal text-kaizen">own words.</span>
-      </h2>
-      <p class="text-white/40 max-w-[620px] mx-auto reveal reveal-delay-2">Grace runs a 1-person studio in Hampshire. She was sceptical about AI &mdash; worried it would feel cold and strip the personal side of her work. Here&rsquo;s what she said after we built her a booking &amp; lead qualification system.</p>
-    </div>
-
-    <div class="grid grid-cols-1 md:grid-cols-2 gap-5 mb-10">
-      <div class="card p-7 reveal reveal-delay-1">
-        <div class="mono-label text-white/40 mb-3">Q &mdash; Did you trust AI before working with Kaizen?</div>
-        <p class="text-white/75 leading-relaxed">&ldquo;No. Previously, I&rsquo;ve found chatbots to be really annoying &mdash; I&rsquo;d get frustrated not being able to speak to a person directly.&rdquo;</p>
-      </div>
-      <div class="card p-7 reveal reveal-delay-2">
-        <div class="mono-label text-white/40 mb-3">Q &mdash; How do you feel about using AI in your business now?</div>
-        <p class="text-white/75 leading-relaxed">&ldquo;Comfortable. I still have control to jump into conversations when I need to &mdash; people know it&rsquo;s not all AI, it&rsquo;s just a helping hand to make requests quicker.&rdquo;</p>
-      </div>
-      <div class="card p-7 reveal reveal-delay-3">
-        <div class="mono-label text-white/40 mb-3">Q &mdash; What impact has it had on your business?</div>
-        <p class="text-white/75 leading-relaxed">&ldquo;It saves me back-and-forth messaging and repeating the same question. It&rsquo;s helping me book clients faster &mdash; gathering the info I need so I can continue from there and book them straight in.&rdquo;</p>
-      </div>
-      <div class="card p-7 reveal reveal-delay-4">
-        <div class="mono-label text-white/40 mb-3">Q &mdash; Would you recommend a system like this to others?</div>
-        <p class="text-white/75 leading-relaxed">&ldquo;Yeah, definitely worth a try. It&rsquo;s tricky for our industry and something I&rsquo;m still getting used to &mdash; but the fact it can be tailored to each business is great.&rdquo;</p>
-      </div>
-    </div>
-
-    <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
-      <div class="card p-7 text-center reveal reveal-delay-1">
-        <div class="mono-label text-white/40 mb-3">Reply speed</div>
-        <div class="text-base text-white/45 line-through mb-2">1 hour &ndash; 3 days</div>
-        <div class="text-3xl md:text-4xl font-bold text-kaizen">Instant &middot; 24/7</div>
-      </div>
-      <div class="card p-7 text-center reveal reveal-delay-2">
-        <div class="mono-label text-white/40 mb-3">Info needed to book</div>
-        <div class="text-base text-white/45 line-through mb-2">1 &ndash; 2 days</div>
-        <div class="text-3xl md:text-4xl font-bold text-kaizen">Under 3 minutes</div>
-      </div>
-    </div>
-
-    <div class="text-center mt-12 reveal reveal-delay-3">
-      <a href="https://cal.com/harvey-woodford/discovery-call" class="cta-btn-ghost">Book your discovery call</a>
     </div>
   </div>
   <div class="divider absolute bottom-0 left-0 right-0"></div>
