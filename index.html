@@ -737,7 +737,7 @@ input[type="number"]::-webkit-inner-spin-button { -webkit-appearance: none; marg
   .story-stage {
     position: relative;
     width: 100%;
-    max-width: 560px;
+    max-width: 620px;
     aspect-ratio: 4 / 3;
     margin: 0 auto;
     border-radius: 20px;
@@ -746,6 +746,22 @@ input[type="number"]::-webkit-inner-spin-button { -webkit-appearance: none; marg
     overflow: hidden;
     box-shadow: 0 20px 60px -20px rgba(0,0,0,0.5);
   }
+  .story-progress {
+    position: absolute;
+    top: 0; left: 0; height: 2px;
+    width: 100%;
+    background: rgba(255,255,255,0.05);
+    z-index: 10;
+  }
+  .story-progress::after {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; height: 100%;
+    background: linear-gradient(90deg, rgba(255,107,107,0.7), rgba(233,30,140,0.8), rgba(94,224,163,0.8));
+    animation: progressSweep 60s linear infinite;
+  }
+  @keyframes progressSweep { 0% { width: 0; } 100% { width: 100%; } }
+
   .story-scene {
     position: absolute;
     inset: 0;
@@ -753,21 +769,35 @@ input[type="number"]::-webkit-inner-spin-button { -webkit-appearance: none; marg
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    padding: 36px 40px;
+    padding: 32px 40px;
     opacity: 0;
-    animation-duration: 20s;
+    animation-duration: 60s;
     animation-iteration-count: infinite;
     animation-timing-function: ease-in-out;
   }
-  .story-scene-1 { animation-name: scene1Fade; }
-  .story-scene-2 { animation-name: scene2Fade; }
-  .story-scene-3 { animation-name: scene3Fade; }
-  .story-scene-4 { animation-name: scene4Fade; }
+  .story-scene-1  { animation-name: s1; }
+  .story-scene-2  { animation-name: s2; }
+  .story-scene-3  { animation-name: s3; }
+  .story-scene-4  { animation-name: s4; }
+  .story-scene-5  { animation-name: s5; }
+  .story-scene-6  { animation-name: s6; }
+  .story-scene-7  { animation-name: s7; }
+  .story-scene-8  { animation-name: s8; }
+  .story-scene-9  { animation-name: s9; }
+  .story-scene-10 { animation-name: s10; }
+  .story-scene-11 { animation-name: s11; }
 
-  @keyframes scene1Fade { 0%, 1% { opacity: 0; } 4%, 22% { opacity: 1; } 25%, 100% { opacity: 0; } }
-  @keyframes scene2Fade { 0%, 26% { opacity: 0; } 29%, 47% { opacity: 1; } 50%, 100% { opacity: 0; } }
-  @keyframes scene3Fade { 0%, 51% { opacity: 0; } 54%, 72% { opacity: 1; } 75%, 100% { opacity: 0; } }
-  @keyframes scene4Fade { 0%, 76% { opacity: 0; } 79%, 97% { opacity: 1; } 100% { opacity: 0; } }
+  @keyframes s1  { 0%,1%  {opacity:0} 2%,8%   {opacity:1} 9%,100%  {opacity:0} }
+  @keyframes s2  { 0%,10% {opacity:0} 11%,17% {opacity:1} 18%,100% {opacity:0} }
+  @keyframes s3  { 0%,19% {opacity:0} 20%,26% {opacity:1} 27%,100% {opacity:0} }
+  @keyframes s4  { 0%,28% {opacity:0} 29%,35% {opacity:1} 36%,100% {opacity:0} }
+  @keyframes s5  { 0%,37% {opacity:0} 38%,44% {opacity:1} 45%,100% {opacity:0} }
+  @keyframes s6  { 0%,46% {opacity:0} 47%,53% {opacity:1} 54%,100% {opacity:0} }
+  @keyframes s7  { 0%,55% {opacity:0} 56%,62% {opacity:1} 63%,100% {opacity:0} }
+  @keyframes s8  { 0%,64% {opacity:0} 65%,71% {opacity:1} 72%,100% {opacity:0} }
+  @keyframes s9  { 0%,73% {opacity:0} 74%,80% {opacity:1} 81%,100% {opacity:0} }
+  @keyframes s10 { 0%,82% {opacity:0} 83%,89% {opacity:1} 90%,100% {opacity:0} }
+  @keyframes s11 { 0%,91% {opacity:0} 92%,99% {opacity:1} 100%   {opacity:0} }
 
   .story-visual {
     position: relative;
@@ -1037,7 +1067,286 @@ input[type="number"]::-webkit-inner-spin-button { -webkit-appearance: none; marg
     0%, 100% { opacity: 1; }
     50% { opacity: 0.55; }
   }
-</style>
+
+  /* Scene 3: Leads drifting away */
+  .icon-drift { position: relative; width: 220px; height: 140px; }
+  .drift-bubble {
+    position: absolute;
+    background: rgba(255,107,107,0.12);
+    border: 1px solid rgba(255,107,107,0.35);
+    border-radius: 12px 12px 12px 2px;
+    padding: 5px 10px;
+    font-family: 'JetBrains Mono', ui-monospace, monospace;
+    font-size: 10px;
+    color: rgba(255,180,180,0.7);
+    white-space: nowrap;
+    animation: driftAway 3.6s ease-in infinite;
+    letter-spacing: 0.03em;
+  }
+  .drift-b1 { top: 10px;  left: 20px; animation-delay: 0s; }
+  .drift-b2 { top: 52px;  left: 70px; animation-delay: 0.8s; }
+  .drift-b3 { top: 94px;  left: 30px; animation-delay: 1.6s; }
+  @keyframes driftAway {
+    0% { transform: translateX(0); opacity: 0.9; }
+    60% { opacity: 0.5; }
+    100% { transform: translateX(180px); opacity: 0; }
+  }
+
+  /* Scene 4: Client info scattered everywhere */
+  .icon-chaos { position: relative; width: 220px; height: 160px; }
+  .chaos-card {
+    position: absolute;
+    background: rgba(255,107,107,0.08);
+    border: 1px solid rgba(255,107,107,0.3);
+    border-radius: 6px;
+    padding: 8px 10px;
+    font-family: 'JetBrains Mono', ui-monospace, monospace;
+    font-size: 10px;
+    color: rgba(255,210,210,0.9);
+    white-space: nowrap;
+    letter-spacing: 0.02em;
+  }
+  .chaos-c1 { top: 6px;   left: -4px;  transform: rotate(-5deg); }
+  .chaos-c2 { top: 30px;  left: 94px;  transform: rotate(4deg); }
+  .chaos-c3 { top: 66px;  left: 18px;  transform: rotate(-2deg); }
+  .chaos-c4 { top: 92px;  left: 100px; transform: rotate(6deg); }
+  .chaos-c5 { top: 128px; left: 40px;  transform: rotate(-3deg); }
+  .chaos-q { position: absolute; bottom: -6px; right: -8px; font-family: 'Instrument Serif', serif; font-style: italic; font-size: 40px; color: rgba(255,107,107,0.7); animation: bubbleFloat 1.8s ease-in-out infinite; }
+
+  /* Scene 5: Disgrace + Kaizen merge */
+  .icon-union { position: relative; width: 280px; height: 120px; display: flex; align-items: center; justify-content: center; }
+  .union-badge {
+    padding: 10px 18px;
+    border-radius: 10px;
+    font-family: 'Instrument Serif', serif;
+    font-style: italic;
+    font-size: 18px;
+    letter-spacing: -0.01em;
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+  }
+  .union-left {
+    left: 0;
+    background: rgba(255,255,255,0.06);
+    border: 1px solid rgba(255,255,255,0.25);
+    color: rgba(255,255,255,0.9);
+    animation: unionLeft 4s ease-in-out infinite;
+  }
+  .union-right {
+    right: 0;
+    background: rgba(233,30,140,0.15);
+    border: 1px solid rgba(233,30,140,0.6);
+    color: white;
+    animation: unionRight 4s ease-in-out infinite;
+  }
+  .union-spark {
+    width: 12px; height: 12px;
+    background: rgb(233,30,140);
+    border-radius: 50%;
+    box-shadow: 0 0 32px 8px rgba(233,30,140,0.7);
+    animation: unionSpark 4s ease-in-out infinite;
+  }
+  @keyframes unionLeft { 0%,40% { transform: translate(0, -50%); } 50%,100% { transform: translate(32px, -50%); } }
+  @keyframes unionRight { 0%,40% { transform: translate(0, -50%); } 50%,100% { transform: translate(-32px, -50%); } }
+  @keyframes unionSpark { 0%,40% { opacity: 0; transform: scale(0.3); } 55%,100% { opacity: 1; transform: scale(1); } }
+
+  /* Scene 6: Discovery — conversation bubbles */
+  .icon-interview { position: relative; width: 260px; height: 150px; }
+  .iv-bubble {
+    position: absolute;
+    padding: 8px 14px;
+    border-radius: 14px;
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 12px;
+    max-width: 170px;
+    line-height: 1.3;
+  }
+  .iv-them {
+    left: 0; top: 0;
+    background: rgba(233,30,140,0.12);
+    border: 1px solid rgba(233,30,140,0.4);
+    color: rgba(255,255,255,0.92);
+    border-bottom-left-radius: 3px;
+    animation: bubbleFloat 2.4s ease-in-out infinite;
+  }
+  .iv-me {
+    right: 0; top: 50px;
+    background: rgba(255,255,255,0.08);
+    border: 1px solid rgba(255,255,255,0.22);
+    color: rgba(255,255,255,0.9);
+    border-bottom-right-radius: 3px;
+    animation: bubbleFloat 2.4s ease-in-out infinite;
+    animation-delay: 0.6s;
+  }
+  .iv-them-2 {
+    left: 20px; top: 100px;
+    background: rgba(233,30,140,0.12);
+    border: 1px solid rgba(233,30,140,0.4);
+    color: rgba(255,255,255,0.92);
+    border-bottom-left-radius: 3px;
+    animation: bubbleFloat 2.4s ease-in-out infinite;
+    animation-delay: 1.2s;
+  }
+
+  /* Scene 7: Voice captured + system trained */
+  .icon-voice { position: relative; width: 280px; height: 130px; display: flex; align-items: center; justify-content: space-between; }
+  .voice-sample {
+    background: rgba(233,30,140,0.12);
+    border: 1px solid rgba(233,30,140,0.45);
+    border-radius: 10px 10px 10px 3px;
+    padding: 10px 12px;
+    font-family: 'Instrument Serif', serif;
+    font-style: italic;
+    font-size: 13px;
+    color: rgba(255,230,242,0.95);
+    max-width: 100px;
+    line-height: 1.3;
+  }
+  .voice-arrow {
+    font-family: 'JetBrains Mono', ui-monospace, monospace;
+    font-size: 18px;
+    color: rgba(233,30,140,0.7);
+    animation: voiceFlow 1.8s ease-in-out infinite;
+  }
+  @keyframes voiceFlow {
+    0%, 100% { opacity: 0.4; transform: translateX(-3px); }
+    50% { opacity: 1; transform: translateX(3px); }
+  }
+  .voice-brain {
+    width: 54px; height: 54px;
+    background: rgba(233,30,140,0.2);
+    border: 2px solid rgba(233,30,140,0.9);
+    border-radius: 14px;
+    display: flex; align-items: center; justify-content: center;
+    font-family: 'Instrument Serif', serif;
+    font-style: italic;
+    color: white;
+    font-size: 22px;
+    animation: nodePulse 2s ease-in-out infinite;
+  }
+
+  /* Scene 8: Instagram reply in her voice */
+  .icon-reply { position: relative; width: 280px; height: 150px; }
+  .ig-msg {
+    position: absolute;
+    padding: 8px 12px;
+    border-radius: 14px;
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 12px;
+    max-width: 180px;
+    line-height: 1.35;
+  }
+  .ig-in {
+    top: 0; left: 0;
+    background: rgba(255,255,255,0.08);
+    border: 1px solid rgba(255,255,255,0.22);
+    color: rgba(255,255,255,0.9);
+    border-bottom-left-radius: 3px;
+  }
+  .ig-out {
+    bottom: 0; right: 0;
+    background: rgba(94,224,163,0.15);
+    border: 1px solid rgba(94,224,163,0.55);
+    color: rgb(130,238,180);
+    border-bottom-right-radius: 3px;
+    box-shadow: 0 0 20px rgba(94,224,163,0.22);
+  }
+  .ig-tag {
+    position: absolute;
+    top: 8px; right: 4px;
+    padding: 2px 8px;
+    border-radius: 100px;
+    background: linear-gradient(135deg, #833ab4, #fd1d1d, #fcb045);
+    font-family: 'JetBrains Mono', ui-monospace, monospace;
+    font-size: 9px;
+    color: white;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+  }
+
+  /* Scene 9: CRM + email to Grace */
+  .icon-crm { position: relative; width: 280px; height: 150px; }
+  .crm-rows {
+    position: absolute;
+    inset: 0 60px 0 0;
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+  }
+  .crm-row {
+    height: 22px;
+    background: rgba(94,224,163,0.08);
+    border: 1px solid rgba(94,224,163,0.25);
+    border-radius: 4px;
+    display: flex;
+    align-items: center;
+    padding: 0 10px;
+    font-family: 'JetBrains Mono', ui-monospace, monospace;
+    font-size: 10px;
+    color: rgba(180,230,200,0.85);
+    letter-spacing: 0.02em;
+    animation: crmAppear 2s ease-out forwards;
+    opacity: 0;
+  }
+  .crm-row:nth-child(1) { animation-delay: 0s; }
+  .crm-row:nth-child(2) { animation-delay: 0.35s; }
+  .crm-row:nth-child(3) { animation-delay: 0.7s; }
+  .crm-row:nth-child(4) { animation-delay: 1.05s; }
+  .crm-row::before { content: '\2713 '; color: rgb(94,224,163); margin-right: 8px; font-weight: 700; }
+  @keyframes crmAppear { from { opacity: 0; transform: translateX(-12px); } to { opacity: 1; transform: translateX(0); } }
+  .crm-email {
+    position: absolute;
+    right: 0; top: 50%;
+    transform: translateY(-50%);
+    width: 48px; height: 40px;
+    background: rgba(94,224,163,0.15);
+    border: 1.5px solid rgba(94,224,163,0.6);
+    border-radius: 6px;
+    animation: nodePulse 1.6s ease-in-out infinite;
+  }
+  .crm-email::before {
+    content: '';
+    position: absolute;
+    inset: 2px;
+    border-top: 14px solid rgba(94,224,163,0.8);
+    border-left: 24px solid transparent;
+    border-right: 24px solid transparent;
+  }
+  .crm-email::after {
+    content: '\2709';
+    position: absolute;
+    top: -12px; right: -12px;
+    width: 22px; height: 22px;
+    background: rgb(94,224,163);
+    color: #04130a;
+    border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 12px;
+    font-weight: 700;
+    animation: badgePulse 1.4s ease-in-out infinite;
+  }
+
+  /* Scene 10: Booking confirmation email — personalised */
+  .icon-booking {
+    width: 280px; padding: 14px 16px;
+    background: rgba(94,224,163,0.06);
+    border: 1px solid rgba(94,224,163,0.35);
+    border-radius: 10px;
+    font-family: 'Space Grotesk', sans-serif;
+    box-shadow: 0 0 28px rgba(94,224,163,0.15);
+  }
+  .book-from { font-family: 'JetBrains Mono', ui-monospace, monospace; font-size: 9px; color: rgba(180,230,200,0.65); letter-spacing: 0.1em; text-transform: uppercase; margin-bottom: 4px; }
+  .book-subj { font-family: 'Instrument Serif', serif; font-style: italic; font-size: 16px; color: white; margin-bottom: 10px; letter-spacing: -0.01em; }
+  .book-tip {
+    display: flex; align-items: center; gap: 8px;
+    font-size: 11px;
+    color: rgba(200,240,215,0.9);
+    margin-bottom: 5px;
+    font-family: 'JetBrains Mono', ui-monospace, monospace;
+    letter-spacing: 0.02em;
+  }
+  .book-tip::before { content: '\2022'; color: rgb(94,224,163); font-weight: 700; font-size: 14px; }
 <section id="case-study" class="relative py-28 section-alt">
   <div class="section-glow pink" style="top:-180px;left:20%;"></div>
   <div class="max-w-[1000px] mx-auto px-6 relative z-10">
@@ -1055,8 +1364,11 @@ input[type="number"]::-webkit-inner-spin-button { -webkit-appearance: none; marg
       <div class="mono-label text-white/50">Disgrace Inc &middot; Popular tattoo artist, Hampshire</div>
     </div>
 
-    <!-- Story stage — 4 scenes fade in/out on a 20s loop -->
+    <!-- Story stage — 11 scenes fade in/out on a 60s loop -->
     <div class="story-stage reveal reveal-delay-1">
+      <div class="story-progress"></div>
+
+      <!-- Act 1: The problem -->
       <div class="story-scene story-scene-1">
         <div class="story-visual">
           <div class="icon-phone"></div>
@@ -1085,50 +1397,142 @@ input[type="number"]::-webkit-inner-spin-button { -webkit-appearance: none; marg
             <div class="msg-stack-item"></div>
           </div>
         </div>
-        <div class="story-text">She&rsquo;s mid-tattoo. Replies don&rsquo;t come. Leads give up.</div>
-        <div class="story-label">Days passing</div>
+        <div class="story-text">Grace is mid-tattoo. Hands can&rsquo;t reply.</div>
+        <div class="story-label">Hours become days</div>
       </div>
 
       <div class="story-scene story-scene-3">
         <div class="story-visual">
-          <div class="icon-nodes">
-            <div class="node-line nl-1"></div>
-            <div class="node-line nl-2"></div>
-            <div class="node-line nl-3"></div>
-            <div class="node-line nl-4"></div>
-            <div class="node-center">K</div>
-            <div class="node-check nc-1"></div>
-            <div class="node-check nc-2"></div>
-            <div class="node-check nc-3"></div>
-            <div class="node-check nc-4"></div>
+          <div class="icon-drift">
+            <div class="drift-bubble drift-b1">still waiting...</div>
+            <div class="drift-bubble drift-b2">nvm, booked elsewhere</div>
+            <div class="drift-bubble drift-b3">gone cold</div>
           </div>
         </div>
-        <div class="story-text">Then the system switches on.</div>
-        <div class="story-label">Kaizen &middot; active</div>
+        <div class="story-text">Leads wait. Leads leave.</div>
+        <div class="story-label">Revenue walking out</div>
       </div>
 
       <div class="story-scene story-scene-4">
         <div class="story-visual">
-          <div class="icon-calendar">
-            <div class="cal-slot booked d1"></div>
-            <div class="cal-slot"></div>
-            <div class="cal-slot booked d2"></div>
-            <div class="cal-slot booked d3"></div>
-            <div class="cal-slot"></div>
-            <div class="cal-slot"></div>
-            <div class="cal-slot booked d4"></div>
-            <div class="cal-slot booked d1"></div>
-            <div class="cal-slot booked d2"></div>
-            <div class="cal-slot"></div>
-            <div class="cal-slot booked d3"></div>
-            <div class="cal-slot booked d4"></div>
-            <div class="cal-slot"></div>
-            <div class="cal-slot booked d1"></div>
-            <div class="cal-slot booked d2"></div>
+          <div class="icon-chaos">
+            <div class="chaos-card chaos-c1">Sarah &mdash; sleeve design?</div>
+            <div class="chaos-card chaos-c2">Tom &mdash; 3pm Friday</div>
+            <div class="chaos-card chaos-c3">Maya &mdash; allergy note</div>
+            <div class="chaos-card chaos-c4">Jess &mdash; deposit paid</div>
+            <div class="chaos-card chaos-c5">+ 40 more</div>
+            <div class="chaos-q">?</div>
           </div>
         </div>
-        <div class="story-text">Every lead qualified. Every slot booked. 24/7.</div>
-        <div class="story-label">Grace, back to work</div>
+        <div class="story-text">Client info scattered everywhere. Nothing tracked.</div>
+        <div class="story-label">DMs, notes, texts, memory</div>
+      </div>
+
+      <!-- Act 2: The engagement -->
+      <div class="story-scene story-scene-5">
+        <div class="story-visual">
+          <div class="icon-union">
+            <div class="union-badge union-left">Disgrace Inc.</div>
+            <div class="union-spark"></div>
+            <div class="union-badge union-right">Kaizen AI</div>
+          </div>
+        </div>
+        <div class="story-text">Grace met Kaizen.</div>
+        <div class="story-label">The first call</div>
+      </div>
+
+      <div class="story-scene story-scene-6">
+        <div class="story-visual">
+          <div class="icon-interview">
+            <div class="iv-bubble iv-them">What&rsquo;s actually slowing you down?</div>
+            <div class="iv-bubble iv-me">Replies. Always replies.</div>
+            <div class="iv-bubble iv-them-2">Show me a typical Monday&hellip;</div>
+          </div>
+        </div>
+        <div class="story-text">We sat down. Diagnosed the bottleneck together.</div>
+        <div class="story-label">Discovery &middot; interview</div>
+      </div>
+
+      <div class="story-scene story-scene-7">
+        <div class="story-visual">
+          <div class="icon-voice">
+            <div class="voice-sample">&ldquo;Hey babe&hellip; absolutely 💕&rdquo;</div>
+            <div class="voice-arrow">&raquo;</div>
+            <div class="voice-brain">K</div>
+            <div class="voice-arrow">&raquo;</div>
+            <div class="voice-sample">&ldquo;Hey babe&hellip; absolutely 💕&rdquo;</div>
+          </div>
+        </div>
+        <div class="story-text">We trained the system in Grace&rsquo;s voice. Tested. Retested.</div>
+        <div class="story-label">Build &middot; trial &middot; refine</div>
+      </div>
+
+      <!-- Act 3: Live -->
+      <div class="story-scene story-scene-8">
+        <div class="story-visual">
+          <div class="icon-reply">
+            <div class="ig-tag">IG</div>
+            <div class="ig-msg ig-in">Love your work! Can I book a sleeve? 😍</div>
+            <div class="ig-msg ig-out">Hey babe! 💕 Yes of course &mdash; what style are you thinking?</div>
+          </div>
+        </div>
+        <div class="story-text">Every Instagram message, answered in her voice. Instantly.</div>
+        <div class="story-label">Live &middot; 24/7</div>
+      </div>
+
+      <div class="story-scene story-scene-9">
+        <div class="story-visual">
+          <div class="icon-crm">
+            <div class="crm-rows">
+              <div class="crm-row">Sarah M. &middot; sleeve &middot; Fri 3pm</div>
+              <div class="crm-row">Tom H. &middot; forearm &middot; Sat 11am</div>
+              <div class="crm-row">Maya R. &middot; back piece &middot; next week</div>
+              <div class="crm-row">Jess K. &middot; deposit paid</div>
+            </div>
+            <div class="crm-email"></div>
+          </div>
+        </div>
+        <div class="story-text">Every detail captured. Logged in her CRM. Emailed to Grace.</div>
+        <div class="story-label">Simple &middot; sorted &middot; automatic</div>
+      </div>
+
+      <div class="story-scene story-scene-10">
+        <div class="story-visual">
+          <div class="icon-booking">
+            <div class="book-from">From Grace @ Disgrace Inc.</div>
+            <div class="book-subj">See you Friday, Sarah 💕</div>
+            <div class="book-tip">Studio address &amp; what&rsquo;s nearby</div>
+            <div class="book-tip">Wear something loose</div>
+            <div class="book-tip">Eat well beforehand, hydrate</div>
+            <div class="book-tip">Aftercare: I&rsquo;ll send it all Sunday x</div>
+          </div>
+        </div>
+        <div class="story-text">Booking, thank-you, tips, aftercare. All in her voice.</div>
+        <div class="story-label">Personalised &middot; end-to-end</div>
+      </div>
+
+      <div class="story-scene story-scene-11">
+        <div class="story-visual">
+          <div class="icon-calendar">
+            <div class="cal-slot booked d1"></div>
+            <div class="cal-slot booked d2"></div>
+            <div class="cal-slot booked d3"></div>
+            <div class="cal-slot booked d4"></div>
+            <div class="cal-slot"></div>
+            <div class="cal-slot booked d1"></div>
+            <div class="cal-slot booked d2"></div>
+            <div class="cal-slot booked d3"></div>
+            <div class="cal-slot"></div>
+            <div class="cal-slot booked d4"></div>
+            <div class="cal-slot booked d1"></div>
+            <div class="cal-slot booked d2"></div>
+            <div class="cal-slot booked d3"></div>
+            <div class="cal-slot booked d4"></div>
+            <div class="cal-slot booked d1"></div>
+          </div>
+        </div>
+        <div class="story-text">Grace tattoos. The system does the rest.</div>
+        <div class="story-label">Back to what she&rsquo;s great at</div>
       </div>
     </div>
 
