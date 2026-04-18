@@ -1297,7 +1297,7 @@ input[type="number"]::-webkit-inner-spin-button { -webkit-appearance: none; marg
   .crm-row:nth-child(2) { animation-delay: 0.25s; }
   .crm-row:nth-child(3) { animation-delay: 0.5s; }
   .crm-row:nth-child(4) { animation-delay: 0.75s; }
-  .crm-row::before { content: '\2713 '; color: rgb(94,224,163); margin-right: 8px; font-weight: 700; }
+  .crm-row::before { content: ''; width: 8px; height: 8px; background: rgb(94,224,163); border-radius: 50%; box-shadow: 0 0 8px rgba(94,224,163,0.6); margin-right: 10px; flex-shrink: 0; }
   @keyframes crmAppear { from { opacity: 0; transform: translateX(-12px); } to { opacity: 1; transform: translateX(0); } }
   .crm-email {
     flex-shrink: 0;
@@ -1391,6 +1391,139 @@ input[type="number"]::-webkit-inner-spin-button { -webkit-appearance: none; marg
     letter-spacing: 0.2em;
     padding: 4px 0;
   }
+
+  /* Scene 6: Abstract two-way dialogue */
+  .icon-diagnose {
+    width: 280px;
+    height: 120px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+  }
+  .diag-node {
+    width: 54px; height: 54px;
+    border-radius: 50%;
+    border: 2px solid rgba(233,30,140,0.7);
+    background: rgba(233,30,140,0.15);
+    flex-shrink: 0;
+    animation: nodePulse 2s ease-in-out infinite;
+  }
+  .diag-node:last-child { animation-delay: 0.7s; }
+  .diag-lines {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    padding: 0 4px;
+  }
+  .diag-line {
+    height: 2px;
+    border-radius: 2px;
+    animation: diagLine 2.4s ease-in-out infinite;
+  }
+  .diag-line.dl-1 { width: 70%; background: linear-gradient(90deg, rgba(233,30,140,0.2), rgba(233,30,140,0.8)); }
+  .diag-line.dl-2 { width: 100%; margin-left: auto; background: linear-gradient(90deg, rgba(233,30,140,0.8), rgba(233,30,140,0.2)); animation-delay: 0.6s; }
+  .diag-line.dl-3 { width: 55%; background: linear-gradient(90deg, rgba(233,30,140,0.2), rgba(233,30,140,0.8)); animation-delay: 1.2s; }
+  @keyframes diagLine {
+    0%, 100% { opacity: 0.25; }
+    50% { opacity: 1; }
+  }
+
+  /* Scene 8: Live — central node with expanding pulse rings */
+  .icon-live {
+    width: 180px;
+    height: 160px;
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .live-pulse-ring {
+    position: absolute;
+    width: 62px; height: 62px;
+    border: 2px solid rgba(94,224,163,0.75);
+    border-radius: 50%;
+    animation: livePulse 2.4s ease-out infinite;
+    opacity: 0;
+  }
+  .live-pulse-ring.lp-2 { animation-delay: 0.8s; }
+  .live-pulse-ring.lp-3 { animation-delay: 1.6s; }
+  @keyframes livePulse {
+    0% { transform: scale(1); opacity: 0.95; }
+    100% { transform: scale(2.6); opacity: 0; }
+  }
+  .live-core {
+    width: 62px; height: 62px;
+    border-radius: 16px;
+    background: rgba(233,30,140,0.25);
+    border: 2px solid rgba(233,30,140,0.95);
+    display: flex; align-items: center; justify-content: center;
+    font-family: 'Instrument Serif', serif;
+    font-style: italic;
+    color: white;
+    font-size: 28px;
+    position: relative;
+    z-index: 2;
+    box-shadow: 0 0 32px rgba(233,30,140,0.55);
+    animation: nodePulse 2s ease-in-out infinite;
+  }
+
+  /* Scene 10: Client journey — 4 touchpoints along a line */
+  .icon-journey {
+    width: 320px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    position: relative;
+    padding: 10px 0 22px;
+  }
+  .icon-journey::before {
+    content: '';
+    position: absolute;
+    top: 22px; left: 22px; right: 22px;
+    height: 2px;
+    background: linear-gradient(90deg, rgba(94,224,163,0.3), rgba(94,224,163,0.8), rgba(94,224,163,0.3));
+  }
+  .journey-step {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+    position: relative;
+    z-index: 2;
+  }
+  .journey-dot {
+    width: 24px; height: 24px;
+    border-radius: 50%;
+    border: 2px solid rgb(94,224,163);
+    background: rgba(94,224,163,0.2);
+    animation: journeyPulse 3.2s ease-in-out infinite;
+  }
+  .journey-step:nth-child(1) .journey-dot { animation-delay: 0s; }
+  .journey-step:nth-child(2) .journey-dot { animation-delay: 0.8s; }
+  .journey-step:nth-child(3) .journey-dot { animation-delay: 1.6s; }
+  .journey-step:nth-child(4) .journey-dot { animation-delay: 2.4s; }
+  @keyframes journeyPulse {
+    0%, 30%, 100% { box-shadow: 0 0 10px rgba(94,224,163,0.35); background: rgba(94,224,163,0.15); }
+    12% { box-shadow: 0 0 22px rgba(94,224,163,1); background: rgba(94,224,163,0.55); }
+  }
+  .journey-lbl {
+    font-family: 'JetBrains Mono', ui-monospace, monospace;
+    font-size: 9px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: rgba(200,240,215,0.85);
+    font-weight: 500;
+    white-space: nowrap;
+  }
+
+  /* CRM row bars (abstract, no text) */
+  .crm-bar {
+    height: 6px;
+    background: rgba(94,224,163,0.35);
+    border-radius: 2px;
+  }
 </style>
 <section id="case-study" class="relative py-28 section-alt">
   <div class="section-glow pink" style="top:-180px;left:20%;"></div>
@@ -1483,10 +1616,14 @@ input[type="number"]::-webkit-inner-spin-button { -webkit-appearance: none; marg
 
       <div class="story-scene story-scene-6">
         <div class="story-visual">
-          <div class="icon-interview">
-            <div class="iv-bubble iv-them">What&rsquo;s slowing you down?</div>
-            <div class="iv-bubble iv-me">Replies. Always replies.</div>
-            <div class="iv-bubble iv-them-2">Walk me through a Monday&hellip;</div>
+          <div class="icon-diagnose">
+            <div class="diag-node"></div>
+            <div class="diag-lines">
+              <div class="diag-line dl-1"></div>
+              <div class="diag-line dl-2"></div>
+              <div class="diag-line dl-3"></div>
+            </div>
+            <div class="diag-node"></div>
           </div>
         </div>
         <div class="story-text">Diagnosed it together.</div>
@@ -1497,11 +1634,11 @@ input[type="number"]::-webkit-inner-spin-button { -webkit-appearance: none; marg
           <div class="icon-plan">
             <div class="plan-card">
               <div class="plan-num">01</div>
-              <div class="plan-label">AI agent, trained on her voice</div>
+              <div class="plan-label">Voice-trained agent</div>
             </div>
             <div class="plan-card">
               <div class="plan-num">02</div>
-              <div class="plan-label">CRM &amp; alerts to Grace</div>
+              <div class="plan-label">CRM &amp; alerts</div>
             </div>
             <div class="plan-card">
               <div class="plan-num">03</div>
@@ -1515,23 +1652,24 @@ input[type="number"]::-webkit-inner-spin-button { -webkit-appearance: none; marg
       <!-- Act 3: Live -->
       <div class="story-scene story-scene-8">
         <div class="story-visual">
-          <div class="icon-reply">
-            <div class="ig-tag">IG</div>
-            <div class="ig-msg ig-in">Love your work! Can I book a sleeve? 😍</div>
-            <div class="ig-msg ig-out">Hey babe! 💕 Yes of course &mdash; what style?</div>
+          <div class="icon-live">
+            <div class="live-pulse-ring lp-1"></div>
+            <div class="live-pulse-ring lp-2"></div>
+            <div class="live-pulse-ring lp-3"></div>
+            <div class="live-core">K</div>
           </div>
         </div>
-        <div class="story-text">Every DM, in her voice. Instant.</div>
+        <div class="story-text">Every message, in her voice. Instant.</div>
       </div>
 
       <div class="story-scene story-scene-9">
         <div class="story-visual">
           <div class="icon-crm">
             <div class="crm-rows">
-              <div class="crm-row">Sarah M. &middot; sleeve &middot; Fri 3pm</div>
-              <div class="crm-row">Tom H. &middot; forearm &middot; Sat 11am</div>
-              <div class="crm-row">Maya R. &middot; back piece</div>
-              <div class="crm-row">Jess K. &middot; deposit paid</div>
+              <div class="crm-row"><div class="crm-bar" style="width:82%"></div></div>
+              <div class="crm-row"><div class="crm-bar" style="width:100%"></div></div>
+              <div class="crm-row"><div class="crm-bar" style="width:68%"></div></div>
+              <div class="crm-row"><div class="crm-bar" style="width:90%"></div></div>
             </div>
             <div class="crm-email">
               <svg viewBox="0 0 46 36" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
@@ -1542,21 +1680,19 @@ input[type="number"]::-webkit-inner-spin-button { -webkit-appearance: none; marg
             </div>
           </div>
         </div>
-        <div class="story-text">Captured. Logged. Emailed to Grace.</div>
+        <div class="story-text">Captured. Sent straight to Grace.</div>
       </div>
 
       <div class="story-scene story-scene-10">
         <div class="story-visual">
-          <div class="icon-booking">
-            <div class="book-from">From Grace @ Disgrace Inc.</div>
-            <div class="book-subj">See you Friday, Sarah 💕</div>
-            <div class="book-tip">Studio address</div>
-            <div class="book-tip">Wear something loose</div>
-            <div class="book-tip">Eat well, hydrate</div>
-            <div class="book-tip">Aftercare coming Sunday x</div>
+          <div class="icon-journey">
+            <div class="journey-step"><div class="journey-dot"></div><div class="journey-lbl">Book</div></div>
+            <div class="journey-step"><div class="journey-dot"></div><div class="journey-lbl">Prep</div></div>
+            <div class="journey-step"><div class="journey-dot"></div><div class="journey-lbl">Confirm</div></div>
+            <div class="journey-step"><div class="journey-dot"></div><div class="journey-lbl">Aftercare</div></div>
           </div>
         </div>
-        <div class="story-text">Booking, tips, aftercare &mdash; all in her voice.</div>
+        <div class="story-text">Personalised, start to finish.</div>
       </div>
 
       <div class="story-scene story-scene-11">
