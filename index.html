@@ -758,7 +758,7 @@ input[type="number"]::-webkit-inner-spin-button { -webkit-appearance: none; marg
     position: absolute;
     top: 0; left: 0; height: 100%;
     background: linear-gradient(90deg, rgba(255,107,107,0.7), rgba(233,30,140,0.8), rgba(94,224,163,0.8));
-    animation: progressSweep 44s linear infinite;
+    animation: progressSweep 48s linear infinite;
   }
   @keyframes progressSweep { 0% { width: 0; } 100% { width: 100%; } }
 
@@ -771,7 +771,7 @@ input[type="number"]::-webkit-inner-spin-button { -webkit-appearance: none; marg
     justify-content: center;
     padding: 32px 40px;
     opacity: 0;
-    animation-duration: 44s;
+    animation-duration: 48s;
     animation-iteration-count: infinite;
     animation-timing-function: ease-in-out;
   }
@@ -786,18 +786,20 @@ input[type="number"]::-webkit-inner-spin-button { -webkit-appearance: none; marg
   .story-scene-9  { animation-name: s9; }
   .story-scene-10 { animation-name: s10; }
   .story-scene-11 { animation-name: s11; }
+  .story-scene-12 { animation-name: s12; }
 
-  @keyframes s1  { 0%,1%  {opacity:0} 2%,8%   {opacity:1} 9%,100%  {opacity:0} }
-  @keyframes s2  { 0%,10% {opacity:0} 11%,17% {opacity:1} 18%,100% {opacity:0} }
-  @keyframes s3  { 0%,19% {opacity:0} 20%,26% {opacity:1} 27%,100% {opacity:0} }
-  @keyframes s4  { 0%,28% {opacity:0} 29%,35% {opacity:1} 36%,100% {opacity:0} }
-  @keyframes s5  { 0%,37% {opacity:0} 38%,44% {opacity:1} 45%,100% {opacity:0} }
-  @keyframes s6  { 0%,46% {opacity:0} 47%,53% {opacity:1} 54%,100% {opacity:0} }
-  @keyframes s7  { 0%,55% {opacity:0} 56%,62% {opacity:1} 63%,100% {opacity:0} }
-  @keyframes s8  { 0%,64% {opacity:0} 65%,71% {opacity:1} 72%,100% {opacity:0} }
-  @keyframes s9  { 0%,73% {opacity:0} 74%,80% {opacity:1} 81%,100% {opacity:0} }
-  @keyframes s10 { 0%,82% {opacity:0} 83%,89% {opacity:1} 90%,100% {opacity:0} }
-  @keyframes s11 { 0%,91% {opacity:0} 92%,99% {opacity:1} 100%   {opacity:0} }
+  @keyframes s1  { 0%,1%  {opacity:0} 2%,7%   {opacity:1} 8%,100%  {opacity:0} }
+  @keyframes s2  { 0%,9%  {opacity:0} 10%,15% {opacity:1} 16%,100% {opacity:0} }
+  @keyframes s3  { 0%,17% {opacity:0} 18%,23% {opacity:1} 24%,100% {opacity:0} }
+  @keyframes s4  { 0%,25% {opacity:0} 26%,31% {opacity:1} 32%,100% {opacity:0} }
+  @keyframes s5  { 0%,33% {opacity:0} 34%,39% {opacity:1} 40%,100% {opacity:0} }
+  @keyframes s6  { 0%,41% {opacity:0} 42%,47% {opacity:1} 48%,100% {opacity:0} }
+  @keyframes s7  { 0%,49% {opacity:0} 50%,55% {opacity:1} 56%,100% {opacity:0} }
+  @keyframes s8  { 0%,57% {opacity:0} 58%,63% {opacity:1} 64%,100% {opacity:0} }
+  @keyframes s9  { 0%,65% {opacity:0} 66%,71% {opacity:1} 72%,100% {opacity:0} }
+  @keyframes s10 { 0%,73% {opacity:0} 74%,79% {opacity:1} 80%,100% {opacity:0} }
+  @keyframes s11 { 0%,81% {opacity:0} 82%,87% {opacity:1} 88%,100% {opacity:0} }
+  @keyframes s12 { 0%,89% {opacity:0} 90%,99% {opacity:1} 100%   {opacity:0} }
 
   .story-visual {
     position: relative;
@@ -829,6 +831,7 @@ input[type="number"]::-webkit-inner-spin-button { -webkit-appearance: none; marg
   .story-scene-9 .story-text,
   .story-scene-10 .story-text,
   .story-scene-11 .story-text { color: rgba(130,238,180,0.98); }
+  .story-scene-12 .story-text { color: white; }
   .story-label {
     font-family: 'JetBrains Mono', ui-monospace, monospace;
     font-size: 10px;
@@ -1772,6 +1775,200 @@ input[type="number"]::-webkit-inner-spin-button { -webkit-appearance: none; marg
     font-weight: 600;
     white-space: nowrap;
   }
+
+  /* Scene 7 restructure: wire-step wraps node + label */
+  .icon-wire { align-items: flex-start; }
+  .wire-step {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+    flex-shrink: 0;
+  }
+  .wire-icon {
+    width: 26px;
+    height: 26px;
+    color: rgb(233,30,140);
+    stroke-width: 1.8;
+  }
+  .wire-lbl {
+    font-family: 'JetBrains Mono', ui-monospace, monospace;
+    font-size: 10px;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: rgba(255,210,230,0.92);
+    font-weight: 600;
+  }
+  .icon-wire .wire-line {
+    margin-top: 28px; /* align to centre of 56px node */
+    flex: 1;
+  }
+
+  /* Scene 8 rebuild: Grace's voice bubble with sent checkmarks */
+  .icon-voice-send {
+    width: 280px;
+    height: 150px;
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 24px;
+  }
+  .vs-bubble {
+    width: 150px;
+    padding: 14px 16px;
+    background: rgba(233,30,140,0.18);
+    border: 2px solid rgba(233,30,140,0.9);
+    border-radius: 14px 14px 14px 4px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    box-shadow: 0 0 28px rgba(233,30,140,0.45);
+    position: relative;
+    z-index: 2;
+  }
+  .vs-g {
+    width: 34px; height: 34px;
+    border-radius: 50%;
+    background: rgb(233,30,140);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: 'Instrument Serif', serif;
+    font-style: italic;
+    color: white;
+    font-size: 19px;
+    flex-shrink: 0;
+    box-shadow: 0 0 14px rgba(233,30,140,0.8);
+  }
+  .vs-lines {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+  }
+  .vs-line {
+    height: 4px;
+    background: rgba(255,210,230,0.75);
+    border-radius: 2px;
+  }
+  .vs-line.vs-line-short { width: 65%; }
+  .vs-outs {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    align-items: center;
+  }
+  .vs-out {
+    width: 28px; height: 28px;
+    border-radius: 50%;
+    background: rgba(94,224,163,0.22);
+    border: 2px solid rgb(94,224,163);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: rgb(94,224,163);
+    font-weight: 700;
+    font-size: 14px;
+    box-shadow: 0 0 12px rgba(94,224,163,0.4);
+    animation: vsOut 2.2s ease-in-out infinite;
+  }
+  .vs-out:nth-child(2) { animation-delay: 0.35s; }
+  .vs-out:nth-child(3) { animation-delay: 0.7s; }
+  @keyframes vsOut {
+    0%, 60%, 100% { opacity: 0.35; transform: scale(0.9); }
+    25% { opacity: 1; transform: scale(1.1); }
+  }
+  .vs-out::before { content: '\2713'; }
+
+  /* Scene 11 updates: Grace's day card with avatar + stat */
+  .gt-header {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 12px;
+  }
+  .gt-avatar {
+    width: 28px; height: 28px;
+    border-radius: 50%;
+    background: rgb(233,30,140);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: 'Instrument Serif', serif;
+    font-style: italic;
+    color: white;
+    font-size: 16px;
+    flex-shrink: 0;
+    box-shadow: 0 0 12px rgba(233,30,140,0.6);
+  }
+  .gt-header .gt-title {
+    margin: 0;
+  }
+  .gt-stat {
+    margin-top: 2px;
+    padding: 8px 0 0;
+  }
+  .gt-stat-label {
+    font-family: 'JetBrains Mono', ui-monospace, monospace;
+    font-size: 9px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.5);
+    margin-bottom: 4px;
+  }
+  .gt-stat-delta {
+    display: flex;
+    align-items: baseline;
+    gap: 6px;
+    flex-wrap: wrap;
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 12px;
+  }
+  .gt-was {
+    color: rgba(255,170,170,0.85);
+    text-decoration: line-through;
+    font-weight: 500;
+  }
+  .gt-arr { color: rgba(255,255,255,0.5); }
+  .gt-now {
+    color: rgb(94,224,163);
+    font-weight: 700;
+    letter-spacing: 0.01em;
+  }
+
+  /* Scene 12: Invite / CTA finale */
+  .icon-invite {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 16px;
+  }
+  .invite-k {
+    width: 84px; height: 84px;
+    background: rgba(233,30,140,0.22);
+    border: 2px solid rgb(233,30,140);
+    border-radius: 22px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: 'Instrument Serif', serif;
+    font-style: italic;
+    color: white;
+    font-size: 44px;
+    box-shadow: 0 0 36px rgba(233,30,140,0.6);
+    animation: nodePulse 2s ease-in-out infinite;
+  }
+  .invite-arrow {
+    font-size: 26px;
+    color: rgb(233,30,140);
+    animation: arrowBounce 1.4s ease-in-out infinite;
+    text-shadow: 0 0 14px rgba(233,30,140,0.7);
+  }
+  @keyframes arrowBounce {
+    0%, 100% { transform: translateY(0); opacity: 0.7; }
+    50% { transform: translateY(8px); opacity: 1; }
+  }
 </style>
 <section id="case-study" class="relative py-28 section-alt">
   <div class="section-glow pink" style="top:-180px;left:20%;"></div>
@@ -1802,7 +1999,7 @@ input[type="number"]::-webkit-inner-spin-button { -webkit-appearance: none; marg
           <div class="msg-bubble msg-b2">missed call</div>
           <div class="msg-bubble msg-b3">new DM</div>
         </div>
-        <div class="story-text">Messages flood in all day.</div>
+        <div class="story-text">Messages flooded in all day.</div>
       </div>
 
       <div class="story-scene story-scene-2">
@@ -1816,7 +2013,7 @@ input[type="number"]::-webkit-inner-spin-button { -webkit-appearance: none; marg
             <div class="clock-centre"></div>
           </div>
         </div>
-        <div class="story-text">She&rsquo;s mid-tattoo. Can&rsquo;t reply.</div>
+        <div class="story-text">She was mid-tattoo. Couldn&rsquo;t reply.</div>
       </div>
 
       <div class="story-scene story-scene-3">
@@ -1827,7 +2024,7 @@ input[type="number"]::-webkit-inner-spin-button { -webkit-appearance: none; marg
             <div class="drift-bubble drift-b3">gone cold</div>
           </div>
         </div>
-        <div class="story-text">Leads walk away.</div>
+        <div class="story-text">Leads walked away.</div>
       </div>
 
       <div class="story-scene story-scene-4">
@@ -1841,7 +2038,7 @@ input[type="number"]::-webkit-inner-spin-button { -webkit-appearance: none; marg
             <div class="chaos-q">?</div>
           </div>
         </div>
-        <div class="story-text">Client information is scattered.</div>
+        <div class="story-text">Client information was scattered.</div>
       </div>
 
       <!-- Act 2: The engagement -->
@@ -1873,11 +2070,26 @@ input[type="number"]::-webkit-inner-spin-button { -webkit-appearance: none; marg
       <div class="story-scene story-scene-7">
         <div class="story-visual">
           <div class="icon-wire">
-            <div class="wire-node wn-1">01</div>
+            <div class="wire-step">
+              <div class="wire-node wn-1">
+                <svg class="wire-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><path d="M4 5h16v10H10l-4 4v-4H4z"/><circle cx="9" cy="10" r="0.8" fill="currentColor"/><circle cx="12" cy="10" r="0.8" fill="currentColor"/><circle cx="15" cy="10" r="0.8" fill="currentColor"/></svg>
+              </div>
+              <div class="wire-lbl">Voice</div>
+            </div>
             <div class="wire-line wl-1"></div>
-            <div class="wire-node wn-2">02</div>
+            <div class="wire-step">
+              <div class="wire-node wn-2">
+                <svg class="wire-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3a5 5 0 00-5 5v3l-1.5 2.5h13L17 11V8a5 5 0 00-5-5z"/><path d="M10 19a2 2 0 004 0"/></svg>
+              </div>
+              <div class="wire-lbl">CRM</div>
+            </div>
             <div class="wire-line wl-2"></div>
-            <div class="wire-node wn-3">03</div>
+            <div class="wire-step">
+              <div class="wire-node wn-3">
+                <svg class="wire-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20s-7-4.5-7-10.5A4 4 0 0112 6a4 4 0 017 3.5C19 15.5 12 20 12 20z"/></svg>
+              </div>
+              <div class="wire-lbl">Aftercare</div>
+            </div>
           </div>
         </div>
         <div class="story-text">Mapped out the system she needed.</div>
@@ -1886,15 +2098,23 @@ input[type="number"]::-webkit-inner-spin-button { -webkit-appearance: none; marg
       <!-- Act 3: Live -->
       <div class="story-scene story-scene-8">
         <div class="story-visual">
-          <div class="icon-live">
-            <div class="live-msg live-m1"></div>
-            <div class="live-msg live-m2"></div>
-            <div class="live-msg live-m3"></div>
-            <div class="live-msg live-m4"></div>
-            <div class="live-core">K</div>
+          <div class="icon-voice-send">
+            <div class="vs-bubble">
+              <div class="vs-g">G</div>
+              <div class="vs-lines">
+                <div class="vs-line"></div>
+                <div class="vs-line"></div>
+                <div class="vs-line vs-line-short"></div>
+              </div>
+            </div>
+            <div class="vs-outs">
+              <div class="vs-out"></div>
+              <div class="vs-out"></div>
+              <div class="vs-out"></div>
+            </div>
           </div>
         </div>
-        <div class="story-text">Every message, in her voice. Instant.</div>
+        <div class="story-text">Every reply sounded like her. Instantly.</div>
       </div>
 
       <div class="story-scene story-scene-9">
@@ -1940,14 +2160,35 @@ input[type="number"]::-webkit-inner-spin-button { -webkit-appearance: none; marg
       <div class="story-scene story-scene-11">
         <div class="story-visual">
           <div class="grace-tasks">
-            <div class="gt-title">Grace&rsquo;s day</div>
+            <div class="gt-header">
+              <div class="gt-avatar">G</div>
+              <div class="gt-title">Grace&rsquo;s day</div>
+            </div>
             <div class="gt-row"><span class="gt-check"></span>Quote the tattoo</div>
             <div class="gt-row"><span class="gt-check"></span>Confirm the date</div>
             <div class="gt-divider"></div>
-            <div class="gt-auto">Everything else &middot; automated</div>
+            <div class="gt-stat">
+              <div class="gt-stat-label">Reply time</div>
+              <div class="gt-stat-delta">
+                <span class="gt-was">1 hr &ndash; 3 days</span>
+                <span class="gt-arr">&rarr;</span>
+                <span class="gt-now">Instant &middot; 24/7</span>
+              </div>
+            </div>
           </div>
         </div>
         <div class="story-text">Faster bookings. Same personal touch.</div>
+      </div>
+
+      <!-- Finale: invitation -->
+      <div class="story-scene story-scene-12">
+        <div class="story-visual">
+          <div class="icon-invite">
+            <div class="invite-k">K</div>
+            <div class="invite-arrow">&darr;</div>
+          </div>
+        </div>
+        <div class="story-text">Want this running in your business?</div>
       </div>
     </div>
 
