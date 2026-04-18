@@ -1113,8 +1113,8 @@ input[type="number"]::-webkit-inner-spin-button { -webkit-appearance: none; marg
   .chaos-c5 { top: 128px; left: 40px;  transform: rotate(-3deg); }
   .chaos-q { position: absolute; bottom: -6px; right: -8px; font-family: 'Instrument Serif', serif; font-style: italic; font-size: 40px; color: rgba(255,107,107,0.7); animation: bubbleFloat 1.8s ease-in-out infinite; }
 
-  /* Scene 5: Disgrace + Kaizen merge */
-  .icon-union { position: relative; width: 280px; height: 120px; display: flex; align-items: center; justify-content: center; }
+  /* Scene 5: Disgrace + Kaizen meet */
+  .icon-union { position: relative; width: 340px; height: 120px; display: flex; align-items: center; justify-content: space-between; }
   .union-badge {
     padding: 10px 18px;
     border-radius: 10px;
@@ -1122,34 +1122,31 @@ input[type="number"]::-webkit-inner-spin-button { -webkit-appearance: none; marg
     font-style: italic;
     font-size: 18px;
     letter-spacing: -0.01em;
-    position: absolute;
-    top: 50%;
-    transform: translateY(-50%);
+    white-space: nowrap;
   }
   .union-left {
-    left: 0;
     background: rgba(255,255,255,0.06);
     border: 1px solid rgba(255,255,255,0.25);
     color: rgba(255,255,255,0.9);
-    animation: unionLeft 4s ease-in-out infinite;
   }
   .union-right {
-    right: 0;
     background: rgba(233,30,140,0.15);
     border: 1px solid rgba(233,30,140,0.6);
     color: white;
-    animation: unionRight 4s ease-in-out infinite;
+    box-shadow: 0 0 20px rgba(233,30,140,0.2);
   }
   .union-spark {
-    width: 12px; height: 12px;
+    width: 14px; height: 14px;
     background: rgb(233,30,140);
     border-radius: 50%;
-    box-shadow: 0 0 32px 8px rgba(233,30,140,0.7);
-    animation: unionSpark 4s ease-in-out infinite;
+    box-shadow: 0 0 32px 10px rgba(233,30,140,0.7);
+    animation: unionSpark 2.4s ease-in-out infinite;
+    flex-shrink: 0;
   }
-  @keyframes unionLeft { 0%,40% { transform: translate(0, -50%); } 50%,100% { transform: translate(32px, -50%); } }
-  @keyframes unionRight { 0%,40% { transform: translate(0, -50%); } 50%,100% { transform: translate(-32px, -50%); } }
-  @keyframes unionSpark { 0%,40% { opacity: 0; transform: scale(0.3); } 55%,100% { opacity: 1; transform: scale(1); } }
+  @keyframes unionSpark {
+    0%, 100% { opacity: 0.6; transform: scale(0.9); }
+    50% { opacity: 1; transform: scale(1.2); }
+  }
 
   /* Scene 6: Discovery — conversation bubbles */
   .icon-interview { position: relative; width: 260px; height: 150px; }
@@ -1190,24 +1187,26 @@ input[type="number"]::-webkit-inner-spin-button { -webkit-appearance: none; marg
   }
 
   /* Scene 7: Voice captured + system trained */
-  .icon-voice { position: relative; width: 280px; height: 130px; display: flex; align-items: center; justify-content: space-between; }
+  .icon-voice { position: relative; width: 320px; height: 130px; display: flex; align-items: center; justify-content: center; gap: 10px; }
   .voice-sample {
     background: rgba(233,30,140,0.12);
     border: 1px solid rgba(233,30,140,0.45);
     border-radius: 10px 10px 10px 3px;
-    padding: 10px 12px;
+    padding: 8px 10px;
     font-family: 'Instrument Serif', serif;
     font-style: italic;
-    font-size: 13px;
+    font-size: 12px;
     color: rgba(255,230,242,0.95);
-    max-width: 100px;
-    line-height: 1.3;
+    line-height: 1.25;
+    white-space: nowrap;
+    flex-shrink: 0;
   }
   .voice-arrow {
     font-family: 'JetBrains Mono', ui-monospace, monospace;
-    font-size: 18px;
+    font-size: 20px;
     color: rgba(233,30,140,0.7);
     animation: voiceFlow 1.8s ease-in-out infinite;
+    flex-shrink: 0;
   }
   @keyframes voiceFlow {
     0%, 100% { opacity: 0.4; transform: translateX(-3px); }
@@ -1347,6 +1346,57 @@ input[type="number"]::-webkit-inner-spin-button { -webkit-appearance: none; marg
     letter-spacing: 0.02em;
   }
   .book-tip::before { content: '\2022'; color: rgb(94,224,163); font-weight: 700; font-size: 14px; }
+
+  /* Scene 11: Grace's two remaining tasks */
+  .grace-tasks {
+    width: 260px;
+    padding: 16px 18px;
+    background: rgba(94,224,163,0.05);
+    border: 1px solid rgba(94,224,163,0.4);
+    border-radius: 12px;
+    font-family: 'Space Grotesk', sans-serif;
+    box-shadow: 0 0 32px rgba(94,224,163,0.15);
+  }
+  .gt-title {
+    font-family: 'Instrument Serif', serif;
+    font-style: italic;
+    font-size: 16px;
+    color: white;
+    margin-bottom: 12px;
+    letter-spacing: -0.01em;
+  }
+  .gt-row {
+    display: flex; gap: 10px; align-items: center;
+    font-size: 12px;
+    padding: 6px 0;
+    color: rgba(210,245,225,0.98);
+    font-weight: 500;
+  }
+  .gt-check {
+    width: 18px; height: 18px;
+    background: rgba(94,224,163,0.25);
+    border: 1.5px solid rgb(94,224,163);
+    border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 10px;
+    color: rgb(94,224,163);
+    font-weight: 700;
+    flex-shrink: 0;
+  }
+  .gt-check::before { content: '\2713'; }
+  .gt-divider {
+    height: 1px;
+    background: rgba(255,255,255,0.1);
+    margin: 8px 0 6px;
+  }
+  .gt-auto {
+    font-family: 'JetBrains Mono', ui-monospace, monospace;
+    font-size: 9px;
+    color: rgba(255,255,255,0.35);
+    text-transform: uppercase;
+    letter-spacing: 0.2em;
+    padding: 4px 0;
+  }
 </style>
 <section id="case-study" class="relative py-28 section-alt">
   <div class="section-glow pink" style="top:-180px;left:20%;"></div>
@@ -1377,8 +1427,7 @@ input[type="number"]::-webkit-inner-spin-button { -webkit-appearance: none; marg
           <div class="msg-bubble msg-b2">missed call</div>
           <div class="msg-bubble msg-b3">new DM</div>
         </div>
-        <div class="story-text">Phone ringing. DMs piling up.</div>
-        <div class="story-label">Monday, 10:14 AM</div>
+        <div class="story-text">Messages flood in all day.</div>
       </div>
 
       <div class="story-scene story-scene-2">
@@ -1398,35 +1447,32 @@ input[type="number"]::-webkit-inner-spin-button { -webkit-appearance: none; marg
             <div class="msg-stack-item"></div>
           </div>
         </div>
-        <div class="story-text">Grace is mid-tattoo. Hands can&rsquo;t reply.</div>
-        <div class="story-label">Hours become days</div>
+        <div class="story-text">She&rsquo;s mid-tattoo. Can&rsquo;t reply.</div>
       </div>
 
       <div class="story-scene story-scene-3">
         <div class="story-visual">
           <div class="icon-drift">
-            <div class="drift-bubble drift-b1">still waiting...</div>
-            <div class="drift-bubble drift-b2">nvm, booked elsewhere</div>
+            <div class="drift-bubble drift-b1">still waiting&hellip;</div>
+            <div class="drift-bubble drift-b2">booked elsewhere</div>
             <div class="drift-bubble drift-b3">gone cold</div>
           </div>
         </div>
-        <div class="story-text">Leads wait. Leads leave.</div>
-        <div class="story-label">Revenue walking out</div>
+        <div class="story-text">Leads walk away.</div>
       </div>
 
       <div class="story-scene story-scene-4">
         <div class="story-visual">
           <div class="icon-chaos">
-            <div class="chaos-card chaos-c1">Sarah &mdash; sleeve design?</div>
-            <div class="chaos-card chaos-c2">Tom &mdash; 3pm Friday</div>
-            <div class="chaos-card chaos-c3">Maya &mdash; allergy note</div>
-            <div class="chaos-card chaos-c4">Jess &mdash; deposit paid</div>
+            <div class="chaos-card chaos-c1">Sarah &mdash; sleeve?</div>
+            <div class="chaos-card chaos-c2">Tom &mdash; 3pm Fri</div>
+            <div class="chaos-card chaos-c3">Maya &mdash; allergy</div>
+            <div class="chaos-card chaos-c4">Jess &mdash; deposit</div>
             <div class="chaos-card chaos-c5">+ 40 more</div>
             <div class="chaos-q">?</div>
           </div>
         </div>
-        <div class="story-text">Client info scattered everywhere. Nothing tracked.</div>
-        <div class="story-label">DMs, notes, texts, memory</div>
+        <div class="story-text">Client info, everywhere.</div>
       </div>
 
       <!-- Act 2: The engagement -->
@@ -1439,33 +1485,30 @@ input[type="number"]::-webkit-inner-spin-button { -webkit-appearance: none; marg
           </div>
         </div>
         <div class="story-text">Grace met Kaizen.</div>
-        <div class="story-label">The first call</div>
       </div>
 
       <div class="story-scene story-scene-6">
         <div class="story-visual">
           <div class="icon-interview">
-            <div class="iv-bubble iv-them">What&rsquo;s actually slowing you down?</div>
+            <div class="iv-bubble iv-them">What&rsquo;s slowing you down?</div>
             <div class="iv-bubble iv-me">Replies. Always replies.</div>
-            <div class="iv-bubble iv-them-2">Show me a typical Monday&hellip;</div>
+            <div class="iv-bubble iv-them-2">Walk me through a Monday&hellip;</div>
           </div>
         </div>
-        <div class="story-text">We sat down. Diagnosed the bottleneck together.</div>
-        <div class="story-label">Discovery &middot; interview</div>
+        <div class="story-text">We mapped the bottleneck.</div>
       </div>
 
       <div class="story-scene story-scene-7">
         <div class="story-visual">
           <div class="icon-voice">
-            <div class="voice-sample">&ldquo;Hey babe&hellip; absolutely 💕&rdquo;</div>
+            <div class="voice-sample">&ldquo;hey babe 💕&rdquo;</div>
             <div class="voice-arrow">&raquo;</div>
             <div class="voice-brain">K</div>
             <div class="voice-arrow">&raquo;</div>
-            <div class="voice-sample">&ldquo;Hey babe&hellip; absolutely 💕&rdquo;</div>
+            <div class="voice-sample">&ldquo;hey babe 💕&rdquo;</div>
           </div>
         </div>
-        <div class="story-text">We trained the system in Grace&rsquo;s voice. Tested. Retested.</div>
-        <div class="story-label">Build &middot; trial &middot; refine</div>
+        <div class="story-text">Trained on her voice.</div>
       </div>
 
       <!-- Act 3: Live -->
@@ -1474,11 +1517,10 @@ input[type="number"]::-webkit-inner-spin-button { -webkit-appearance: none; marg
           <div class="icon-reply">
             <div class="ig-tag">IG</div>
             <div class="ig-msg ig-in">Love your work! Can I book a sleeve? 😍</div>
-            <div class="ig-msg ig-out">Hey babe! 💕 Yes of course &mdash; what style are you thinking?</div>
+            <div class="ig-msg ig-out">Hey babe! 💕 Yes of course &mdash; what style?</div>
           </div>
         </div>
-        <div class="story-text">Every Instagram message, answered in her voice. Instantly.</div>
-        <div class="story-label">Live &middot; 24/7</div>
+        <div class="story-text">Every DM, in her voice. Instant.</div>
       </div>
 
       <div class="story-scene story-scene-9">
@@ -1487,14 +1529,13 @@ input[type="number"]::-webkit-inner-spin-button { -webkit-appearance: none; marg
             <div class="crm-rows">
               <div class="crm-row">Sarah M. &middot; sleeve &middot; Fri 3pm</div>
               <div class="crm-row">Tom H. &middot; forearm &middot; Sat 11am</div>
-              <div class="crm-row">Maya R. &middot; back piece &middot; next week</div>
+              <div class="crm-row">Maya R. &middot; back piece</div>
               <div class="crm-row">Jess K. &middot; deposit paid</div>
             </div>
             <div class="crm-email"></div>
           </div>
         </div>
-        <div class="story-text">Every detail captured. Logged in her CRM. Emailed to Grace.</div>
-        <div class="story-label">Simple &middot; sorted &middot; automatic</div>
+        <div class="story-text">Captured. Logged. Emailed to Grace.</div>
       </div>
 
       <div class="story-scene story-scene-10">
@@ -1502,38 +1543,26 @@ input[type="number"]::-webkit-inner-spin-button { -webkit-appearance: none; marg
           <div class="icon-booking">
             <div class="book-from">From Grace @ Disgrace Inc.</div>
             <div class="book-subj">See you Friday, Sarah 💕</div>
-            <div class="book-tip">Studio address &amp; what&rsquo;s nearby</div>
+            <div class="book-tip">Studio address</div>
             <div class="book-tip">Wear something loose</div>
-            <div class="book-tip">Eat well beforehand, hydrate</div>
-            <div class="book-tip">Aftercare: I&rsquo;ll send it all Sunday x</div>
+            <div class="book-tip">Eat well, hydrate</div>
+            <div class="book-tip">Aftercare coming Sunday x</div>
           </div>
         </div>
-        <div class="story-text">Booking, thank-you, tips, aftercare. All in her voice.</div>
-        <div class="story-label">Personalised &middot; end-to-end</div>
+        <div class="story-text">Booking, tips, aftercare &mdash; all in her voice.</div>
       </div>
 
       <div class="story-scene story-scene-11">
         <div class="story-visual">
-          <div class="icon-calendar">
-            <div class="cal-slot booked d1"></div>
-            <div class="cal-slot booked d2"></div>
-            <div class="cal-slot booked d3"></div>
-            <div class="cal-slot booked d4"></div>
-            <div class="cal-slot"></div>
-            <div class="cal-slot booked d1"></div>
-            <div class="cal-slot booked d2"></div>
-            <div class="cal-slot booked d3"></div>
-            <div class="cal-slot"></div>
-            <div class="cal-slot booked d4"></div>
-            <div class="cal-slot booked d1"></div>
-            <div class="cal-slot booked d2"></div>
-            <div class="cal-slot booked d3"></div>
-            <div class="cal-slot booked d4"></div>
-            <div class="cal-slot booked d1"></div>
+          <div class="grace-tasks">
+            <div class="gt-title">Grace&rsquo;s day</div>
+            <div class="gt-row"><span class="gt-check"></span>Quote the tattoo</div>
+            <div class="gt-row"><span class="gt-check"></span>Confirm the date</div>
+            <div class="gt-divider"></div>
+            <div class="gt-auto">Everything else &middot; automated</div>
           </div>
         </div>
-        <div class="story-text">Grace tattoos. The system does the rest.</div>
-        <div class="story-label">Back to what she&rsquo;s great at</div>
+        <div class="story-text">Grace just quotes. And picks the date.</div>
       </div>
     </div>
 
