@@ -1186,43 +1186,44 @@ input[type="number"]::-webkit-inner-spin-button { -webkit-appearance: none; marg
     animation-delay: 1.2s;
   }
 
-  /* Scene 7: Voice captured + system trained */
-  .icon-voice { position: relative; width: 320px; height: 130px; display: flex; align-items: center; justify-content: center; gap: 10px; }
-  .voice-sample {
-    background: rgba(233,30,140,0.12);
-    border: 1px solid rgba(233,30,140,0.45);
-    border-radius: 10px 10px 10px 3px;
-    padding: 8px 10px;
-    font-family: 'Instrument Serif', serif;
-    font-style: italic;
-    font-size: 12px;
-    color: rgba(255,230,242,0.95);
-    line-height: 1.25;
-    white-space: nowrap;
-    flex-shrink: 0;
+  /* Scene 7: Mapped the system — three planned components */
+  .icon-plan {
+    width: 340px;
+    display: flex;
+    gap: 8px;
+    justify-content: center;
+    align-items: stretch;
   }
-  .voice-arrow {
+  .plan-card {
+    flex: 1;
+    padding: 14px 10px;
+    background: rgba(233,30,140,0.08);
+    border: 1px solid rgba(233,30,140,0.5);
+    border-radius: 10px;
+    text-align: center;
+    animation: planPulse 2.8s ease-in-out infinite;
+    box-shadow: 0 0 16px rgba(233,30,140,0.1);
+  }
+  .plan-card:nth-child(2) { animation-delay: 0.4s; }
+  .plan-card:nth-child(3) { animation-delay: 0.8s; }
+  @keyframes planPulse {
+    0%, 100% { box-shadow: 0 0 16px rgba(233,30,140,0.1); border-color: rgba(233,30,140,0.45); }
+    50% { box-shadow: 0 0 28px rgba(233,30,140,0.35); border-color: rgba(233,30,140,0.85); }
+  }
+  .plan-num {
     font-family: 'JetBrains Mono', ui-monospace, monospace;
-    font-size: 20px;
-    color: rgba(233,30,140,0.7);
-    animation: voiceFlow 1.8s ease-in-out infinite;
-    flex-shrink: 0;
+    font-size: 10px;
+    letter-spacing: 0.2em;
+    color: rgba(233,30,140,0.95);
+    margin-bottom: 8px;
+    font-weight: 600;
   }
-  @keyframes voiceFlow {
-    0%, 100% { opacity: 0.4; transform: translateX(-3px); }
-    50% { opacity: 1; transform: translateX(3px); }
-  }
-  .voice-brain {
-    width: 54px; height: 54px;
-    background: rgba(233,30,140,0.2);
-    border: 2px solid rgba(233,30,140,0.9);
-    border-radius: 14px;
-    display: flex; align-items: center; justify-content: center;
-    font-family: 'Instrument Serif', serif;
-    font-style: italic;
-    color: white;
-    font-size: 22px;
-    animation: nodePulse 2s ease-in-out infinite;
+  .plan-label {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 11px;
+    color: rgba(255,255,255,0.94);
+    font-weight: 500;
+    line-height: 1.3;
   }
 
   /* Scene 8: Instagram reply in her voice */
@@ -1265,10 +1266,14 @@ input[type="number"]::-webkit-inner-spin-button { -webkit-appearance: none; marg
   }
 
   /* Scene 9: CRM + email to Grace */
-  .icon-crm { position: relative; width: 280px; height: 150px; }
+  .icon-crm {
+    width: 320px;
+    display: flex;
+    gap: 16px;
+    align-items: center;
+  }
   .crm-rows {
-    position: absolute;
-    inset: 0 60px 0 0;
+    flex: 1;
     display: flex;
     flex-direction: column;
     gap: 5px;
@@ -1276,54 +1281,43 @@ input[type="number"]::-webkit-inner-spin-button { -webkit-appearance: none; marg
   .crm-row {
     height: 22px;
     background: rgba(94,224,163,0.08);
-    border: 1px solid rgba(94,224,163,0.25);
+    border: 1px solid rgba(94,224,163,0.28);
     border-radius: 4px;
     display: flex;
     align-items: center;
     padding: 0 10px;
     font-family: 'JetBrains Mono', ui-monospace, monospace;
     font-size: 10px;
-    color: rgba(180,230,200,0.85);
+    color: rgba(200,240,215,0.9);
     letter-spacing: 0.02em;
-    animation: crmAppear 2s ease-out forwards;
+    animation: crmAppear 1.6s ease-out forwards;
     opacity: 0;
   }
   .crm-row:nth-child(1) { animation-delay: 0s; }
-  .crm-row:nth-child(2) { animation-delay: 0.35s; }
-  .crm-row:nth-child(3) { animation-delay: 0.7s; }
-  .crm-row:nth-child(4) { animation-delay: 1.05s; }
+  .crm-row:nth-child(2) { animation-delay: 0.25s; }
+  .crm-row:nth-child(3) { animation-delay: 0.5s; }
+  .crm-row:nth-child(4) { animation-delay: 0.75s; }
   .crm-row::before { content: '\2713 '; color: rgb(94,224,163); margin-right: 8px; font-weight: 700; }
   @keyframes crmAppear { from { opacity: 0; transform: translateX(-12px); } to { opacity: 1; transform: translateX(0); } }
   .crm-email {
-    position: absolute;
-    right: 0; top: 50%;
-    transform: translateY(-50%);
-    width: 48px; height: 40px;
-    background: rgba(94,224,163,0.15);
-    border: 1.5px solid rgba(94,224,163,0.6);
-    border-radius: 6px;
-    animation: nodePulse 1.6s ease-in-out infinite;
+    flex-shrink: 0;
+    width: 46px;
+    height: 36px;
+    position: relative;
+    animation: nodePulse 1.8s ease-in-out infinite;
   }
-  .crm-email::before {
-    content: '';
+  .crm-email svg { display: block; width: 100%; height: 100%; }
+  .crm-email-dot {
     position: absolute;
-    inset: 2px;
-    border-top: 14px solid rgba(94,224,163,0.8);
-    border-left: 24px solid transparent;
-    border-right: 24px solid transparent;
-  }
-  .crm-email::after {
-    content: '\2709';
-    position: absolute;
-    top: -12px; right: -12px;
-    width: 22px; height: 22px;
+    top: -5px;
+    right: -5px;
+    width: 14px;
+    height: 14px;
     background: rgb(94,224,163);
-    color: #04130a;
     border-radius: 50%;
-    display: flex; align-items: center; justify-content: center;
-    font-size: 12px;
-    font-weight: 700;
+    box-shadow: 0 0 12px rgba(94,224,163,0.95);
     animation: badgePulse 1.4s ease-in-out infinite;
+    border: 2px solid #08080e;
   }
 
   /* Scene 10: Booking confirmation email — personalised */
@@ -1495,20 +1489,27 @@ input[type="number"]::-webkit-inner-spin-button { -webkit-appearance: none; marg
             <div class="iv-bubble iv-them-2">Walk me through a Monday&hellip;</div>
           </div>
         </div>
-        <div class="story-text">We mapped the bottleneck.</div>
+        <div class="story-text">Diagnosed it together.</div>
       </div>
 
       <div class="story-scene story-scene-7">
         <div class="story-visual">
-          <div class="icon-voice">
-            <div class="voice-sample">&ldquo;hey babe 💕&rdquo;</div>
-            <div class="voice-arrow">&raquo;</div>
-            <div class="voice-brain">K</div>
-            <div class="voice-arrow">&raquo;</div>
-            <div class="voice-sample">&ldquo;hey babe 💕&rdquo;</div>
+          <div class="icon-plan">
+            <div class="plan-card">
+              <div class="plan-num">01</div>
+              <div class="plan-label">AI agent, trained on her voice</div>
+            </div>
+            <div class="plan-card">
+              <div class="plan-num">02</div>
+              <div class="plan-label">CRM &amp; alerts to Grace</div>
+            </div>
+            <div class="plan-card">
+              <div class="plan-num">03</div>
+              <div class="plan-label">Confirmations &amp; aftercare</div>
+            </div>
           </div>
         </div>
-        <div class="story-text">Trained on her voice.</div>
+        <div class="story-text">Mapped out the system she needed.</div>
       </div>
 
       <!-- Act 3: Live -->
@@ -1532,7 +1533,13 @@ input[type="number"]::-webkit-inner-spin-button { -webkit-appearance: none; marg
               <div class="crm-row">Maya R. &middot; back piece</div>
               <div class="crm-row">Jess K. &middot; deposit paid</div>
             </div>
-            <div class="crm-email"></div>
+            <div class="crm-email">
+              <svg viewBox="0 0 46 36" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                <rect x="2" y="6" width="42" height="28" rx="4" fill="rgba(94,224,163,0.14)" stroke="rgba(94,224,163,0.9)" stroke-width="1.5"/>
+                <path d="M4 10 L23 23 L42 10" fill="none" stroke="rgba(94,224,163,0.9)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+              <div class="crm-email-dot"></div>
+            </div>
           </div>
         </div>
         <div class="story-text">Captured. Logged. Emailed to Grace.</div>
