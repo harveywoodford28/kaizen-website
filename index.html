@@ -758,7 +758,7 @@ input[type="number"]::-webkit-inner-spin-button { -webkit-appearance: none; marg
     position: absolute;
     top: 0; left: 0; height: 100%;
     background: linear-gradient(90deg, rgba(255,107,107,0.7), rgba(233,30,140,0.8), rgba(94,224,163,0.8));
-    animation: progressSweep 60s linear infinite;
+    animation: progressSweep 44s linear infinite;
   }
   @keyframes progressSweep { 0% { width: 0; } 100% { width: 100%; } }
 
@@ -771,7 +771,7 @@ input[type="number"]::-webkit-inner-spin-button { -webkit-appearance: none; marg
     justify-content: center;
     padding: 32px 40px;
     opacity: 0;
-    animation-duration: 60s;
+    animation-duration: 44s;
     animation-iteration-count: infinite;
     animation-timing-function: ease-in-out;
   }
@@ -818,9 +818,17 @@ input[type="number"]::-webkit-inner-spin-button { -webkit-appearance: none; marg
     max-width: 400px;
     letter-spacing: -0.01em;
   }
-  .story-scene-1 .story-text, .story-scene-2 .story-text { color: rgba(255,170,170,0.95); }
-  .story-scene-3 .story-text { color: rgba(255,255,255,0.92); }
-  .story-scene-4 .story-text { color: rgba(130,238,180,0.98); }
+  .story-scene-1 .story-text,
+  .story-scene-2 .story-text,
+  .story-scene-3 .story-text,
+  .story-scene-4 .story-text { color: rgba(255,170,170,0.95); }
+  .story-scene-5 .story-text,
+  .story-scene-6 .story-text,
+  .story-scene-7 .story-text { color: rgba(255,255,255,0.95); }
+  .story-scene-8 .story-text,
+  .story-scene-9 .story-text,
+  .story-scene-10 .story-text,
+  .story-scene-11 .story-text { color: rgba(130,238,180,0.98); }
   .story-label {
     font-family: 'JetBrains Mono', ui-monospace, monospace;
     font-size: 10px;
@@ -1524,6 +1532,126 @@ input[type="number"]::-webkit-inner-spin-button { -webkit-appearance: none; marg
     background: rgba(94,224,163,0.35);
     border-radius: 2px;
   }
+
+  /* Scene 5: Kaizen stepped in — K badge with spinning pink arc */
+  .icon-start {
+    width: 140px;
+    height: 140px;
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .start-ring {
+    position: absolute;
+    inset: 0;
+    border-radius: 50%;
+    border: 2px solid transparent;
+    border-top-color: rgb(233,30,140);
+    border-right-color: rgba(233,30,140,0.35);
+    animation: startSpin 2.4s linear infinite;
+    box-shadow: 0 0 24px rgba(233,30,140,0.3);
+  }
+  @keyframes startSpin { to { transform: rotate(360deg); } }
+  .start-k {
+    width: 72px;
+    height: 72px;
+    background: rgba(233,30,140,0.22);
+    border: 2px solid rgb(233,30,140);
+    border-radius: 18px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: 'Instrument Serif', serif;
+    font-style: italic;
+    color: white;
+    font-size: 36px;
+    box-shadow: 0 0 32px rgba(233,30,140,0.55);
+  }
+
+  /* Scene 7: plan cards with icons instead of prose labels */
+  .plan-card .plan-icon {
+    width: 28px;
+    height: 28px;
+    margin: 0 auto 8px;
+    display: block;
+    color: rgb(233,30,140);
+  }
+  .plan-card .plan-icon svg { width: 100%; height: 100%; display: block; }
+
+  /* Scene 8: Live — K core + 4 replies fanning out */
+  .icon-live {
+    width: 260px;
+    height: 150px;
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .live-core {
+    width: 64px;
+    height: 64px;
+    border-radius: 16px;
+    background: rgba(233,30,140,0.22);
+    border: 2px solid rgb(233,30,140);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: 'Instrument Serif', serif;
+    font-style: italic;
+    color: white;
+    font-size: 30px;
+    position: relative;
+    z-index: 2;
+    box-shadow: 0 0 28px rgba(233,30,140,0.5);
+  }
+  .live-msg {
+    position: absolute;
+    width: 44px;
+    height: 28px;
+    background: rgba(94,224,163,0.22);
+    border: 1.5px solid rgb(94,224,163);
+    border-radius: 10px;
+    animation: liveMsgPulse 2.2s ease-out infinite;
+    box-shadow: 0 0 14px rgba(94,224,163,0.35);
+  }
+  .live-msg::after {
+    content: '';
+    position: absolute;
+    left: 8px;
+    right: 18px;
+    top: 50%;
+    transform: translateY(-50%);
+    height: 2px;
+    background: rgba(200,240,215,0.7);
+    border-radius: 2px;
+    box-shadow: 0 5px 0 0 rgba(200,240,215,0.4), 0 -5px 0 0 rgba(200,240,215,0.4);
+  }
+  .live-m1 { top: 18px; left: 18px; animation-delay: 0s; }
+  .live-m2 { top: 18px; right: 18px; animation-delay: 0.3s; }
+  .live-m3 { bottom: 18px; left: 18px; animation-delay: 0.6s; }
+  .live-m4 { bottom: 18px; right: 18px; animation-delay: 0.9s; }
+  @keyframes liveMsgPulse {
+    0%, 60%, 100% { opacity: 0.35; transform: scale(0.9); }
+    15%, 30% { opacity: 1; transform: scale(1.08); }
+  }
+
+  /* Scene 10: journey — envelope icons at each stage */
+  .journey-env {
+    width: 26px;
+    height: 18px;
+    position: relative;
+  }
+  .journey-env svg { display: block; width: 100%; height: 100%; }
+  .journey-step .journey-env { animation: journeyPulse 3.2s ease-in-out infinite; }
+  .journey-step:nth-child(1) .journey-env { animation-delay: 0s; }
+  .journey-step:nth-child(2) .journey-env { animation-delay: 0.8s; }
+  .journey-step:nth-child(3) .journey-env { animation-delay: 1.6s; }
+  .journey-step:nth-child(4) .journey-env { animation-delay: 2.4s; }
+  @keyframes journeyEnvPulse {
+    0%, 30%, 100% { filter: drop-shadow(0 0 6px rgba(94,224,163,0.25)); }
+    15% { filter: drop-shadow(0 0 16px rgba(94,224,163,1)); }
+  }
 </style>
 <section id="case-study" class="relative py-28 section-alt">
   <div class="section-glow pink" style="top:-180px;left:20%;"></div>
@@ -1567,12 +1695,6 @@ input[type="number"]::-webkit-inner-spin-button { -webkit-appearance: none; marg
             <div class="clock-tick"></div>
             <div class="clock-tick"></div>
           </div>
-          <div class="msg-stack">
-            <div class="msg-stack-item"></div>
-            <div class="msg-stack-item"></div>
-            <div class="msg-stack-item"></div>
-            <div class="msg-stack-item"></div>
-          </div>
         </div>
         <div class="story-text">She&rsquo;s mid-tattoo. Can&rsquo;t reply.</div>
       </div>
@@ -1605,13 +1727,12 @@ input[type="number"]::-webkit-inner-spin-button { -webkit-appearance: none; marg
       <!-- Act 2: The engagement -->
       <div class="story-scene story-scene-5">
         <div class="story-visual">
-          <div class="icon-union">
-            <div class="union-badge union-left">Disgrace Inc.</div>
-            <div class="union-spark"></div>
-            <div class="union-badge union-right">Kaizen AI</div>
+          <div class="icon-start">
+            <div class="start-ring"></div>
+            <div class="start-k">K</div>
           </div>
         </div>
-        <div class="story-text">Grace met Kaizen.</div>
+        <div class="story-text">Kaizen stepped in.</div>
       </div>
 
       <div class="story-scene story-scene-6">
@@ -1633,16 +1754,16 @@ input[type="number"]::-webkit-inner-spin-button { -webkit-appearance: none; marg
         <div class="story-visual">
           <div class="icon-plan">
             <div class="plan-card">
+              <div class="plan-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 5h16v10H10l-4 4v-4H4z"/><circle cx="9" cy="10" r="0.6" fill="currentColor"/><circle cx="12" cy="10" r="0.6" fill="currentColor"/><circle cx="15" cy="10" r="0.6" fill="currentColor"/></svg></div>
               <div class="plan-num">01</div>
-              <div class="plan-label">Voice-trained agent</div>
             </div>
             <div class="plan-card">
+              <div class="plan-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3a5 5 0 00-5 5v3l-1.5 2.5h13L17 11V8a5 5 0 00-5-5z"/><path d="M10 19a2 2 0 004 0"/></svg></div>
               <div class="plan-num">02</div>
-              <div class="plan-label">CRM &amp; alerts</div>
             </div>
             <div class="plan-card">
+              <div class="plan-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20s-7-4.5-7-10.5A4 4 0 0112 6a4 4 0 017 3.5C19 15.5 12 20 12 20z"/></svg></div>
               <div class="plan-num">03</div>
-              <div class="plan-label">Confirmations &amp; aftercare</div>
             </div>
           </div>
         </div>
@@ -1653,9 +1774,10 @@ input[type="number"]::-webkit-inner-spin-button { -webkit-appearance: none; marg
       <div class="story-scene story-scene-8">
         <div class="story-visual">
           <div class="icon-live">
-            <div class="live-pulse-ring lp-1"></div>
-            <div class="live-pulse-ring lp-2"></div>
-            <div class="live-pulse-ring lp-3"></div>
+            <div class="live-msg live-m1"></div>
+            <div class="live-msg live-m2"></div>
+            <div class="live-msg live-m3"></div>
+            <div class="live-msg live-m4"></div>
             <div class="live-core">K</div>
           </div>
         </div>
@@ -1686,10 +1808,22 @@ input[type="number"]::-webkit-inner-spin-button { -webkit-appearance: none; marg
       <div class="story-scene story-scene-10">
         <div class="story-visual">
           <div class="icon-journey">
-            <div class="journey-step"><div class="journey-dot"></div><div class="journey-lbl">Book</div></div>
-            <div class="journey-step"><div class="journey-dot"></div><div class="journey-lbl">Prep</div></div>
-            <div class="journey-step"><div class="journey-dot"></div><div class="journey-lbl">Confirm</div></div>
-            <div class="journey-step"><div class="journey-dot"></div><div class="journey-lbl">Aftercare</div></div>
+            <div class="journey-step">
+              <div class="journey-env"><svg viewBox="0 0 26 18"><rect x="1.5" y="2" width="23" height="14" rx="2" fill="rgba(94,224,163,0.2)" stroke="rgb(94,224,163)" stroke-width="1.5"/><path d="M2 4 L13 12 L24 4" fill="none" stroke="rgb(94,224,163)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+              <div class="journey-lbl">Book</div>
+            </div>
+            <div class="journey-step">
+              <div class="journey-env"><svg viewBox="0 0 26 18"><rect x="1.5" y="2" width="23" height="14" rx="2" fill="rgba(94,224,163,0.2)" stroke="rgb(94,224,163)" stroke-width="1.5"/><path d="M2 4 L13 12 L24 4" fill="none" stroke="rgb(94,224,163)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+              <div class="journey-lbl">Prep</div>
+            </div>
+            <div class="journey-step">
+              <div class="journey-env"><svg viewBox="0 0 26 18"><rect x="1.5" y="2" width="23" height="14" rx="2" fill="rgba(94,224,163,0.2)" stroke="rgb(94,224,163)" stroke-width="1.5"/><path d="M2 4 L13 12 L24 4" fill="none" stroke="rgb(94,224,163)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+              <div class="journey-lbl">Confirm</div>
+            </div>
+            <div class="journey-step">
+              <div class="journey-env"><svg viewBox="0 0 26 18"><rect x="1.5" y="2" width="23" height="14" rx="2" fill="rgba(94,224,163,0.2)" stroke="rgb(94,224,163)" stroke-width="1.5"/><path d="M2 4 L13 12 L24 4" fill="none" stroke="rgb(94,224,163)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+              <div class="journey-lbl">Aftercare</div>
+            </div>
           </div>
         </div>
         <div class="story-text">Personalised, start to finish.</div>
