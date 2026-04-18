@@ -734,61 +734,308 @@ input[type="number"]::-webkit-inner-spin-button { -webkit-appearance: none; marg
 
 <!-- ===== GRACE CASE STUDY ===== -->
 <style>
-  .compress-bar {
-    height: 56px;
-    border-radius: 10px;
+  .story-stage {
     position: relative;
+    width: 100%;
+    max-width: 560px;
+    aspect-ratio: 4 / 3;
+    margin: 0 auto;
+    border-radius: 20px;
+    background: radial-gradient(ellipse at center, rgba(20,20,28,0.75), rgba(8,8,14,0.95));
+    border: 1px solid rgba(255,255,255,0.1);
     overflow: hidden;
+    box-shadow: 0 20px 60px -20px rgba(0,0,0,0.5);
+  }
+  .story-scene {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 36px 40px;
+    opacity: 0;
+    animation-duration: 20s;
+    animation-iteration-count: infinite;
+    animation-timing-function: ease-in-out;
+  }
+  .story-scene-1 { animation-name: scene1Fade; }
+  .story-scene-2 { animation-name: scene2Fade; }
+  .story-scene-3 { animation-name: scene3Fade; }
+  .story-scene-4 { animation-name: scene4Fade; }
+
+  @keyframes scene1Fade { 0%, 1% { opacity: 0; } 4%, 22% { opacity: 1; } 25%, 100% { opacity: 0; } }
+  @keyframes scene2Fade { 0%, 26% { opacity: 0; } 29%, 47% { opacity: 1; } 50%, 100% { opacity: 0; } }
+  @keyframes scene3Fade { 0%, 51% { opacity: 0; } 54%, 72% { opacity: 1; } 75%, 100% { opacity: 0; } }
+  @keyframes scene4Fade { 0%, 76% { opacity: 0; } 79%, 97% { opacity: 1; } 100% { opacity: 0; } }
+
+  .story-visual {
+    position: relative;
+    width: 170px;
+    height: 140px;
     display: flex;
     align-items: center;
-    animation: compressMorph 5s cubic-bezier(0.7, 0, 0.3, 1) infinite;
+    justify-content: center;
+    margin-bottom: 28px;
   }
-  @keyframes compressMorph {
-    0%, 35% {
-      width: 100%;
-      background: linear-gradient(90deg, rgba(255,107,107,0.28), rgba(255,107,107,0.08));
-      border: 1px solid rgba(255,107,107,0.4);
-      box-shadow: inset 0 0 12px rgba(255,107,107,0.1);
-    }
-    50% {
-      width: 58%;
-      background: linear-gradient(90deg, rgba(255,180,107,0.3), rgba(200,200,160,0.12));
-      border: 1px solid rgba(255,180,107,0.5);
-    }
-    65%, 100% {
-      width: 24%;
-      background: linear-gradient(90deg, rgba(94,224,163,0.4), rgba(94,224,163,0.12));
-      border: 1px solid rgba(94,224,163,0.65);
-      box-shadow: 0 0 28px rgba(94,224,163,0.28);
-    }
+  .story-text {
+    font-family: 'Instrument Serif', serif;
+    font-style: italic;
+    font-weight: 400;
+    font-size: 22px;
+    line-height: 1.25;
+    text-align: center;
+    max-width: 400px;
+    letter-spacing: -0.01em;
   }
-  .compress-label {
+  .story-scene-1 .story-text, .story-scene-2 .story-text { color: rgba(255,170,170,0.95); }
+  .story-scene-3 .story-text { color: rgba(255,255,255,0.92); }
+  .story-scene-4 .story-text { color: rgba(130,238,180,0.98); }
+  .story-label {
+    font-family: 'JetBrains Mono', ui-monospace, monospace;
+    font-size: 10px;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    margin-top: 14px;
+    font-weight: 500;
+  }
+  .story-scene-1 .story-label, .story-scene-2 .story-label { color: rgba(255,107,107,0.6); }
+  .story-scene-3 .story-label { color: rgba(233,30,140,0.7); }
+  .story-scene-4 .story-label { color: rgba(94,224,163,0.7); }
+
+  /* Scene 1: Phone + flooding messages */
+  .icon-phone {
+    width: 72px;
+    height: 120px;
+    border: 2px solid rgba(255,107,107,0.65);
+    border-radius: 14px;
+    background: rgba(255,107,107,0.08);
+    position: relative;
+  }
+  .icon-phone::before {
+    content: '';
     position: absolute;
-    left: 20px;
+    top: 10px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 24px;
+    height: 3px;
+    background: rgba(255,107,107,0.4);
+    border-radius: 2px;
+  }
+  .icon-phone::after {
+    content: '!';
+    position: absolute;
+    top: -10px;
+    right: -10px;
+    width: 22px;
+    height: 22px;
+    background: rgb(255,107,107);
+    color: #1a0a0a;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 700;
+    font-size: 13px;
+    animation: badgePulse 1.2s ease-in-out infinite;
+    box-shadow: 0 0 18px rgba(255,107,107,0.7);
+  }
+  @keyframes badgePulse {
+    0%, 100% { transform: scale(1); }
+    50% { transform: scale(1.15); }
+  }
+  .msg-bubble {
+    position: absolute;
+    background: rgba(255,107,107,0.22);
+    border: 1px solid rgba(255,107,107,0.5);
+    border-radius: 12px 12px 12px 2px;
+    padding: 5px 10px;
+    font-family: 'JetBrains Mono', ui-monospace, monospace;
+    font-size: 10px;
+    color: rgba(255,200,200,0.95);
+    white-space: nowrap;
+    letter-spacing: 0.03em;
+    animation: bubbleFloat 2.2s ease-in-out infinite;
+  }
+  .msg-b1 { top: -8px; left: -62px; animation-delay: 0s; }
+  .msg-b2 { top: 38px; right: -78px; animation-delay: 0.5s; border-radius: 12px 12px 2px 12px; }
+  .msg-b3 { bottom: 4px; left: -72px; animation-delay: 1s; }
+  @keyframes bubbleFloat {
+    0%, 100% { transform: translateY(0); opacity: 0.7; }
+    50% { transform: translateY(-4px); opacity: 1; }
+  }
+
+  /* Scene 2: Clock spinning — time passes */
+  .icon-clock {
+    width: 120px;
+    height: 120px;
+    border: 2px solid rgba(255,255,255,0.25);
+    border-radius: 50%;
+    position: relative;
+    background: rgba(255,107,107,0.04);
+  }
+  .clock-hand {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 2px;
+    height: 48px;
+    background: rgba(255,107,107,0.85);
+    transform-origin: 50% 100%;
+    transform: translate(-50%, -100%);
+    animation: clockSpin 2.4s linear infinite;
+    border-radius: 2px;
+  }
+  @keyframes clockSpin { to { transform: translate(-50%, -100%) rotate(360deg); } }
+  .clock-centre {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 8px;
+    height: 8px;
+    background: rgba(255,107,107,0.9);
+    border-radius: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 2;
+  }
+  .clock-tick {
+    position: absolute;
+    top: 6px;
+    left: 50%;
+    width: 2px;
+    height: 8px;
+    background: rgba(255,255,255,0.3);
+    transform: translateX(-50%);
+  }
+  .clock-tick:nth-child(2) { transform: translateX(-50%) rotate(90deg); transform-origin: 50% 54px; }
+  .clock-tick:nth-child(3) { transform: translateX(-50%) rotate(180deg); transform-origin: 50% 54px; }
+  .clock-tick:nth-child(4) { transform: translateX(-50%) rotate(270deg); transform-origin: 50% 54px; }
+  .msg-stack {
+    position: absolute;
+    right: -72px;
     top: 50%;
     transform: translateY(-50%);
-    font-family: 'JetBrains Mono', ui-monospace, monospace;
-    font-size: 13px;
-    font-weight: 600;
-    white-space: nowrap;
-    letter-spacing: 0.04em;
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
   }
-  .compress-label-before {
-    color: rgba(255,230,230,0.95);
-    animation: labelBefore 5s cubic-bezier(0.7, 0, 0.3, 1) infinite;
+  .msg-stack-item {
+    width: 56px;
+    height: 10px;
+    background: rgba(255,255,255,0.08);
+    border: 1px solid rgba(255,255,255,0.15);
+    border-radius: 2px;
   }
-  .compress-label-after {
+
+  /* Scene 3: System switches on — Kaizen node */
+  .icon-nodes {
+    width: 160px;
+    height: 130px;
+    position: relative;
+  }
+  .node-center {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 56px;
+    height: 56px;
+    background: rgba(233,30,140,0.2);
+    border: 2px solid rgba(233,30,140,0.9);
+    border-radius: 14px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: 'Instrument Serif', serif;
+    font-style: italic;
+    color: white;
+    font-size: 28px;
+    animation: nodePulse 1.8s ease-in-out infinite;
+  }
+  @keyframes nodePulse {
+    0%, 100% { box-shadow: 0 0 24px rgba(233,30,140,0.35); }
+    50% { box-shadow: 0 0 48px rgba(233,30,140,0.75); }
+  }
+  .node-line {
+    position: absolute;
+    height: 1px;
+    background: linear-gradient(90deg, rgba(233,30,140,0.6), rgba(94,224,163,0.4));
+    top: 50%;
+    left: 50%;
+    transform-origin: 0 50%;
+  }
+  .node-line.nl-1 { width: 50px; transform: rotate(-35deg); }
+  .node-line.nl-2 { width: 50px; transform: rotate(35deg); }
+  .node-line.nl-3 { width: 50px; transform: rotate(-145deg); }
+  .node-line.nl-4 { width: 50px; transform: rotate(145deg); }
+  .node-check {
+    position: absolute;
+    width: 22px;
+    height: 22px;
+    background: rgba(94,224,163,0.2);
+    border: 1.5px solid rgba(94,224,163,0.85);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
     color: rgb(94,224,163);
-    animation: labelAfter 5s cubic-bezier(0.7, 0, 0.3, 1) infinite;
-    text-shadow: 0 0 16px rgba(94,224,163,0.5);
+    font-size: 12px;
+    font-weight: 700;
+    animation: checkPop 2s ease-out infinite;
   }
-  @keyframes labelBefore {
-    0%, 40% { opacity: 1; }
-    52%, 100% { opacity: 0; }
+  .nc-1 { top: 0; right: 0; animation-delay: 0s; }
+  .nc-2 { bottom: 0; right: 0; animation-delay: 0.4s; }
+  .nc-3 { top: 0; left: 0; animation-delay: 0.8s; }
+  .nc-4 { bottom: 0; left: 0; animation-delay: 1.2s; }
+  .node-check::before { content: '\2713'; }
+  @keyframes checkPop {
+    0% { transform: scale(0.6); opacity: 0; }
+    30% { transform: scale(1.1); opacity: 1; }
+    100% { transform: scale(1); opacity: 0.85; }
   }
-  @keyframes labelAfter {
-    0%, 52% { opacity: 0; }
-    68%, 100% { opacity: 1; }
+
+  /* Scene 4: Calendar filling with booked slots */
+  .icon-calendar {
+    width: 170px;
+    height: 130px;
+    border: 2px solid rgba(94,224,163,0.4);
+    border-radius: 8px;
+    padding: 24px 8px 8px;
+    position: relative;
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 4px;
+    background: rgba(94,224,163,0.04);
+  }
+  .icon-calendar::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 18px;
+    background: rgba(94,224,163,0.25);
+    border-bottom: 1px solid rgba(94,224,163,0.5);
+    border-radius: 6px 6px 0 0;
+  }
+  .cal-slot {
+    background: rgba(94,224,163,0.08);
+    border: 1px solid rgba(94,224,163,0.22);
+    border-radius: 2px;
+    height: 14px;
+  }
+  .cal-slot.booked {
+    background: rgba(94,224,163,0.5);
+    border-color: rgba(94,224,163,1);
+    box-shadow: 0 0 8px rgba(94,224,163,0.5);
+    animation: calBlink 2.8s ease-in-out infinite;
+  }
+  .cal-slot.booked.d1 { animation-delay: 0s; }
+  .cal-slot.booked.d2 { animation-delay: 0.3s; }
+  .cal-slot.booked.d3 { animation-delay: 0.6s; }
+  .cal-slot.booked.d4 { animation-delay: 0.9s; }
+  @keyframes calBlink {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.55; }
   }
 </style>
 <section id="case-study" class="relative py-28 section-alt">
@@ -801,28 +1048,87 @@ input[type="number"]::-webkit-inner-spin-button { -webkit-appearance: none; marg
       </h2>
     </div>
 
-    <div class="max-w-[820px] mx-auto text-center mb-16 reveal reveal-delay-2">
+    <div class="max-w-[820px] mx-auto text-center mb-14 reveal reveal-delay-2">
       <p class="text-xl md:text-3xl font-serif italic font-normal text-white/85 leading-snug mb-6">
         &ldquo;I feel comfortable using AI in my business now, and I still have control. It&rsquo;s a helping hand to make things quicker.&rdquo;
       </p>
       <div class="mono-label text-white/50">Disgrace Inc &middot; Popular tattoo artist, Hampshire</div>
     </div>
 
-    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-      <div class="card p-7 reveal reveal-delay-1">
-        <div class="mono-label text-white/50 mb-6">Reply speed</div>
-        <div class="compress-bar">
-          <span class="compress-label compress-label-before">1 hour &ndash; 3 days</span>
-          <span class="compress-label compress-label-after">Instant &middot; 24/7</span>
+    <!-- Story stage — 4 scenes fade in/out on a 20s loop -->
+    <div class="story-stage reveal reveal-delay-1">
+      <div class="story-scene story-scene-1">
+        <div class="story-visual">
+          <div class="icon-phone"></div>
+          <div class="msg-bubble msg-b1">new DM</div>
+          <div class="msg-bubble msg-b2">missed call</div>
+          <div class="msg-bubble msg-b3">new DM</div>
         </div>
+        <div class="story-text">Phone ringing. DMs piling up.</div>
+        <div class="story-label">Monday, 10:14 AM</div>
       </div>
 
-      <div class="card p-7 reveal reveal-delay-2">
-        <div class="mono-label text-white/50 mb-6">Info needed to book</div>
-        <div class="compress-bar">
-          <span class="compress-label compress-label-before">1 &ndash; 2 days</span>
-          <span class="compress-label compress-label-after">Under 3 minutes</span>
+      <div class="story-scene story-scene-2">
+        <div class="story-visual">
+          <div class="icon-clock">
+            <div class="clock-hand"></div>
+            <div class="clock-centre"></div>
+            <div class="clock-tick"></div>
+            <div class="clock-tick"></div>
+            <div class="clock-tick"></div>
+            <div class="clock-tick"></div>
+          </div>
+          <div class="msg-stack">
+            <div class="msg-stack-item"></div>
+            <div class="msg-stack-item"></div>
+            <div class="msg-stack-item"></div>
+            <div class="msg-stack-item"></div>
+          </div>
         </div>
+        <div class="story-text">She&rsquo;s mid-tattoo. Replies don&rsquo;t come. Leads give up.</div>
+        <div class="story-label">Days passing</div>
+      </div>
+
+      <div class="story-scene story-scene-3">
+        <div class="story-visual">
+          <div class="icon-nodes">
+            <div class="node-line nl-1"></div>
+            <div class="node-line nl-2"></div>
+            <div class="node-line nl-3"></div>
+            <div class="node-line nl-4"></div>
+            <div class="node-center">K</div>
+            <div class="node-check nc-1"></div>
+            <div class="node-check nc-2"></div>
+            <div class="node-check nc-3"></div>
+            <div class="node-check nc-4"></div>
+          </div>
+        </div>
+        <div class="story-text">Then the system switches on.</div>
+        <div class="story-label">Kaizen &middot; active</div>
+      </div>
+
+      <div class="story-scene story-scene-4">
+        <div class="story-visual">
+          <div class="icon-calendar">
+            <div class="cal-slot booked d1"></div>
+            <div class="cal-slot"></div>
+            <div class="cal-slot booked d2"></div>
+            <div class="cal-slot booked d3"></div>
+            <div class="cal-slot"></div>
+            <div class="cal-slot"></div>
+            <div class="cal-slot booked d4"></div>
+            <div class="cal-slot booked d1"></div>
+            <div class="cal-slot booked d2"></div>
+            <div class="cal-slot"></div>
+            <div class="cal-slot booked d3"></div>
+            <div class="cal-slot booked d4"></div>
+            <div class="cal-slot"></div>
+            <div class="cal-slot booked d1"></div>
+            <div class="cal-slot booked d2"></div>
+          </div>
+        </div>
+        <div class="story-text">Every lead qualified. Every slot booked. 24/7.</div>
+        <div class="story-label">Grace, back to work</div>
       </div>
     </div>
 
