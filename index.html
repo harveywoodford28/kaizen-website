@@ -2485,6 +2485,21 @@ input[type="number"]::-webkit-inner-spin-button { -webkit-appearance: none; marg
     border-radius: 2px;
   }
   .cap-fill.short { max-width: 60%; }
+
+  /* Client attribution — ink drop + text */
+  .client-attribution {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    justify-content: center;
+  }
+  .ink-drop {
+    width: 14px;
+    height: 14px;
+    color: rgb(233,30,140);
+    filter: drop-shadow(0 0 5px rgba(233,30,140,0.45));
+    flex-shrink: 0;
+  }
 </style>
 <section id="case-study" class="relative py-28 section-alt">
   <div class="section-glow pink" style="top:-180px;left:20%;"></div>
@@ -2500,7 +2515,12 @@ input[type="number"]::-webkit-inner-spin-button { -webkit-appearance: none; marg
       <p class="text-xl md:text-3xl font-serif italic font-normal text-white/85 leading-snug mb-6">
         &ldquo;I feel comfortable using AI in my business now, and I still have control. It&rsquo;s a helping hand to make things quicker.&rdquo;
       </p>
-      <div class="mono-label text-white/50">Disgrace Inc &middot; Hampshire</div>
+      <div class="mono-label text-white/50 client-attribution">
+        <svg class="ink-drop" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+          <path d="M12 2 C12 2 5 11 5 16 C5 20 8 22 12 22 C16 22 19 20 19 16 C19 11 12 2 12 2 Z"/>
+        </svg>
+        Disgrace Ink &middot; Tattoo artist &middot; Hampshire
+      </div>
     </div>
 
     <!-- Story stage — 11 scenes fade in/out on a 60s loop -->
