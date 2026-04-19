@@ -831,9 +831,9 @@ input[type="number"]::-webkit-inner-spin-button { -webkit-appearance: none; marg
   .story-scene-5 .story-text,
   .story-scene-6 .story-text,
   .story-scene-7 .story-text,
-  .story-scene-8 .story-text { color: rgba(255,255,255,0.95); }
+  .story-scene-8 .story-text,
   .story-scene-9 .story-text,
-  .story-scene-10 .story-text,
+  .story-scene-10 .story-text { color: rgba(255,255,255,0.95); }
   .story-scene-11 .story-text,
   .story-scene-12 .story-text,
   .story-scene-13 .story-text { color: rgba(130,238,180,0.98); }
@@ -2364,6 +2364,127 @@ input[type="number"]::-webkit-inner-spin-button { -webkit-appearance: none; marg
     font-weight: 600;
     white-space: nowrap;
   }
+
+  /* Scene 8: Runs through her own accounts */
+  .icon-accounts {
+    width: 290px;
+    height: 140px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .acc-col {
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+    flex-shrink: 0;
+  }
+  .acc-node {
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    border: 2px solid rgba(233,30,140,0.7);
+    background: rgba(233,30,140,0.18);
+    animation: nodePulse 2s ease-in-out infinite;
+    box-shadow: 0 0 10px rgba(233,30,140,0.2);
+  }
+  .acc-node:nth-child(2) { animation-delay: 0.35s; }
+  .acc-node:nth-child(3) { animation-delay: 0.7s; }
+  .acc-lines {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+    padding: 18px 0;
+  }
+  .acc-line {
+    height: 2px;
+    background: linear-gradient(90deg, rgba(233,30,140,0.4), rgb(233,30,140));
+    border-radius: 2px;
+    animation: accFlow 2.4s ease-in-out infinite;
+  }
+  .acc-line:nth-child(2) { animation-delay: 0.3s; }
+  .acc-line:nth-child(3) { animation-delay: 0.6s; }
+  @keyframes accFlow {
+    0%, 100% { opacity: 0.5; }
+    50% { opacity: 1; }
+  }
+  .acc-hub {
+    width: 72px;
+    height: 96px;
+    border-radius: 18px;
+    background: rgba(233,30,140,0.22);
+    border: 2px solid rgb(233,30,140);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 0 24px rgba(233,30,140,0.5);
+    animation: nodePulse 2s ease-in-out infinite;
+    flex-shrink: 0;
+  }
+  .acc-hub img { width: 62%; height: auto; object-fit: contain; }
+
+  /* Scene 9: Captures all the required info */
+  .icon-capture {
+    width: 250px;
+    padding: 12px 16px;
+    background: rgba(233,30,140,0.06);
+    border: 1px solid rgba(233,30,140,0.45);
+    border-radius: 10px;
+    box-shadow: 0 0 24px rgba(233,30,140,0.15);
+  }
+  .cap-form {
+    display: flex;
+    flex-direction: column;
+    gap: 7px;
+  }
+  .cap-row {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-family: 'JetBrains Mono', ui-monospace, monospace;
+    font-size: 10px;
+    color: rgba(255,230,240,0.95);
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    font-weight: 600;
+    opacity: 0;
+    animation: capAppear 2.4s ease-out forwards;
+  }
+  .cap-row:nth-child(1) { animation-delay: 0.1s; }
+  .cap-row:nth-child(2) { animation-delay: 0.4s; }
+  .cap-row:nth-child(3) { animation-delay: 0.7s; }
+  .cap-row:nth-child(4) { animation-delay: 1.0s; }
+  @keyframes capAppear {
+    from { opacity: 0; transform: translateX(-8px); }
+    to { opacity: 1; transform: translateX(0); }
+  }
+  .cap-check {
+    width: 14px;
+    height: 14px;
+    border: 1.5px solid rgb(233,30,140);
+    background: rgba(233,30,140,0.3);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-size: 8px;
+    font-weight: 700;
+    flex-shrink: 0;
+  }
+  .cap-check::before { content: '\2713'; }
+  .cap-lbl {
+    width: 48px;
+    flex-shrink: 0;
+  }
+  .cap-fill {
+    flex: 1;
+    height: 5px;
+    background: rgba(233,30,140,0.3);
+    border-radius: 2px;
+  }
+  .cap-fill.short { max-width: 60%; }
 </style>
 <section id="case-study" class="relative py-28 section-alt">
   <div class="section-glow pink" style="top:-180px;left:20%;"></div>
@@ -2463,51 +2584,8 @@ input[type="number"]::-webkit-inner-spin-button { -webkit-appearance: none; marg
         <div class="story-text">Diagnosed it together.</div>
       </div>
 
+      <!-- Scene 7: Built a chat system in her tone -->
       <div class="story-scene story-scene-7">
-        <div class="story-visual">
-          <div class="icon-wire">
-            <div class="wire-step">
-              <div class="wire-node wn-1">
-                <svg class="wire-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><path d="M4 5h16v10H10l-4 4v-4H4z"/><circle cx="9" cy="10" r="0.8" fill="currentColor"/><circle cx="12" cy="10" r="0.8" fill="currentColor"/><circle cx="15" cy="10" r="0.8" fill="currentColor"/></svg>
-              </div>
-              <div class="wire-lbl">Voice</div>
-            </div>
-            <div class="wire-line wl-1"></div>
-            <div class="wire-step">
-              <div class="wire-node wn-2">
-                <svg class="wire-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3a5 5 0 00-5 5v3l-1.5 2.5h13L17 11V8a5 5 0 00-5-5z"/><path d="M10 19a2 2 0 004 0"/></svg>
-              </div>
-              <div class="wire-lbl">CRM</div>
-            </div>
-            <div class="wire-line wl-2"></div>
-            <div class="wire-step">
-              <div class="wire-node wn-3">
-                <svg class="wire-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20s-7-4.5-7-10.5A4 4 0 0112 6a4 4 0 017 3.5C19 15.5 12 20 12 20z"/></svg>
-              </div>
-              <div class="wire-lbl">Aftercare</div>
-            </div>
-          </div>
-        </div>
-        <div class="story-text">Mapped out the system she needed.</div>
-      </div>
-
-      <!-- Testing phase -->
-      <div class="story-scene story-scene-8">
-        <div class="story-visual">
-          <div class="icon-testing">
-            <div class="test-node"><img src="kaizen-logo-white.png" alt="Kaizen"></div>
-            <div class="test-arrows">
-              <div class="test-arrow ta-1">&raquo;</div>
-              <div class="test-arrow ta-2">&laquo;</div>
-            </div>
-            <div class="test-node test-node-g">G</div>
-          </div>
-        </div>
-        <div class="story-text">Tested with Grace. Feedback before going live.</div>
-      </div>
-
-      <!-- Act 3: Live -->
-      <div class="story-scene story-scene-9">
         <div class="story-visual">
           <div class="icon-auto-reply">
             <div class="ar-step">
@@ -2515,12 +2593,12 @@ input[type="number"]::-webkit-inner-spin-button { -webkit-appearance: none; marg
                 <div class="ar-l"></div>
                 <div class="ar-l short"></div>
               </div>
-              <div class="ar-lbl">All channels</div>
+              <div class="ar-lbl">Message</div>
             </div>
             <div class="ar-arrow">&raquo;</div>
             <div class="ar-step">
               <div class="ar-hub"><img src="kaizen-logo-white.png" alt="Kaizen"></div>
-              <div class="ar-lbl">System</div>
+              <div class="ar-lbl">Chat system</div>
             </div>
             <div class="ar-arrow">&raquo;</div>
             <div class="ar-step">
@@ -2533,28 +2611,57 @@ input[type="number"]::-webkit-inner-spin-button { -webkit-appearance: none; marg
             </div>
           </div>
         </div>
-        <div class="story-text">Captured across her accounts. In her tone.</div>
+        <div class="story-text">Built a chat system that talks in her tone.</div>
       </div>
 
-      <div class="story-scene story-scene-10">
+      <!-- Scene 8: Runs through her own accounts -->
+      <div class="story-scene story-scene-8">
         <div class="story-visual">
-          <div class="icon-crm">
-            <div class="crm-rows">
-              <div class="crm-row"><div class="crm-bar" style="width:82%"></div></div>
-              <div class="crm-row"><div class="crm-bar" style="width:100%"></div></div>
-              <div class="crm-row"><div class="crm-bar" style="width:68%"></div></div>
-              <div class="crm-row"><div class="crm-bar" style="width:90%"></div></div>
+          <div class="icon-accounts">
+            <div class="acc-col">
+              <div class="acc-node"></div>
+              <div class="acc-node"></div>
+              <div class="acc-node"></div>
             </div>
-            <div class="crm-email">
-              <svg viewBox="0 0 46 36" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-                <rect x="2" y="6" width="42" height="28" rx="4" fill="rgba(94,224,163,0.14)" stroke="rgba(94,224,163,0.9)" stroke-width="1.5"/>
-                <path d="M4 10 L23 23 L42 10" fill="none" stroke="rgba(94,224,163,0.9)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-              </svg>
-              <div class="crm-email-dot"></div>
+            <div class="acc-lines">
+              <div class="acc-line"></div>
+              <div class="acc-line"></div>
+              <div class="acc-line"></div>
+            </div>
+            <div class="acc-hub"><img src="kaizen-logo-white.png" alt="Kaizen"></div>
+          </div>
+        </div>
+        <div class="story-text">Runs through her own accounts.</div>
+      </div>
+
+      <!-- Scene 9: Captures all the required info -->
+      <div class="story-scene story-scene-9">
+        <div class="story-visual">
+          <div class="icon-capture">
+            <div class="cap-form">
+              <div class="cap-row"><span class="cap-check"></span><span class="cap-lbl">Style</span><div class="cap-fill"></div></div>
+              <div class="cap-row"><span class="cap-check"></span><span class="cap-lbl">Size</span><div class="cap-fill short"></div></div>
+              <div class="cap-row"><span class="cap-check"></span><span class="cap-lbl">Budget</span><div class="cap-fill"></div></div>
+              <div class="cap-row"><span class="cap-check"></span><span class="cap-lbl">Date</span><div class="cap-fill short"></div></div>
             </div>
           </div>
         </div>
-        <div class="story-text">The right information captured and sent to Grace.</div>
+        <div class="story-text">Captures all the required info.</div>
+      </div>
+
+      <!-- Scene 10: Tested with Grace before going live -->
+      <div class="story-scene story-scene-10">
+        <div class="story-visual">
+          <div class="icon-testing">
+            <div class="test-node"><img src="kaizen-logo-white.png" alt="Kaizen"></div>
+            <div class="test-arrows">
+              <div class="test-arrow ta-1">&raquo;</div>
+              <div class="test-arrow ta-2">&laquo;</div>
+            </div>
+            <div class="test-node test-node-g">G</div>
+          </div>
+        </div>
+        <div class="story-text">Tested with Grace. Feedback before going live.</div>
       </div>
 
       <div class="story-scene story-scene-11">
@@ -2603,14 +2710,10 @@ input[type="number"]::-webkit-inner-spin-button { -webkit-appearance: none; marg
           <div class="grace-brief">
             <div class="brief-header">
               <div class="brief-avatar">G</div>
-              <div class="brief-title">Brief for Grace</div>
+              <div class="brief-title">Grace&rsquo;s day</div>
             </div>
-            <div class="brief-grid">
-              <div class="brief-row"><span class="brief-check"></span>Style</div>
-              <div class="brief-row"><span class="brief-check"></span>Size</div>
-              <div class="brief-row"><span class="brief-check"></span>Budget</div>
-              <div class="brief-row"><span class="brief-check"></span>Date free</div>
-            </div>
+            <div class="brief-row"><span class="brief-check"></span>Quote the tattoo</div>
+            <div class="brief-row"><span class="brief-check"></span>Book them in</div>
             <div class="brief-divider"></div>
             <div class="brief-stat">
               <span class="brief-stat-label">Reply</span>
@@ -2620,7 +2723,7 @@ input[type="number"]::-webkit-inner-spin-button { -webkit-appearance: none; marg
             </div>
           </div>
         </div>
-        <div class="story-text">Required info gathered. Sent to Grace. Bookings faster.</div>
+        <div class="story-text">All she needs to do is quote and book them in.</div>
       </div>
 
       <!-- Finale: invitation -->
@@ -2631,7 +2734,7 @@ input[type="number"]::-webkit-inner-spin-button { -webkit-appearance: none; marg
             <div class="invite-arrow">&darr;</div>
           </div>
         </div>
-        <div class="story-text">We can solve your business problems too.</div>
+        <div class="story-text">We&rsquo;ll diagnose yours. Like we did for Grace.</div>
       </div>
     </div>
 
