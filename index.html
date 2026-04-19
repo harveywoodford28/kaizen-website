@@ -758,7 +758,7 @@ input[type="number"]::-webkit-inner-spin-button { -webkit-appearance: none; marg
     position: absolute;
     top: 0; left: 0; height: 100%;
     background: linear-gradient(90deg, rgba(255,107,107,0.7), rgba(233,30,140,0.8), rgba(94,224,163,0.8));
-    animation: progressSweep 48s linear infinite;
+    animation: progressSweep 60s linear infinite;
   }
   @keyframes progressSweep { 0% { width: 0; } 100% { width: 100%; } }
 
@@ -771,7 +771,7 @@ input[type="number"]::-webkit-inner-spin-button { -webkit-appearance: none; marg
     justify-content: center;
     padding: 32px 40px;
     opacity: 0;
-    animation-duration: 48s;
+    animation-duration: 60s;
     animation-iteration-count: infinite;
     animation-timing-function: ease-in-out;
   }
@@ -787,19 +787,23 @@ input[type="number"]::-webkit-inner-spin-button { -webkit-appearance: none; marg
   .story-scene-10 { animation-name: s10; }
   .story-scene-11 { animation-name: s11; }
   .story-scene-12 { animation-name: s12; }
+  .story-scene-13 { animation-name: s13; }
+  .story-scene-14 { animation-name: s14; }
 
-  @keyframes s1  { 0%,1%  {opacity:0} 2%,7%   {opacity:1} 8%,100%  {opacity:0} }
-  @keyframes s2  { 0%,9%  {opacity:0} 10%,15% {opacity:1} 16%,100% {opacity:0} }
-  @keyframes s3  { 0%,17% {opacity:0} 18%,23% {opacity:1} 24%,100% {opacity:0} }
-  @keyframes s4  { 0%,25% {opacity:0} 26%,31% {opacity:1} 32%,100% {opacity:0} }
-  @keyframes s5  { 0%,33% {opacity:0} 34%,39% {opacity:1} 40%,100% {opacity:0} }
-  @keyframes s6  { 0%,41% {opacity:0} 42%,47% {opacity:1} 48%,100% {opacity:0} }
-  @keyframes s7  { 0%,49% {opacity:0} 50%,55% {opacity:1} 56%,100% {opacity:0} }
-  @keyframes s8  { 0%,57% {opacity:0} 58%,63% {opacity:1} 64%,100% {opacity:0} }
-  @keyframes s9  { 0%,65% {opacity:0} 66%,71% {opacity:1} 72%,100% {opacity:0} }
-  @keyframes s10 { 0%,73% {opacity:0} 74%,79% {opacity:1} 80%,100% {opacity:0} }
-  @keyframes s11 { 0%,81% {opacity:0} 82%,87% {opacity:1} 88%,100% {opacity:0} }
-  @keyframes s12 { 0%,89% {opacity:0} 90%,99% {opacity:1} 100%   {opacity:0} }
+  @keyframes s1  { 0%,1%  {opacity:0} 2%,6%   {opacity:1} 7%,100%  {opacity:0} }
+  @keyframes s2  { 0%,8%  {opacity:0} 9%,13%  {opacity:1} 14%,100% {opacity:0} }
+  @keyframes s3  { 0%,15% {opacity:0} 16%,20% {opacity:1} 21%,100% {opacity:0} }
+  @keyframes s4  { 0%,22% {opacity:0} 23%,27% {opacity:1} 28%,100% {opacity:0} }
+  @keyframes s5  { 0%,29% {opacity:0} 30%,34% {opacity:1} 35%,100% {opacity:0} }
+  @keyframes s6  { 0%,36% {opacity:0} 37%,41% {opacity:1} 42%,100% {opacity:0} }
+  @keyframes s7  { 0%,43% {opacity:0} 44%,48% {opacity:1} 49%,100% {opacity:0} }
+  @keyframes s8  { 0%,50% {opacity:0} 51%,55% {opacity:1} 56%,100% {opacity:0} }
+  @keyframes s9  { 0%,57% {opacity:0} 58%,62% {opacity:1} 63%,100% {opacity:0} }
+  @keyframes s10 { 0%,64% {opacity:0} 65%,69% {opacity:1} 70%,100% {opacity:0} }
+  @keyframes s11 { 0%,71% {opacity:0} 72%,76% {opacity:1} 77%,100% {opacity:0} }
+  @keyframes s12 { 0%,78% {opacity:0} 79%,83% {opacity:1} 84%,100% {opacity:0} }
+  @keyframes s13 { 0%,85% {opacity:0} 86%,91% {opacity:1} 92%,100% {opacity:0} }
+  @keyframes s14 { 0%,93% {opacity:0} 94%,99% {opacity:1} 100%   {opacity:0} }
 
   .story-visual {
     position: relative;
@@ -826,12 +830,14 @@ input[type="number"]::-webkit-inner-spin-button { -webkit-appearance: none; marg
   .story-scene-4 .story-text { color: rgba(255,170,170,0.95); }
   .story-scene-5 .story-text,
   .story-scene-6 .story-text,
-  .story-scene-7 .story-text { color: rgba(255,255,255,0.95); }
-  .story-scene-8 .story-text,
+  .story-scene-7 .story-text,
+  .story-scene-8 .story-text { color: rgba(255,255,255,0.95); }
   .story-scene-9 .story-text,
   .story-scene-10 .story-text,
-  .story-scene-11 .story-text { color: rgba(130,238,180,0.98); }
-  .story-scene-12 .story-text { color: white; }
+  .story-scene-11 .story-text,
+  .story-scene-12 .story-text,
+  .story-scene-13 .story-text { color: rgba(130,238,180,0.98); }
+  .story-scene-14 .story-text { color: white; }
   .story-label {
     font-family: 'JetBrains Mono', ui-monospace, monospace;
     font-size: 10px;
@@ -2242,6 +2248,96 @@ input[type="number"]::-webkit-inner-spin-button { -webkit-appearance: none; marg
     color: rgb(94,224,163);
     font-weight: 700;
   }
+
+  /* Scene 8 (new): Tested with Grace — iteration loop */
+  .icon-testing {
+    width: 290px;
+    height: 120px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 14px;
+  }
+  .test-node {
+    width: 60px;
+    height: 60px;
+    border-radius: 14px;
+    border: 2px solid rgb(233,30,140);
+    background: rgba(233,30,140,0.22);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 0 20px rgba(233,30,140,0.4);
+    flex-shrink: 0;
+    animation: nodePulse 2.2s ease-in-out infinite;
+  }
+  .test-node img { width: 62%; height: auto; object-fit: contain; }
+  .test-node.test-node-g {
+    background: rgb(233,30,140);
+    font-family: 'Instrument Serif', serif;
+    font-style: italic;
+    color: white;
+    font-size: 28px;
+    animation-delay: 0.4s;
+  }
+  .test-arrows {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+  }
+  .test-arrow {
+    font-family: 'JetBrains Mono', ui-monospace, monospace;
+    font-size: 22px;
+    color: rgb(233,30,140);
+    text-align: center;
+    text-shadow: 0 0 10px rgba(233,30,140,0.5);
+    animation: testPulse 2.4s ease-in-out infinite;
+  }
+  .test-arrow.ta-2 { animation-delay: 1.2s; }
+  @keyframes testPulse {
+    0%, 60%, 100% { opacity: 0.25; transform: translateX(0); }
+    25% { opacity: 1; transform: translateX(4px); }
+  }
+  .test-arrow.ta-2 {
+    animation-name: testPulseBack;
+  }
+  @keyframes testPulseBack {
+    0%, 60%, 100% { opacity: 0.25; transform: translateX(0); }
+    25% { opacity: 1; transform: translateX(-4px); }
+  }
+
+  /* Scene 12 (new): Thank you + aftercare sent */
+  .icon-followup {
+    width: 280px;
+    display: flex;
+    gap: 24px;
+    align-items: center;
+    justify-content: center;
+  }
+  .fu-step {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+    flex: 1;
+  }
+  .fu-env {
+    width: 54px;
+    height: 40px;
+    animation: nodePulse 2s ease-in-out infinite;
+  }
+  .fu-env svg { width: 100%; height: 100%; display: block; }
+  .fu-step:nth-child(2) .fu-env { animation-delay: 0.7s; }
+  .fu-lbl {
+    font-family: 'JetBrains Mono', ui-monospace, monospace;
+    font-size: 10px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: rgba(200,240,215,0.9);
+    font-weight: 600;
+    white-space: nowrap;
+  }
 </style>
 <section id="case-study" class="relative py-28 section-alt">
   <div class="section-glow pink" style="top:-180px;left:20%;"></div>
@@ -2272,7 +2368,7 @@ input[type="number"]::-webkit-inner-spin-button { -webkit-appearance: none; marg
           <div class="msg-bubble msg-b2">missed call</div>
           <div class="msg-bubble msg-b3">new DM</div>
         </div>
-        <div class="story-text">Messages flooded in all day.</div>
+        <div class="story-text">Inquiries flooded in all day.</div>
       </div>
 
       <div class="story-scene story-scene-2">
@@ -2369,8 +2465,23 @@ input[type="number"]::-webkit-inner-spin-button { -webkit-appearance: none; marg
         <div class="story-text">Mapped out the system she needed.</div>
       </div>
 
-      <!-- Act 3: Live -->
+      <!-- Testing phase -->
       <div class="story-scene story-scene-8">
+        <div class="story-visual">
+          <div class="icon-testing">
+            <div class="test-node"><img src="kaizen-logo-white.png" alt="Kaizen"></div>
+            <div class="test-arrows">
+              <div class="test-arrow ta-1">&raquo;</div>
+              <div class="test-arrow ta-2">&laquo;</div>
+            </div>
+            <div class="test-node test-node-g">G</div>
+          </div>
+        </div>
+        <div class="story-text">Tested with Grace. Feedback before going live.</div>
+      </div>
+
+      <!-- Act 3: Live -->
+      <div class="story-scene story-scene-9">
         <div class="story-visual">
           <div class="icon-auto-reply">
             <div class="ar-step">
@@ -2378,7 +2489,7 @@ input[type="number"]::-webkit-inner-spin-button { -webkit-appearance: none; marg
                 <div class="ar-l"></div>
                 <div class="ar-l short"></div>
               </div>
-              <div class="ar-lbl">Inbound</div>
+              <div class="ar-lbl">All channels</div>
             </div>
             <div class="ar-arrow">&raquo;</div>
             <div class="ar-step">
@@ -2396,10 +2507,10 @@ input[type="number"]::-webkit-inner-spin-button { -webkit-appearance: none; marg
             </div>
           </div>
         </div>
-        <div class="story-text">Every reply, in her tone.</div>
+        <div class="story-text">Captured across her accounts. In her tone.</div>
       </div>
 
-      <div class="story-scene story-scene-9">
+      <div class="story-scene story-scene-10">
         <div class="story-visual">
           <div class="icon-crm">
             <div class="crm-rows">
@@ -2417,10 +2528,10 @@ input[type="number"]::-webkit-inner-spin-button { -webkit-appearance: none; marg
             </div>
           </div>
         </div>
-        <div class="story-text">Captured. Sent straight to Grace.</div>
+        <div class="story-text">The right information captured and sent to Grace.</div>
       </div>
 
-      <div class="story-scene story-scene-10">
+      <div class="story-scene story-scene-11">
         <div class="story-visual">
           <div class="icon-oversight">
             <div class="os-thread">
@@ -2439,7 +2550,23 @@ input[type="number"]::-webkit-inner-spin-button { -webkit-appearance: none; marg
         <div class="story-text">Grace can step in at any point.</div>
       </div>
 
-      <div class="story-scene story-scene-11">
+      <div class="story-scene story-scene-12">
+        <div class="story-visual">
+          <div class="icon-followup">
+            <div class="fu-step">
+              <div class="fu-env"><svg viewBox="0 0 54 40"><rect x="2" y="4" width="50" height="32" rx="4" fill="rgba(94,224,163,0.14)" stroke="rgb(94,224,163)" stroke-width="1.5"/><path d="M3 7 L27 25 L51 7" fill="none" stroke="rgb(94,224,163)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+              <div class="fu-lbl">Thank you</div>
+            </div>
+            <div class="fu-step">
+              <div class="fu-env"><svg viewBox="0 0 54 40"><rect x="2" y="4" width="50" height="32" rx="4" fill="rgba(94,224,163,0.14)" stroke="rgb(94,224,163)" stroke-width="1.5"/><path d="M3 7 L27 25 L51 7" fill="none" stroke="rgb(94,224,163)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+              <div class="fu-lbl">Aftercare</div>
+            </div>
+          </div>
+        </div>
+        <div class="story-text">Thank-you and aftercare sent automatically.</div>
+      </div>
+
+      <div class="story-scene story-scene-13">
         <div class="story-visual">
           <div class="grace-brief">
             <div class="brief-header">
@@ -2465,7 +2592,7 @@ input[type="number"]::-webkit-inner-spin-button { -webkit-appearance: none; marg
       </div>
 
       <!-- Finale: invitation -->
-      <div class="story-scene story-scene-12">
+      <div class="story-scene story-scene-14">
         <div class="story-visual">
           <div class="icon-invite">
             <div class="invite-k"><img class="kaizen-logo-inline" src="kaizen-logo-white.png" alt="Kaizen"></div>
