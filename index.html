@@ -2325,7 +2325,33 @@ input[type="number"]::-webkit-inner-spin-button { -webkit-appearance: none; marg
   .fu-env {
     width: 54px;
     height: 40px;
+    position: relative;
     animation: nodePulse 2s ease-in-out infinite;
+  }
+  .fu-env-badge {
+    position: absolute;
+    top: -8px;
+    right: -8px;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 11px;
+    font-weight: 700;
+    border: 2px solid #08080e;
+    z-index: 2;
+  }
+  .fu-env-badge.heart {
+    background: rgb(233,30,140);
+    color: white;
+    box-shadow: 0 0 10px rgba(233,30,140,0.8);
+  }
+  .fu-env-badge.care {
+    background: rgb(94,224,163);
+    color: #04130a;
+    box-shadow: 0 0 10px rgba(94,224,163,0.9);
   }
   .fu-env svg { width: 100%; height: 100%; display: block; }
   .fu-step:nth-child(2) .fu-env { animation-delay: 0.7s; }
@@ -2393,7 +2419,7 @@ input[type="number"]::-webkit-inner-spin-button { -webkit-appearance: none; marg
             <div class="drift-bubble drift-b3">gone cold</div>
           </div>
         </div>
-        <div class="story-text">Leads walked away.</div>
+        <div class="story-text">Leads walked. Bookings missed. Money lost.</div>
       </div>
 
       <div class="story-scene story-scene-4">
@@ -2407,7 +2433,7 @@ input[type="number"]::-webkit-inner-spin-button { -webkit-appearance: none; marg
             <div class="chaos-q">?</div>
           </div>
         </div>
-        <div class="story-text">Client information was scattered.</div>
+        <div class="story-text">Info scattered. Details missed. Bookings fumbled.</div>
       </div>
 
       <!-- Act 2: The engagement -->
@@ -2554,16 +2580,22 @@ input[type="number"]::-webkit-inner-spin-button { -webkit-appearance: none; marg
         <div class="story-visual">
           <div class="icon-followup">
             <div class="fu-step">
-              <div class="fu-env"><svg viewBox="0 0 54 40"><rect x="2" y="4" width="50" height="32" rx="4" fill="rgba(94,224,163,0.14)" stroke="rgb(94,224,163)" stroke-width="1.5"/><path d="M3 7 L27 25 L51 7" fill="none" stroke="rgb(94,224,163)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
-              <div class="fu-lbl">Thank you</div>
+              <div class="fu-env">
+                <svg viewBox="0 0 54 40"><rect x="2" y="4" width="50" height="32" rx="4" fill="rgba(94,224,163,0.14)" stroke="rgb(94,224,163)" stroke-width="1.5"/><path d="M3 7 L27 25 L51 7" fill="none" stroke="rgb(94,224,163)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                <div class="fu-env-badge heart">&#x2665;</div>
+              </div>
+              <div class="fu-lbl">Thank-you</div>
             </div>
             <div class="fu-step">
-              <div class="fu-env"><svg viewBox="0 0 54 40"><rect x="2" y="4" width="50" height="32" rx="4" fill="rgba(94,224,163,0.14)" stroke="rgb(94,224,163)" stroke-width="1.5"/><path d="M3 7 L27 25 L51 7" fill="none" stroke="rgb(94,224,163)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+              <div class="fu-env">
+                <svg viewBox="0 0 54 40"><rect x="2" y="4" width="50" height="32" rx="4" fill="rgba(94,224,163,0.14)" stroke="rgb(94,224,163)" stroke-width="1.5"/><path d="M3 7 L27 25 L51 7" fill="none" stroke="rgb(94,224,163)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                <div class="fu-env-badge care">+</div>
+              </div>
               <div class="fu-lbl">Aftercare</div>
             </div>
           </div>
         </div>
-        <div class="story-text">Thank-you and aftercare sent automatically.</div>
+        <div class="story-text">A thank-you in her voice. Aftercare when they need it.</div>
       </div>
 
       <div class="story-scene story-scene-13">
