@@ -123,7 +123,7 @@
       "name": "How quickly can systems go live?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "Our delivery partners can have core systems configured and live within 48 hours of sign-off. Full CRM and AI receptionist deployments typically go live within a week."
+        "text": "It depends on what we're building. Smaller automations like workflow integrations or lead qualification flows typically go live inside a couple of weeks. Larger builds such as full CRM set-ups, voice AI, or multi-channel customer journeys can take from a few weeks to a couple of months. We scope a realistic timeline during discovery so you know what to expect."
       }
     }
   ]
@@ -171,6 +171,8 @@ body {
   width: 100%;
   position: relative;
 }
+h1, h2, h3, h4 { text-wrap: balance; }
+p { text-wrap: pretty; }
 ::selection { background: #E91E8C; color: white; }
 ::-webkit-scrollbar { width: 4px; }
 ::-webkit-scrollbar-track { background: var(--bg); }
@@ -823,6 +825,13 @@ input[type="number"]::-webkit-inner-spin-button { -webkit-appearance: none; marg
     text-align: center;
     max-width: 400px;
     letter-spacing: -0.01em;
+    text-wrap: balance;
+  }
+  @media (max-width: 600px) {
+    .story-text {
+      font-size: 18px;
+      max-width: 320px;
+    }
   }
   .story-scene-1 .story-text,
   .story-scene-2 .story-text,
@@ -2722,7 +2731,7 @@ input[type="number"]::-webkit-inner-spin-button { -webkit-appearance: none; marg
             </div>
           </div>
         </div>
-        <div class="story-text">A thank-you in her voice.<br>Aftercare when they need it.</div>
+        <div class="story-text">Thank-you emails.<br>Aftercare emails.</div>
       </div>
 
       <div class="story-scene story-scene-13">
@@ -3008,7 +3017,7 @@ input[type="number"]::-webkit-inner-spin-button { -webkit-appearance: none; marg
       <details class="group card reveal reveal-delay-1"><summary class="p-6 cursor-pointer flex justify-between items-center text-white font-medium text-[15px]">Is my business too small for this?<span class="text-white/20 group-open:rotate-45 transition-transform text-xl ml-4 flex-shrink-0">+</span></summary><div class="px-6 pb-6 text-white/35 text-sm leading-relaxed">No. Some of our biggest impact has been with solo operators and teams under 10 people. In fact, smaller businesses often see faster ROI because the time savings are felt immediately. If you have customers, leads, or appointments — AI can help.</div></details>
       <details class="group card reveal reveal-delay-2"><summary class="p-6 cursor-pointer flex justify-between items-center text-white font-medium text-[15px]">Do I have to commit to building anything?<span class="text-white/20 group-open:rotate-45 transition-transform text-xl ml-4 flex-shrink-0">+</span></summary><div class="px-6 pb-6 text-white/35 text-sm leading-relaxed">No. The discovery gives you a clear roadmap with costs and ROI projections. You decide what to action and when. Some clients adopt free tools we recommend and see immediate value before investing in custom systems.</div></details>
       <details class="group card reveal reveal-delay-3"><summary class="p-6 cursor-pointer flex justify-between items-center text-white font-medium text-[15px]">Will AI replace my team?<span class="text-white/20 group-open:rotate-45 transition-transform text-xl ml-4 flex-shrink-0">+</span></summary><div class="px-6 pb-6 text-white/35 text-sm leading-relaxed">AI handles the repetitive work your team shouldn't be doing — answering phones, chasing leads, sending reminders. It frees your people to focus on what they're actually good at. It's about making your team more effective, not smaller.</div></details>
-      <details class="group card reveal reveal-delay-4"><summary class="p-6 cursor-pointer flex justify-between items-center text-white font-medium text-[15px]">How quickly can systems go live?<span class="text-white/20 group-open:rotate-45 transition-transform text-xl ml-4 flex-shrink-0">+</span></summary><div class="px-6 pb-6 text-white/35 text-sm leading-relaxed">Our delivery partners can have core systems configured and live within 48 hours of sign-off. Full CRM + AI receptionist deployments typically go live within a week.</div></details>
+      <details class="group card reveal reveal-delay-4"><summary class="p-6 cursor-pointer flex justify-between items-center text-white font-medium text-[15px]">How quickly can systems go live?<span class="text-white/20 group-open:rotate-45 transition-transform text-xl ml-4 flex-shrink-0">+</span></summary><div class="px-6 pb-6 text-white/35 text-sm leading-relaxed">It depends on what we're building. Smaller automations — workflow integrations, lead qualification flows, simple chat systems — usually go live inside a couple of weeks. Larger builds like full CRM set-ups, voice AI, or multi-channel customer journeys can take anywhere from a few weeks to a couple of months. We scope a realistic timeline during discovery so you know exactly what to expect, and we won't promise anything we can't stand behind.</div></details>
     </div>
   </div>
   <div class="divider absolute bottom-0 left-0 right-0"></div>
